@@ -4,7 +4,7 @@ import { useRouter } from "next/navigation";
 import { useEffect } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { auth } from "../firebase/firebase.config";
-import DashboardSidebar from "../components/adminPanel/adminSidebar";
+import AdminLayout from "../components/adminPanel/adminLayout";
 
 const Sidebar = () => {
   const router = useRouter();
@@ -18,7 +18,8 @@ const Sidebar = () => {
       router.push("/auth/login");
     }
   }, [router, user]);
-  return <DashboardSidebar></DashboardSidebar>;
+  
+  return <AdminLayout></AdminLayout>;
 };
 
 export default Sidebar;

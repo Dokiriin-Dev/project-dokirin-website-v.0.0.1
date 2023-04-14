@@ -10,9 +10,19 @@ import { FcAbout } from "react-icons/fc";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 
 const menuItems = [
-  { id: 1, label: "Manage Home", icon: <FcAbout />, link: "/admin/home" },
-  { id: 2, label: "Manage About", icon: <FcAbout />, link: "/admin/about" },
-  { id: 3, label: "Manage Contact", icon: <FcAbout />, link: "/admin/contact" },
+  { id: 1, label: "Manage Home", icon: <FcAbout />, link: "/admin/page/home" },
+  {
+    id: 2,
+    label: "Manage About",
+    icon: <FcAbout />,
+    link: "/admin/page/about",
+  },
+  {
+    id: 3,
+    label: "Manage Contact",
+    icon: <FcAbout />,
+    link: "/admin/page/contact",
+  },
 ];
 
 const DashboardSidebar: React.FC = () => {
@@ -52,7 +62,7 @@ const DashboardSidebar: React.FC = () => {
   const [isCollapsible, setIsCollapsible] = useState(false);
 
   const collapseIconClasses = classNames(
-    "rounded-full bg-[#F3F4F6] absolute -right-8",
+    "rounded-full bg-[#F3F4F6] absolute -right-3",
     {
       "rotate-180": toggleCollapse,
     }
@@ -82,17 +92,22 @@ const DashboardSidebar: React.FC = () => {
     return (
       <div
         className={classNames(
-          "h-screen px-4 pt-8 pb-4 bg-white shadow dark:bg-gray-950 flex justify-between flex-col",
+          "px-4 pb-4 bg-white shadow dark:bg-gray-950 flex justify-between flex-col left-0 top-[4.4rem] border-b",
+          "border-gray-300 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30",
+          "dark:from-inherit lg:bg-gray-200 lg:p-4 lg:dark:bg-zinc-800/30 min-h-screen sidebar",
           {
-            ["w-60"]: !toggleCollapse,
+            ["w-64"]: !toggleCollapse,
             ["w-20"]: toggleCollapse,
           }
         )}
         onMouseEnter={onMouseOver}
         onMouseLeave={onMouseOver}
-        style={{ transition: "width 300ms cubic-bezier(0.2, 0, 0, 1) 0s" }}
+        style={{
+          top: "4.4rem",
+          transition: "width 300ms cubic-bezier(0.2, 0, 0, 1) 0s",
+        }}
       >
-        <div className="flex flex-col">
+        <div className="flex flex-col pt-12">
           <div className="flex items-center justify-between relative">
             <div className="flex items-center pl-1 gap-4 absolute">
               {/* <LogoIcon /> */}

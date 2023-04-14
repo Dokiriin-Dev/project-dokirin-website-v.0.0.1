@@ -1,12 +1,12 @@
 import DashboardLayout from "@/app/components/adminPanel/adminLayout";
 import React from "react";
 
-const Services = () => {
+const About = () => {
   return (
     <DashboardLayout>
-      <div>Contact Page</div>
+      <div>About Page</div>
     </DashboardLayout>
   );
 };
 
-export default Services;
+export default About;

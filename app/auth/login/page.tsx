@@ -10,7 +10,7 @@ import React, { useEffect } from "react";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { FcGoogle, FcUnlock } from "react-icons/fc";
-import { auth } from "../firebase/firebase.config";
+import { auth } from "../../firebase/firebase.config";
 
 type LoginProps = {};
 

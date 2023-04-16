@@ -10,7 +10,7 @@ export default function Footer() {
             href="https://flowbite.com/"
             className="flex items-center mb-4 sm:mb-0 place-content-center"
           >
-            {/* <img
+            {/* <Image
               src="https://flowbite.com/docs/images/logo.svg"
               className="h-8 mr-3"
               alt="Flowbite Logo"

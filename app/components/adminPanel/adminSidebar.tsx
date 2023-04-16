@@ -157,7 +157,7 @@ const DashboardSidebar: React.FC = () => {
           </div>
 
           <div className={`${getNavItemClasses({})}`} onClick={logout}>
-            <img
+            <Image
               src={user?.photoURL as string}
               alt="Profile picture"
               className={

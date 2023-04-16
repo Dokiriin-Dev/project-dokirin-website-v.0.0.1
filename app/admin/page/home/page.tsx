@@ -2,10 +2,9 @@
 import DashboardLayout from "@/app/components/adminPanel/adminLayout";
 import Section from "@/app/components/layout/Section";
 import classNames from "classnames";
-import Link from "next/link";
 import { Inter } from "next/font/google";
-const inter = Inter({ subsets: ["latin"] });
-import styles from "./page.module.css";
+import Image from "next/image";
+import Link from "next/link";
 
 const HomePage = () => {
   return (
@@ -39,59 +38,14 @@ const HomePage = () => {
             </div>
           </div>
           <div className="lg:max-w-2xl lg:w-full md:w-1/2 w-full">
-            <img
+            <Image
               className="object-cover object-center rounded"
               alt="hero"
               src="https://kit.baliniz.com/cryptoxo/wp-content/uploads/sites/9/2021/05/bitcoin-6H5RSB8.png"
             />
           </div>
         </div>
-      </Section>{" "}
-      {/* <Section className="custom-center">
-        <div className={styles.grid}>
-          <Link
-            href="https://beta.nextjs.org/docs?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Docs <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Find in-depth information about Next.js features and API.
-            </p>
-          </Link>
-
-          <Link
-            href="https://vercel.com/templates?framework=next.js&utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Templates <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Explore the Next.js 13 playground.
-            </p>
-          </Link>
-
-          <Link
-            href="https://vercel.com/new?utm_source=create-next-app&utm_medium=appdir-template&utm_campaign=create-next-app"
-            className={styles.card}
-            target="_blank"
-            rel="noopener noreferrer"
-          >
-            <h2 className={inter.className}>
-              Deploy <span>-&gt;</span>
-            </h2>
-            <p className={inter.className}>
-              Instantly deploy your Next.js site to a shareable URL with Vercel.
-            </p>
-          </Link>
-        </div>
-      </Section> */}
+      </Section>
       <Section className="text-gray-700 body-font border-t border-cyan-400">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
@@ -247,7 +201,7 @@ const HomePage = () => {
       <Section className="text-gray-700 body-font border-t border-cyan-400">
         <div className="container px-5 py-24 mx-auto flex flex-wrap">
           <div className="lg:w-1/2 w-full mb-10 lg:mb-0 rounded-lg overflow-hidden">
-            <img
+            <Image
               alt="feature"
               className="object-cover object-center h-full w-full"
               src="https://dummyimage.com/600x600/edf2f7/a5afbd"
@@ -612,7 +566,7 @@ const HomePage = () => {
           <div className="flex flex-wrap -m-2">
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
-                <img
+                <Image
                   alt="team"
                   className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                   src="https://dummyimage.com/80x80/edf2f7/a5afbd"
@@ -627,7 +581,7 @@ const HomePage = () => {
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
-                <img
+                <Image
                   alt="team"
                   className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                   src="https://dummyimage.com/84x84/edf2f7/a5afbd"
@@ -642,7 +596,7 @@ const HomePage = () => {
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
-                <img
+                <Image
                   alt="team"
                   className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                   src="https://dummyimage.com/88x88/edf2f7/a5afbd"
@@ -657,7 +611,7 @@ const HomePage = () => {
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
-                <img
+                <Image
                   alt="team"
                   className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                   src="https://dummyimage.com/90x90/edf2f7/a5afbd"
@@ -672,7 +626,7 @@ const HomePage = () => {
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
-                <img
+                <Image
                   alt="team"
                   className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                   src="https://dummyimage.com/94x94/edf2f7/a5afbd"
@@ -687,7 +641,7 @@ const HomePage = () => {
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
-                <img
+                <Image
                   alt="team"
                   className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                   src="https://dummyimage.com/98x98/edf2f7/a5afbd"
@@ -702,7 +656,7 @@ const HomePage = () => {
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
-                <img
+                <Image
                   alt="team"
                   className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                   src="https://dummyimage.com/100x90/edf2f7/a5afbd"
@@ -717,7 +671,7 @@ const HomePage = () => {
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
-                <img
+                <Image
                   alt="team"
                   className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                   src="https://dummyimage.com/104x94/edf2f7/a5afbd"
@@ -732,7 +686,7 @@ const HomePage = () => {
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
-                <img
+                <Image
                   alt="team"
                   className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                   src="https://dummyimage.com/108x98/edf2f7/a5afbd"
@@ -1220,23 +1174,62 @@ const HomePage = () => {
         </div>
       </Section>
       <Section className="text-gray-400 bg-gray-900 body-font relative">
-        <div className="absolute inset-0 bg-gray-900">
-          <iframe
-            title="map"
-            width="100%"
-            height="100%"
-            src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=%C4%B0zmir+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
-            style={{ filter: "grayscale(1) contrast(1.2) opacity(0.16);" }}
-          ></iframe>
-        </div>
-        <div className="container px-5 py-24 mx-auto flex">
-          <div className="lg:w-1/3 md:w-1/2 bg-gray-900 shadow-md rounded-lg p-8 flex flex-col md:ml-auto w-full mt-10 md:mt-0 relative z-10">
+        <div className="container px-5 py-24 mx-auto flex sm:flex-nowrap flex-wrap">
+          <div className="lg:w-2/3 md:w-1/2 bg-gray-900 rounded-lg overflow-hidden sm:mr-10 p-10 flex items-end justify-start relative">
+            <iframe
+              width="100%"
+              height="100%"
+              title="map"
+              className="absolute inset-0"
+              frameBorder={0}
+              marginHeight={0}
+              marginWidth={0}
+              scrolling="no"
+              src="https://maps.google.com/maps?width=100%&amp;height=600&amp;hl=en&amp;q=%C4%B0zmir+(My%20Business%20Name)&amp;ie=UTF8&amp;t=&amp;z=14&amp;iwloc=B&amp;output=embed"
+              style={{ filter: "grayscale(1) contrast(1.2) opacity(0.16)" }}
+            ></iframe>
+            <div className="bg-gray-900 relative flex flex-wrap py-6 rounded shadow-md">
+              <div className="lg:w-1/2 px-6">
+                <h2 className="title-font font-semibold text-white tracking-widest text-xs">
+                  ADDRESS
+                </h2>
+                <p className="mt-1">
+                  Photo booth tattooed prism, portland taiyaki hoodie neutra
+                  typewriter
+                </p>
+              </div>
+              <div className="lg:w-1/2 px-6 mt-4 lg:mt-0">
+                <h2 className="title-font font-semibold text-white tracking-widest text-xs">
+                  EMAIL
+                </h2>
+                <a className="text-green-400 leading-relaxed">
+                  example@email.com
+                </a>
+                <h2 className="title-font font-semibold text-white tracking-widest text-xs mt-4">
+                  PHONE
+                </h2>
+                <p className="leading-relaxed">123-456-7890</p>
+              </div>
+            </div>
+          </div>
+          <div className="lg:w-1/3 md:w-1/2 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
             <h2 className="text-white text-lg mb-1 font-medium title-font">
               Feedback
             </h2>
             <p className="leading-relaxed mb-5">
               Post-ironic portland shabby chic echo park, banjo fashion axe
             </p>
+            <div className="relative mb-4">
+              <label htmlFor="name" className="leading-7 text-sm text-gray-400">
+                Name
+              </label>
+              <input
+                type="text"
+                id="name"
+                name="name"
+                className="w-full bg-gray-800 rounded border border-gray-700 focus:border-green-500 focus:ring-2 focus:ring-green-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+              />
+            </div>
             <div className="relative mb-4">
               <label
                 htmlFor="email"
@@ -1248,7 +1241,7 @@ const HomePage = () => {
                 type="email"
                 id="email"
                 name="email"
-                className="w-full bg-gray-800 rounded border border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
+                className="w-full bg-gray-800 rounded border border-gray-700 focus:border-green-500 focus:ring-2 focus:ring-green-900 text-base outline-none text-gray-100 py-1 px-3 leading-8 transition-colors duration-200 ease-in-out"
               />
             </div>
             <div className="relative mb-4">
@@ -1261,10 +1254,10 @@ const HomePage = () => {
               <textarea
                 id="message"
                 name="message"
-                className="w-full bg-gray-800 rounded border border-gray-700 focus:border-blue-500 focus:ring-2 focus:ring-blue-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
+                className="w-full bg-gray-800 rounded border border-gray-700 focus:border-green-500 focus:ring-2 focus:ring-green-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
               ></textarea>
             </div>
-            <button className="text-white bg-blue-500 border-0 py-2 px-6 focus:outline-none hover:bg-blue-600 rounded text-lg">
+            <button className="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">
               Button
             </button>
             <p className="text-xs text-gray-400 text-opacity-90 mt-3">

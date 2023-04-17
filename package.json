@@ -15,8 +15,6 @@
     "autoprefixer": "10.4.14",
     "classnames": "^2.3.2",
     "encoding": "^0.1.13",
-    "eslint": "8.38.0",
-    "eslint-config-next": "13.3.0",
     "firebase": "^9.19.1",
     "next": "13.3.0",
     "next-connect": "^0.13.0",
@@ -33,6 +31,7 @@
   },
   "devDependencies": {
     "@types/nodemailer": "^6.4.7",
-    "@types/react-google-recaptcha": "^2.1.5"
+    "@types/react-google-recaptcha": "^2.1.5",
+    "eslint": "^8.38.0"
   }
 }

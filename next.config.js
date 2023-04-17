@@ -2,10 +2,7 @@
 const nextConfig = {
   experimental: {
     appDir: true,
-    api: {
-      externalResolver: true,
-    },
   },
-};
+}
 
-module.exports = nextConfig;
+module.exports = nextConfig

@@ -2,7 +2,6 @@
 import DashboardLayout from "@/app/components/adminPanel/adminLayout";
 import Section from "@/app/components/layout/Section";
 import classNames from "classnames";
-import { Inter } from "next/font/google";
 import Image from "next/image";
 import Link from "next/link";
 

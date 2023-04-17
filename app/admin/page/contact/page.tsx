@@ -30,8 +30,8 @@ const Contact = () => {
   };
   const reRef = useRef<ReCAPTCHA>() as any;
 
-  const onSubmitForm = async (e: FormEvent<HTMLFormElement>) => {
-    e.preventDefault();
+  const onSubmitForm = async (event: FormEvent<HTMLFormElement>) => {
+    event.preventDefault();
 
     if (
       data.floating_first_name &&
@@ -60,7 +60,7 @@ const Contact = () => {
           }),
         });
 
-        console.log(response.body)
+        console.log(data)
         toast.success("Email inviata con successo!");
 
         setIsLoading(true);

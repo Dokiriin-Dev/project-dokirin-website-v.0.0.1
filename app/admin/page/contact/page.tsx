@@ -255,7 +255,7 @@ const Contact = () => {
                   />
                 </div>
                 <label htmlFor="terms" className="ml-2 text-sm font-medium">
-                  <span>Sono d'accordo con i </span>
+                  <span>Sono d&apos;accordo con i </span>
                   <Link
                     href="/terms-conditions"
                     className="text-blue-600 hover:underline dark:text-blue-500"

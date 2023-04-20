@@ -1,100 +1,60 @@
-"use client";
-
-import DashboardLayout from "@/app/components/adminPanel/adminLayout";
-import Section from "@/app/components/layout/Section";
-import { bgColors } from "@/app/context/colors";
+import DashboardLayout from "@/components/adminPanel/adminLayout";
+import Section from "@/components/layout/Section";
+import { bgColors } from "@/context/colors";
 import Link from "next/link";
-import { useRouter } from "next/navigation";
-import { FormEvent, useRef, useState } from "react";
+import { useRef, useState } from "react";
 import ReCAPTCHA from "react-google-recaptcha";
-import toast from "react-hot-toast";
+import { SubmitHandler, useForm } from "react-hook-form";
+import toast, { Toaster } from "react-hot-toast";
 
-const Contact = () => {
-  const [data, setInputs] = useState({
-    floating_first_name: "",
-    floating_last_name: "",
-    floating_email: "",
-    floating_phone: "",
-    floating_company: "",
-    floating_message: "",
+interface ContactFormData {
+  floating_first_name: string;
+  floating_last_name: string;
+  floating_phone: string;
+  floating_company?: string;
+  floating_email: string;
+  floating_message: string;
+  floating_checkbox: boolean;
+}
+
+export default function ContactForm(): JSX.Element {
+  const [isLoading, setIsLoading] = useState<boolean>(false);
+
+  const {
+    register,
+    handleSubmit,
+    formState: { errors },
+  } = useForm<ContactFormData>({
+    mode: "onBlur",
+    defaultValues: {
+      floating_checkbox: false,
+    },
   });
 
-  const [isLoading, setIsLoading] = useState(false);
-  const router = useRouter();
-
-  const handleChange = (e: { target: { id: any; value: any } }) => {
-    setInputs((prev) => ({
-      ...prev,
-      [e.target.id]: e.target.value,
-    }));
-  };
   const reRef = useRef<ReCAPTCHA>() as any;
 
-  const onSubmitForm = async (event: FormEvent<HTMLFormElement>) => {
-    event.preventDefault();
+  const onSubmit: SubmitHandler<ContactFormData> = async (data, param) => {
+    param?.target.reset(); // Resetta il form
+    setIsLoading(true);
 
-    if (
-      data.floating_first_name &&
-      data.floating_last_name &&
-      data.floating_email &&
-      data.floating_phone &&
-      data.floating_company &&
-      data.floating_message
-    ) {
-      try {
-        const token = await reRef.current.executeAsync();
-        reRef.current.reset();
-        setIsLoading(true);
+    try {
+      const response = await fetch("/api/send-email", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify(data),
+      });
 
-        const response = await fetch(`/api/contact`, {
-          method: "POST",
-          headers: { "Content-Type": "application/json" },
-          body: JSON.stringify({
-            floating_first_name: data.floating_first_name,
-            floating_last_name: data.floating_last_name,
-            floating_email: data.floating_email,
-            floating_phone: data.floating_phone,
-            floating_company: data.floating_company,
-            floating_message: data.floating_message,
-            token,
-          }),
-        });
-
-        console.log(data)
-        toast.success("Email inviata con successo!");
-
-        setIsLoading(true);
-
-        const { error } = await response.json();
-
-        if (error) {
-          return;
-        } else {
-        }
-
-        setInputs({
-          floating_first_name: "",
-          floating_last_name: "",
-          floating_email: "",
-          floating_phone: "",
-          floating_company: "",
-          floating_message: "",
-        });
-      } catch (error) {
-        toast.error("Errore durante l'invio della mail!");
-      } finally {
-        setIsLoading(false);
+      if (!response.ok) {
+        throw new Error("Failed to send email");
       }
+
+      toast.success("Email sent successfully");
+    } catch (error) {
+      toast.error("Failed to send email");
     }
+
+    setIsLoading(false);
   };
-
-  if (typeof document !== "undefined") {
-    var menu = document.getElementById("menu");
-  }
-
-  function showMenu(flag: any) {
-    menu?.classList.toggle("hidden");
-  }
 
   return (
     <DashboardLayout>
@@ -102,11 +62,12 @@ const Contact = () => {
         bg={bgColors.darkBlue.value}
         className="text-gray-400 bg-gray-900 body-font relative"
       >
+        <Toaster position="top-center" />
         <div className="p-10 w-full h-1"></div>
 
         <form
           className="container px-5 py-24 mx-auto"
-          onSubmit={(data) => onSubmitForm(data)}
+          onSubmit={handleSubmit(onSubmit)}
         >
           <div className="flex flex-col text-center w-full mb-12">
             <h1 className="sm:text-3xl text-2xl font-medium title-font mb-4 text-white">
@@ -123,14 +84,16 @@ const Contact = () => {
                 <div className="relative z-0 mb-6 w-full group">
                   <input
                     type="text"
-                    name="floating_first_name"
                     id="floating_first_name"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                     required
-                    value={data.floating_first_name}
-                    onChange={handleChange}
+                    {...register("floating_first_name", { required: true })}
                   />
+                  {errors.floating_first_name && (
+                    <span>This field is required</span>
+                  )}
+
                   <label
                     htmlFor="floating_first_name"
                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -144,14 +107,16 @@ const Contact = () => {
                 <div className="relative z-0 mb-6 w-full group">
                   <input
                     type="text"
-                    name="floating_last_name"
                     id="floating_last_name"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                     required
-                    value={data.floating_last_name}
-                    onChange={handleChange}
+                    {...register("floating_last_name", { required: true })}
                   />
+                  {errors.floating_last_name && (
+                    <span>This field is required</span>
+                  )}
+
                   <label
                     htmlFor="floating_last_name"
                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -165,14 +130,17 @@ const Contact = () => {
                 <div className="relative z-0 mb-6 w-full group">
                   <input
                     type="email"
-                    name="floating_email"
                     id="floating_email"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                     required
-                    value={data.floating_email}
-                    onChange={handleChange}
+                    {...register("floating_email", { required: true })}
                   />
+                  {errors.floating_email && (
+                    <span>
+                      This field is required and must be a valid email
+                    </span>
+                  )}
                   <label
                     htmlFor="floating_email"
                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -186,14 +154,14 @@ const Contact = () => {
                 <div className="relative z-0 mb-6 w-full group">
                   <input
                     type="tel"
-                    name="floating_phone"
                     id="floating_phone"
                     className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                     placeholder=" "
                     required
-                    value={data.floating_phone}
-                    onChange={handleChange}
+                    {...register("floating_phone", { required: true })}
                   />
+                  {errors.floating_phone && <span>This field is required</span>}
+
                   <label
                     htmlFor="floating_phone"
                     className="peer-focus:font-medium absolute text-sm text-gray-500 dark:text-gray-400 duration-300 transform -translate-y-6 scale-75 top-3 -z-10 origin-[0] peer-focus:left-0 peer-focus:text-blue-600 peer-focus:dark:text-blue-500 peer-placeholder-shown:scale-100 peer-placeholder-shown:translate-y-0 peer-focus:scale-75 peer-focus:-translate-y-6"
@@ -206,13 +174,11 @@ const Contact = () => {
               <div className="relative z-0 p-2 mb-6 w-full group">
                 <input
                   type="text"
-                  name="floating_company"
                   id="floating_company"
                   className="block py-2.5 px-0 w-full text-sm text-gray-900 bg-transparent border-0 border-b-2 border-gray-300 appearance-none dark:text-white dark:border-gray-600 dark:focus:border-blue-500 focus:outline-none focus:ring-0 focus:border-blue-600 peer"
                   placeholder=" "
                   required
-                  value={data.floating_company}
-                  onChange={handleChange}
+                  {...register("floating_company")}
                 />
                 <label
                   htmlFor="floating_company"
@@ -233,26 +199,27 @@ const Contact = () => {
                   </label>
                   <textarea
                     id="floating_message"
-                    name="floating_message"
                     rows={6}
-                    value={data.floating_message}
+                    {...register("floating_message", { required: true })}
                     placeholder=" "
                     required
-                    onChange={handleChange}
                     className="w-full bg-gray-800 bg-opacity-40 rounded border border-gray-700 focus:border-green-500 focus:bg-gray-900 focus:ring-2 focus:ring-green-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
                   />
+                  {errors.floating_message && (
+                    <span>This field is required</span>
+                  )}
                 </div>
               </div>
               <div className="flex items-start mb-6 p-2">
                 <div className="flex items-center h-5">
                   <input
                     id="floating_checkbox"
-                    name="floating_checkbox"
                     type="checkbox"
-                    value={""}
-                    required
-                    className="w-4 h-4 bg-gray-50 rounded border border-gray-300 focus:ring-3 focus:ring-blue-300 dark:bg-gray-700 dark:border-gray-600 dark:focus:ring-blue-600 dark:ring-offset-gray-800"
+                    {...register("floating_checkbox", { required: true })}
                   />
+                  {errors.floating_checkbox && (
+                    <span>This field is required</span>
+                  )}
                 </div>
                 <label htmlFor="terms" className="ml-2 text-sm font-medium">
                   <span>Sono d&apos;accordo con i </span>
@@ -272,12 +239,8 @@ const Contact = () => {
                 ref={reRef}
               />
               <div className="text-center p-2 w-full">
-                <button
-                  type="submit"
-                  onClick={() => showMenu(true)}
-                  className="text-white bg-blue-700 hover:bg-blue-800 focus:ring-4 focus:outline-none focus:ring-blue-300 font-medium rounded-sm text-lg w-full sm:w-auto px-20 py-2.5 text-center dark:bg-blue-600 dark:hover:bg-blue-700 dark:focus:ring-blue-800"
-                >
-                  <span>Invia email</span>
+                <button type="submit" disabled={isLoading}>
+                  {isLoading ? "Sending email..." : "Send email"}
                 </button>
                 {isLoading && (
                   <>
@@ -375,6 +338,4 @@ const Contact = () => {
       </Section>
     </DashboardLayout>
   );
-};
-
-export default Contact;
+}

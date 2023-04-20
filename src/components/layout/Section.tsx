@@ -1,7 +1,7 @@
 import * as React from "react";
 
 import classNames from "classnames";
-import { bgColors } from "@/app/context/colors";
+import { bgColors } from "@/context/colors";
 import { useMemo } from "react";
 
 export type Border = "none" | "full" | "boxed";

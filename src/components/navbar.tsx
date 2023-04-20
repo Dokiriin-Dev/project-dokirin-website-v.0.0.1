@@ -1,7 +1,7 @@
 "use client";
+import { auth } from "@/firebase/firebase.config";
 import Link from "next/link";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { auth } from "../firebase/firebase.config";
 
 function NavBar() {
   const [user, loading, error] = useAuthState(auth);

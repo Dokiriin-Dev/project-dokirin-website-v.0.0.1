@@ -1,5 +1,4 @@
 "use client";
-import { auth } from "@/app/firebase/firebase.config";
 import classNames from "classnames";
 import { signOut } from "firebase/auth";
 import Link from "next/link";
@@ -9,6 +8,7 @@ import { useAuthState } from "react-firebase-hooks/auth";
 import { FcAbout } from "react-icons/fc";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import Image from "next/image";
+import { auth } from "@/firebase/firebase.config";
 
 const menuItems = [
   { id: 1, label: "Manage Home", icon: <FcAbout />, link: "/admin/page/home" },
@@ -158,7 +158,7 @@ const DashboardSidebar: React.FC = () => {
           </div>
 
           <div className={`${getNavItemClasses({})}`} onClick={logout}>
-            <Image
+            {/* <Image
               src={user?.photoURL as string}
               alt="Profile picture"
               className={
@@ -167,7 +167,8 @@ const DashboardSidebar: React.FC = () => {
                   : "mx-1 my-1 rounded-full h-10 w-10"
               }
               //   className="rounded-full h-10 w-10"
-            />
+            /> */}
+            Image
             {!toggleCollapse && (
               <span
                 className={classNames(

@@ -1,23 +1,26 @@
 "use client";
-import DashboardLayout from "@/app/components/adminPanel/adminLayout";
-import Section from "@/app/components/layout/Section";
+
+import DashboardLayout from "@/components/adminPanel/adminLayout";
+import Section from "@/components/layout/Section";
 import classNames from "classnames";
 import Image from "next/image";
 import Link from "next/link";
 
-const HomePage = () => {
+export default function HomePage() {
   return (
     <DashboardLayout>
-      <Section className={classNames("text-gray-700 body-font")}>
+      <Section className={classNames("text-gray-700 body-font relative")}>
         <div className="p-10 w-full h-1"></div>
-        <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-          <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center">
+
+        <div className="elementor-background-header h-screen w-screen z-0 absolute"></div>
+        <div className="container mx-auto flex px-5 md:flex-row flex-col items-center h-screen ">
+          <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center z-50">
             <p className="uppercase tracking-loose w-full text-sm text-teal-400">
               Qual è il tuo business?
             </p>
             <h1 className="title-font sm:text-7xl mb-4 my-4 text-5xl font-bold leading-tight">
               Il{" "}
-              <span className="boujee-text text-6xl">
+              <span className="boujee-text title-font sm:text-7xl mb-4 my-4 text-5xl font-bold leading-tight">
                 sito web dei tuoi sogni
               </span>
               , su misura per le tue esigenze!
@@ -27,6 +30,7 @@ const HomePage = () => {
               attività online, mostra il tuo business ai tuoi clienti. Ogni tua
               idea di business può diventare realtà.
             </p>
+
             <div className="flex justify-center">
               <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
                 Button
@@ -37,15 +41,25 @@ const HomePage = () => {
             </div>
           </div>
           <div className="lg:max-w-2xl lg:w-full md:w-1/2 w-full">
-            <Image
+            {/* <Image
               className="object-cover object-center rounded"
               alt="hero"
-              src="https://kit.baliniz.com/cryptoxo/wp-content/uploads/sites/9/2021/05/bitcoin-6H5RSB8.png"
-            />
+              src="../../../../public/bitcoin-6H5RSB8.png"
+            /> */}
+            <div className="relative z-50 flex place-items-center place-content-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
+              <Image
+                className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
+                src="/next.svg"
+                alt="Next.js Logo"
+                width={280}
+                height={37}
+                priority
+              />
+            </div>
           </div>
         </div>
       </Section>
-      <Section className="text-gray-700 body-font border-t border-cyan-400">
+      <Section className="text-gray-700 body-font border-t border-cyan-400 relative">
         <div className="container px-5 py-24 mx-auto">
           <div className="flex flex-col text-center w-full mb-20">
             <h2 className="text-xs text-indigo-500 tracking-widest font-medium title-font mb-1">
@@ -200,11 +214,12 @@ const HomePage = () => {
       <Section className="text-gray-700 body-font border-t border-cyan-400">
         <div className="container px-5 py-24 mx-auto flex flex-wrap">
           <div className="lg:w-1/2 w-full mb-10 lg:mb-0 rounded-lg overflow-hidden">
-            <Image
+            {/* <Image
               alt="feature"
               className="object-cover object-center h-full w-full"
               src="https://dummyimage.com/600x600/edf2f7/a5afbd"
-            />
+            /> */}
+            Image
           </div>
           <div className="flex flex-col flex-wrap lg:py-6 -mb-10 lg:w-1/2 lg:pl-12 lg:text-left text-center">
             <div className="flex flex-col mb-10 lg:items-start items-center">
@@ -565,11 +580,12 @@ const HomePage = () => {
           <div className="flex flex-wrap -m-2">
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
-                <Image
+                {/* <Image
                   alt="team"
                   className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                   src="https://dummyimage.com/80x80/edf2f7/a5afbd"
-                />
+                /> */}
+                Image
                 <div className="flex-grow">
                   <h2 className="text-amber-500 title-font font-medium">
                     Holden Caulfield
@@ -580,11 +596,12 @@ const HomePage = () => {
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
-                <Image
+                {/* <Image
                   alt="team"
                   className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                   src="https://dummyimage.com/84x84/edf2f7/a5afbd"
-                />
+                /> */}
+                Image
                 <div className="flex-grow">
                   <h2 className="text-amber-500 title-font font-medium">
                     Henry Letham
@@ -595,11 +612,12 @@ const HomePage = () => {
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
-                <Image
+                {/* <Image
                   alt="team"
                   className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                   src="https://dummyimage.com/88x88/edf2f7/a5afbd"
-                />
+                /> */}
+                Image
                 <div className="flex-grow">
                   <h2 className="text-amber-500 title-font font-medium">
                     Oskar Blinde
@@ -610,11 +628,12 @@ const HomePage = () => {
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
-                <Image
+                {/* <Image
                   alt="team"
                   className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                   src="https://dummyimage.com/90x90/edf2f7/a5afbd"
-                />
+                /> */}
+                Image
                 <div className="flex-grow">
                   <h2 className="text-amber-500 title-font font-medium">
                     John Doe
@@ -625,11 +644,12 @@ const HomePage = () => {
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
-                <Image
+                {/* <Image
                   alt="team"
                   className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                   src="https://dummyimage.com/94x94/edf2f7/a5afbd"
-                />
+                /> */}
+                Image
                 <div className="flex-grow">
                   <h2 className="text-amber-500 title-font font-medium">
                     Martin Eden
@@ -640,11 +660,12 @@ const HomePage = () => {
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
-                <Image
+                {/* <Image
                   alt="team"
                   className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                   src="https://dummyimage.com/98x98/edf2f7/a5afbd"
-                />
+                /> */}
+                Image
                 <div className="flex-grow">
                   <h2 className="text-amber-500 title-font font-medium">
                     Boris Kitua
@@ -655,11 +676,12 @@ const HomePage = () => {
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
-                <Image
+                {/* <Image
                   alt="team"
                   className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                   src="https://dummyimage.com/100x90/edf2f7/a5afbd"
-                />
+                /> */}
+                Image
                 <div className="flex-grow">
                   <h2 className="text-amber-500 title-font font-medium">
                     Atticus Finch
@@ -670,11 +692,12 @@ const HomePage = () => {
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
-                <Image
+                {/* <Image
                   alt="team"
                   className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                   src="https://dummyimage.com/104x94/edf2f7/a5afbd"
-                />
+                /> */}
+                Image
                 <div className="flex-grow">
                   <h2 className="text-amber-500 title-font font-medium">
                     Alper Kamu
@@ -685,11 +708,12 @@ const HomePage = () => {
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
               <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
-                <Image
+                {/* <Image
                   alt="team"
                   className="w-16 h-16 bg-gray-100 object-cover object-center flex-shrink-0 rounded-full mr-4"
                   src="https://dummyimage.com/108x98/edf2f7/a5afbd"
-                />
+                /> */}
+                Image
                 <div className="flex-grow">
                   <h2 className="text-amber-500 title-font font-medium">
                     Rodrigo Monchi
@@ -1268,6 +1292,4 @@ const HomePage = () => {
       </Section>
     </DashboardLayout>
   );
-};
-
-export default HomePage;
+}

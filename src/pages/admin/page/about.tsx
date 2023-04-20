@@ -1,4 +1,4 @@
-import DashboardLayout from "@/app/components/adminPanel/adminLayout";
+import DashboardLayout from "@/components/adminPanel/adminLayout";
 import React from "react";
 
 const About = () => {

@@ -62,49 +62,49 @@ export const bgColors: BgColors = {
     label: "White",
     value: {
       color: "#fff",
-      className: "bg-transparent dark:bg-transparent dark:text-white text-dark",
+      className: "bg-transparent dark:bg-transparent dark:text-slate-300 text-dark",
     },
   },
   light: {
     label: "Light",
     value: {
       color: "#f9fafb",
-      className: "bg-gray-50 dark:bg-gray-800 dark:text-white text-dark ",
+      className: "bg-gray-50 dark:bg-gray-800 dark:text-slate-300 text-dark ",
     },
   },
   gray: {
     label: "Gray",
     value: {
       color: "#f3f4f6",
-      className: "bg-gray-100 dark:bg-gray-800 dark:text-white text-dark ",
+      className: "bg-gray-100 dark:bg-gray-800 dark:text-slate-300 text-dark ",
     },
   },
   lightBlue: {
     label: "Light Blue",
     value: {
       color: "#e0f2fe",
-      className: "bg-sky-100 text-black dark:bg-gray-800 dark:text-white",
+      className: "bg-sky-100 text-black dark:bg-gray-800 dark:text-slate-300",
     },
   },
   orange: {
     label: "Orange",
     value: {
       color: "#fef3c7",
-      className: "bg-amber-100 dark:bg-gray-800 dark:text-white text-dark ",
+      className: "bg-amber-100 dark:bg-gray-800 dark:text-slate-300 text-dark ",
     },
   },
   green: {
     label: "Green",
     value: {
       color: "#ecfccb",
-      className: "bg-lime-100 dark:bg-gray-800 dark:text-white text-dark ",
+      className: "bg-lime-100 dark:bg-gray-800 dark:text-slate-300 text-dark ",
     },
   },
   darkBlue: {
     label: "Dark Blue",
     value: {
       color: "#0c4a6e",
-      className: "bg-sky-200 dark:bg-gray-900 dark:text-white text-dark dark",
+      className: "bg-sky-200 dark:bg-gray-900 dark:text-slate-300 text-dark dark",
     },
   },
   dark: {
@@ -126,21 +126,21 @@ export const bgGradients: BgGradients = {
     label: "Ocean",
     value: {
       color: "#2dd4bf",
-      className: "bg-gradient-to-r from-blue-500 to-teal-400 text-white",
+      className: "bg-gradient-to-r from-blue-500 to-teal-400 text-slate-300",
     },
   },
   violet: {
     label: "Violet",
     value: {
       color: "#a855f7",
-      className: "bg-gradient-to-r from-purple-700 to-pink-500 text-white",
+      className: "bg-gradient-to-r from-purple-700 to-pink-500 text-slate-300",
     },
   },
   sun: {
     label: "Sun",
     value: {
       color: "#facc15",
-      className: "bg-gradient-to-r from-red-500 to-yellow-400 text-white",
+      className: "bg-gradient-to-r from-red-500 to-yellow-400 text-slate-300",
     },
   },
   darkBlue: {
@@ -182,7 +182,7 @@ export const bulletColors: BulletColors = {
     label: "pink",
     value: {
       color: "#ec4899",
-      className: "bg-pink-500 text-white",
+      className: "bg-pink-500 text-slate-300",
       className2: "text-pink-500",
     },
   },
@@ -198,7 +198,7 @@ export const bulletColors: BulletColors = {
     label: "Sky",
     value: {
       color: "#0ea5e9",
-      className: "bg-sky-500 text-white",
+      className: "bg-sky-500 text-slate-300",
       className2: "text-sky-500",
     },
   },
@@ -214,7 +214,7 @@ export const bulletColors: BulletColors = {
     label: "Green",
     value: {
       color: "#84cc16",
-      className: "bg-lime-500 text-white",
+      className: "bg-lime-500 text-slate-300",
       className2: "text-lime-600",
     },
   },

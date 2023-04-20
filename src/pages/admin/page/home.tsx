@@ -9,12 +9,11 @@ import Link from "next/link";
 export default function HomePage() {
   return (
     <DashboardLayout>
-      <Section className={classNames("text-gray-700 body-font relative")}>
-        <div className="p-10 w-full h-1"></div>
-
+      <Section className={classNames("")}>
+        {/* <div className="p-1 w-full h-1"></div> */}
         <div className="elementor-background-header h-screen w-screen z-0 absolute"></div>
         <div className="container mx-auto flex px-5 md:flex-row flex-col items-center h-screen ">
-          <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center z-50">
+          <div className="lg:flex-grow md:w-1/2 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left mb-16 md:mb-0 items-center text-center z-40">
             <p className="uppercase tracking-loose w-full text-sm text-teal-400">
               Qual è il tuo business?
             </p>
@@ -32,7 +31,7 @@ export default function HomePage() {
             </p>
 
             <div className="flex justify-center">
-              <button className="inline-flex text-white bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
+              <button className="inline-flex text-slate-300 bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg">
                 Button
               </button>
               <button className="ml-4 inline-flex text-gray-700 bg-gray-200 border-0 py-2 px-6 focus:outline-none hover:bg-gray-300 rounded text-lg">
@@ -46,7 +45,7 @@ export default function HomePage() {
               alt="hero"
               src="../../../../public/bitcoin-6H5RSB8.png"
             /> */}
-            <div className="relative z-50 flex place-items-center place-content-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
+            <div className="relative z-40 flex place-items-center place-content-center before:absolute before:h-[300px] before:w-[480px] before:-translate-x-1/2 before:rounded-full before:bg-gradient-radial before:from-white before:to-transparent before:blur-2xl before:content-[''] after:absolute after:-z-20 after:h-[180px] after:w-[240px] after:translate-x-1/3 after:bg-gradient-conic after:from-sky-200 after:via-blue-200 after:blur-2xl after:content-[''] before:dark:bg-gradient-to-br before:dark:from-transparent before:dark:to-blue-700/10 after:dark:from-sky-900 after:dark:via-[#0141ff]/40 before:lg:h-[360px]">
               <Image
                 className="relative dark:drop-shadow-[0_0_0.3rem_#ffffff70] dark:invert"
                 src="/next.svg"
@@ -73,7 +72,7 @@ export default function HomePage() {
             <div className="p-4 md:w-1/3">
               <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                 <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
+                  <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-slate-300 flex-shrink-0">
                     <svg
                       fill="none"
                       stroke="currentColor"
@@ -118,7 +117,7 @@ export default function HomePage() {
             <div className="p-4 md:w-1/3">
               <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                 <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
+                  <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-slate-300 flex-shrink-0">
                     <svg
                       fill="none"
                       stroke="currentColor"
@@ -164,7 +163,7 @@ export default function HomePage() {
             <div className="p-4 md:w-1/3">
               <div className="flex rounded-lg h-full bg-gray-100 p-8 flex-col">
                 <div className="flex items-center mb-3">
-                  <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-white flex-shrink-0">
+                  <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-slate-300 flex-shrink-0">
                     <svg
                       fill="none"
                       stroke="currentColor"
@@ -771,7 +770,7 @@ export default function HomePage() {
                 Schlitz single-origin
               </p>
               <p className="text-gray-600 text-center h-12 flex items-center justify-center">
-                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-white rounded-full flex-shrink-0">
+                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-slate-300 rounded-full flex-shrink-0">
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -786,7 +785,7 @@ export default function HomePage() {
                 </span>
               </p>
               <p className="bg-gray-100 text-gray-600 text-center h-12 flex items-center justify-center">
-                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-white rounded-full flex-shrink-0">
+                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-slate-300 rounded-full flex-shrink-0">
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -804,7 +803,7 @@ export default function HomePage() {
                 Feature
               </p>
               <p className="bg-gray-100 text-gray-600 text-center h-12 flex items-center justify-center">
-                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-white rounded-full flex-shrink-0">
+                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-slate-300 rounded-full flex-shrink-0">
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -871,7 +870,7 @@ export default function HomePage() {
                 </svg>
               </p>
               <div className="border-t border-cyan-400 p-6 text-center rounded-bl-lg">
-                <button className="flex items-center mt-auto text-white bg-indigo-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-indigo-600 rounded">
+                <button className="flex items-center mt-auto text-slate-300 bg-indigo-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-indigo-600 rounded">
                   Button
                   <svg
                     fill="none"
@@ -891,7 +890,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="lg:w-1/3 lg:-mt-px w-full mb-10 lg:mb-0 border-2 rounded-lg border-indigo-500 relative">
-              <span className="bg-indigo-500 text-white px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">
+              <span className="bg-indigo-500 text-slate-300 px-3 py-1 tracking-widest text-xs absolute right-0 top-0 rounded-bl">
                 POPULAR
               </span>
               <div className="px-2 text-center h-48 flex flex-col items-center justify-center">
@@ -908,7 +907,7 @@ export default function HomePage() {
                 Schlitz single-origin
               </p>
               <p className="text-gray-600 text-center h-12 flex items-center justify-center">
-                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-white rounded-full flex-shrink-0">
+                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-slate-300 rounded-full flex-shrink-0">
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -923,7 +922,7 @@ export default function HomePage() {
                 </span>
               </p>
               <p className="bg-gray-100 text-gray-600 text-center h-12 flex items-center justify-center">
-                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-white rounded-full flex-shrink-0">
+                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-slate-300 rounded-full flex-shrink-0">
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -941,7 +940,7 @@ export default function HomePage() {
                 Feature
               </p>
               <p className="bg-gray-100 text-gray-600 text-center h-12 flex items-center justify-center">
-                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-white rounded-full flex-shrink-0">
+                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-slate-300 rounded-full flex-shrink-0">
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -956,7 +955,7 @@ export default function HomePage() {
                 </span>
               </p>
               <p className="text-gray-600 text-center h-12 flex items-center justify-center">
-                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-white rounded-full flex-shrink-0">
+                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-slate-300 rounded-full flex-shrink-0">
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -1010,7 +1009,7 @@ export default function HomePage() {
                 </svg>
               </p>
               <div className="p-6 text-center border-t border-cyan-400">
-                <button className="flex items-center mt-auto text-white bg-indigo-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-indigo-600 rounded">
+                <button className="flex items-center mt-auto text-slate-300 bg-indigo-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-indigo-600 rounded">
                   Button
                   <svg
                     fill="none"
@@ -1044,7 +1043,7 @@ export default function HomePage() {
                 Schlitz single-origin
               </p>
               <p className="text-gray-600 text-center h-12 flex items-center justify-center">
-                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-white rounded-full flex-shrink-0">
+                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-slate-300 rounded-full flex-shrink-0">
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -1059,7 +1058,7 @@ export default function HomePage() {
                 </span>
               </p>
               <p className="bg-gray-100 text-gray-600 text-center h-12 flex items-center justify-center">
-                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-white rounded-full flex-shrink-0">
+                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-slate-300 rounded-full flex-shrink-0">
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -1077,7 +1076,7 @@ export default function HomePage() {
                 Feature
               </p>
               <p className="bg-gray-100 text-gray-600 text-center h-12 flex items-center justify-center">
-                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-white rounded-full flex-shrink-0">
+                <span className="w-5 h-5 inline-flex items-center justify-center bg-gray-500 text-slate-300 rounded-full flex-shrink-0">
                   <svg
                     fill="none"
                     stroke="currentColor"
@@ -1144,7 +1143,7 @@ export default function HomePage() {
                 </svg>
               </p>
               <div className="p-6 text-center border-t border-cyan-400">
-                <button className="flex items-center mt-auto text-white bg-indigo-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-indigo-600 rounded">
+                <button className="flex items-center mt-auto text-slate-300 bg-indigo-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-indigo-600 rounded">
                   Button
                   <svg
                     fill="none"
@@ -1213,7 +1212,7 @@ export default function HomePage() {
             ></iframe>
             <div className="bg-gray-900 relative flex flex-wrap py-6 rounded shadow-md">
               <div className="lg:w-1/2 px-6">
-                <h2 className="title-font font-semibold text-white tracking-widest text-xs">
+                <h2 className="title-font font-semibold text-slate-300 tracking-widest text-xs">
                   ADDRESS
                 </h2>
                 <p className="mt-1">
@@ -1222,13 +1221,13 @@ export default function HomePage() {
                 </p>
               </div>
               <div className="lg:w-1/2 px-6 mt-4 lg:mt-0">
-                <h2 className="title-font font-semibold text-white tracking-widest text-xs">
+                <h2 className="title-font font-semibold text-slate-300 tracking-widest text-xs">
                   EMAIL
                 </h2>
                 <a className="text-green-400 leading-relaxed">
                   info@dokirin.com
                 </a>
-                <h2 className="title-font font-semibold text-white tracking-widest text-xs mt-4">
+                <h2 className="title-font font-semibold text-slate-300 tracking-widest text-xs mt-4">
                   PHONE
                 </h2>
                 <p className="leading-relaxed">351-594-5734</p>
@@ -1236,7 +1235,7 @@ export default function HomePage() {
             </div>
           </div>
           <div className="lg:w-1/3 md:w-1/2 flex flex-col md:ml-auto w-full md:py-8 mt-8 md:mt-0">
-            <h2 className="text-white text-lg mb-1 font-medium title-font">
+            <h2 className="text-slate-300 text-lg mb-1 font-medium title-font">
               Feedback
             </h2>
             <p className="leading-relaxed mb-5">
@@ -1280,7 +1279,7 @@ export default function HomePage() {
                 className="w-full bg-gray-800 rounded border border-gray-700 focus:border-green-500 focus:ring-2 focus:ring-green-900 h-32 text-base outline-none text-gray-100 py-1 px-3 resize-none leading-6 transition-colors duration-200 ease-in-out"
               ></textarea>
             </div>
-            <button className="text-white bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">
+            <button className="text-slate-300 bg-green-500 border-0 py-2 px-6 focus:outline-none hover:bg-green-600 rounded text-lg">
               Button
             </button>
             <p className="text-xs text-gray-400 text-opacity-90 mt-3">

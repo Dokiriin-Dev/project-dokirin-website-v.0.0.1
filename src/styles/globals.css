@@ -139,3 +139,23 @@ a {
     }
   }
 }
+
+.sidebar {
+  height: 20vh;
+  min-height: 100vh;
+  overflow: hidden;
+  position: -webkit-sticky;
+  position: sticky;
+  top: 5%;
+}
+
+.sidebar {
+  border: 1px solid #222;
+  background-color: white;
+  color: #222;
+  padding: 15px;
+}
+
+.custom-center {
+  text-align: -webkit-center;
+}

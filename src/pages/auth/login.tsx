@@ -5,11 +5,14 @@
 /* eslint-disable jsx-a11y/alt-text */
 import Head from "next/head";
 import { useRouter } from "next/navigation";
-import React, { useEffect } from "react";
+import React, { useEffect, useState } from "react";
 import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { FcGoogle, FcUnlock } from "react-icons/fc";
-import { auth } from "../../firebase/firebase.config";
+import {
+  auth,
+  signInWithEmailAndPassword,
+} from "../../firebase/firebase.config";
 import Section from "@/components/layout/Section";
 
 type LoginProps = {};
@@ -19,6 +22,17 @@ const Login: React.FC<LoginProps> = () => {
   const router = useRouter();
   const [signInWithGoogle, userCred, loading, error] =
     useSignInWithGoogle(auth);
+  const [email, setEmail] = useState("");
+  const [password, setPassword] = useState("");
+
+  const handleLoginWithEmail = async () => {
+    try {
+      await signInWithEmailAndPassword(auth, email, password);
+      router.push("/admin");
+    } catch (error) {
+      console.error(error);
+    }
+  };
 
   useEffect(() => {
     if (user) {
@@ -47,6 +61,8 @@ const Login: React.FC<LoginProps> = () => {
             <input
               type="email"
               className="block w-full px-4 py-2 mt-2 text-purple-700 bg-slate-300 border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+              value={email}
+              onChange={(e) => setEmail(e.target.value)}
             />
           </div>
           <div className="mt-4">
@@ -57,13 +73,18 @@ const Login: React.FC<LoginProps> = () => {
               <input
                 type="password"
                 className="block w-full px-4 py-2 mt-2 text-purple-700 bg-slate-300 border rounded-md focus:border-purple-400 focus:ring-purple-300 focus:outline-none focus:ring focus:ring-opacity-40"
+                value={password}
+                onChange={(e) => setPassword(e.target.value)}
               />
             </div>
             <a href="#" className="text-xs text-gray-500 hover:underline">
               Forget Password?
             </a>
             <div className="mt-6">
-              <button className="w-full px-4 py-2 tracking-wide text-slate-300 transition-colors duration-200 transform border-sky-500 border rounded-md flex items-center justify-center hover:bg-slate-100">
+              <button
+                className="w-full px-4 py-2 tracking-wide text-slate-300 transition-colors duration-200 transform border-sky-500 border rounded-md flex items-center justify-center hover:bg-slate-100"
+                onClick={handleLoginWithEmail}
+              >
                 <FcUnlock className="mr-4" size={25} />
                 <span>Login with Email</span>
               </button>

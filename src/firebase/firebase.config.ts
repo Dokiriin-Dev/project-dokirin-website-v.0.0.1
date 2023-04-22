@@ -1,5 +1,9 @@
 import { getApp, getApps, initializeApp } from "firebase/app";
-import { getAuth, onAuthStateChanged } from "firebase/auth";
+import {
+  getAuth,
+  onAuthStateChanged,
+  signInWithEmailAndPassword,
+} from "firebase/auth";
 import { getDatabase } from "firebase/database";
 import { ref, get, set } from "firebase/database";
 import { getFirestore } from "firebase/firestore";
@@ -48,4 +52,4 @@ export const getDatabaseData = (path: string) => {
   return get(ref(db, path));
 };
 
-export { app, auth, firestore, storage };
+export { app, auth, firestore, storage, signInWithEmailAndPassword };

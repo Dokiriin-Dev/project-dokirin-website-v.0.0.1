@@ -22,7 +22,7 @@ const menuItems = [
     id: 3,
     label: "Manage Contact",
     icon: <FcAbout />,
-    link: "/admin/page/contact",
+    link: "/admin/page/contacts",
   },
 ];
 

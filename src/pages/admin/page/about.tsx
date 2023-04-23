@@ -1,10 +1,6 @@
-import DashboardLayout from "@/components/adminPanel/adminLayout";
+import AboutPage from "@/pages/about";
 import React from "react";
 
-export default function AboutPage(): JSX.Element {
-  return (
-    <DashboardLayout>
-      <div>About Page</div>
-    </DashboardLayout>
-  );
+export default function about() {
+  return <AboutPage />;
 }

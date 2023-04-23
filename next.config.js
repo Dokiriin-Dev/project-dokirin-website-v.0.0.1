@@ -9,6 +9,9 @@ const nextConfig = {
     ignoreDuringBuilds: true,
   },
   reactStrictMode: true,
-}
+  images: {
+    domains: ["lh3.googleusercontent.com", "dummyimage.com"],
+  },
+};
 
-module.exports = nextConfig
+module.exports = nextConfig;

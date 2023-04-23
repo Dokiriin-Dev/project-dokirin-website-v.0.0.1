@@ -5,13 +5,14 @@ import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { FcAbout } from "react-icons/fc";
+import { FcAbout, FcHome } from "react-icons/fc";
+import { FcContacts } from "react-icons/fc";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 import Image from "next/image";
 import { auth } from "@/firebase/firebase.config";
 
 const menuItems = [
-  { id: 1, label: "Manage Home", icon: <FcAbout />, link: "/admin/page/home" },
+  { id: 1, label: "Manage Home", icon: <FcHome />, link: "/admin/page/home" },
   {
     id: 2,
     label: "Manage About",
@@ -21,7 +22,7 @@ const menuItems = [
   {
     id: 3,
     label: "Manage Contact",
-    icon: <FcAbout />,
+    icon: <FcContacts />,
     link: "/admin/page/contacts",
   },
 ];
@@ -72,6 +73,7 @@ const DashboardSidebar: React.FC = () => {
   const getNavItemClasses = (menu: {
     id?: number;
     label?: string;
+    icon?: JSX.Element;
     link?: string;
   }) => {
     return classNames(
@@ -138,9 +140,7 @@ const DashboardSidebar: React.FC = () => {
                 <div className={classes} key={menu.id}>
                   <Link href={menu.link}>
                     <span className="flex py-5 px-4 items-center w-full h-full">
-                      <div style={{ width: "2.5rem" }}>
-                        <FcAbout />
-                      </div>
+                      <div style={{ width: "2.5rem" }}>{Icon}</div>
                       {!toggleCollapse && (
                         <span
                           className={classNames(
@@ -157,18 +157,25 @@ const DashboardSidebar: React.FC = () => {
             })}
           </div>
 
-          <div className={`${getNavItemClasses({})}`} onClick={logout}>
-            {/* <Image
+          <div
+            className={`${getNavItemClasses({
+              icon: undefined,
+            })}`}
+            onClick={logout}
+          >
+            <Image
               src={user?.photoURL as string}
               alt="Profile picture"
+              width={100}
+              height={100}
               className={
                 toggleCollapse
                   ? "mx-1 my-1 rounded-full h-10 w-10"
                   : "mx-1 my-1 rounded-full h-10 w-10"
               }
               //   className="rounded-full h-10 w-10"
-            /> */}
-            Image
+            />
+            {/* Image */}
             {!toggleCollapse && (
               <span
                 className={classNames(

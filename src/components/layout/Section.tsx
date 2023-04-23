@@ -51,7 +51,7 @@ const Section: React.FC<SectionProps> = ({
         bgColor,
         className,
         style,
-        "overflow-hidden text-gray-700 body-font relative"
+        "overflow-hidden text-gray-700 body-font relative shadow-inherit drop-shadow-2xl"
       )}
     >
       {borderTop !== "none" && <HR boxed={borderTop === "boxed"} />}

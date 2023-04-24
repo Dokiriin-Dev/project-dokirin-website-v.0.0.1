@@ -1,11 +1,10 @@
 import DashboardLayout from "@/components/adminPanel/adminLayout";
-import ContactPage from "@/pages/contacts";
-import React from "react";
+import EcommerceServicePage from "@/pages/services/ecommerce";
 
-export default function contacts() {
+export default function services() {
   return (
     <DashboardLayout>
-      <ContactPage />
+      <EcommerceServicePage />
     </DashboardLayout>
   );
 }

@@ -1,7 +1,4 @@
-import React from "react";
 import DashboardSidebar from "./adminSidebar";
-import Section from "../layout/Section";
-import classNames from "classnames";
 
 const DashboardLayout = ({ children }: any) => {
   return (

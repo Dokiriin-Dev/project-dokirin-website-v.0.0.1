@@ -1,14 +1,11 @@
-
-
-import DashboardLayout from "@/components/adminPanel/adminLayout";
 import Section from "@/components/layout/Section";
 import React from "react";
 
 export default function AboutPage(): JSX.Element {
   return (
-    <DashboardLayout>
-      <Section className="text-gray-400 body-font bg-cyan-400/50">
-        <div className="container mx-auto flex px-5 py-10 items-center justify-center flex-col">
+    <Section className="pt-24">
+      <section className="text-gray-400 body-font bg-cyan-400/50">
+        <div className="container mx-auto flex px-5 py-8 items-center justify-center flex-col">
           <div className="text-center w-full">
             <h1 className="text-5xl sm:text-6xl font-bold p-2 pb-10 tracking-tight text-center mb-4 bg-clip-text bg-gradient-to-r border-b dark:border-emerald-300 border-emerald-500 pr-10 pl-10 drop-shadow-xl shadow-gray-400">
               Su di Noi
@@ -22,8 +19,8 @@ export default function AboutPage(): JSX.Element {
             </p>
           </div>
         </div>
-      </Section>
-      <Section className="text-gray-400 body-font pt-10">
+      </section>
+      <section className="text-gray-400 body-font pt-10">
         <div className="container mx-auto flex px-5 items-center justify-center flex-col">
           <div className="text-center w-full">
             <h2 className="text-4xl sm:text-5xl font-bold p-2 pb-10">
@@ -40,9 +37,8 @@ export default function AboutPage(): JSX.Element {
             </p>
           </div>
         </div>
-      </Section>
-
-      <Section className="text-gray-400 bg-gray-900 body-font">
+      </section>
+      <section className="text-gray-400 bg-gray-900 body-font">
         <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
           <div className="lg:max-w-lg lg:w-full md:w-1/2 w-5/6 mb-10 md:mb-0">
             <img
@@ -116,7 +112,7 @@ export default function AboutPage(): JSX.Element {
             </div>
           </div>
         </div>
-      </Section>
-    </DashboardLayout>
+      </section>
+    </Section>
   );
 }

@@ -21,6 +21,23 @@ const MenuItem = ({ href, children }: MenuItemProps) => {
   );
 };
 
+const ServiziMenu = () => {
+  return (
+    <div className="absolute top-full left-0 mt-0 bg-white rounded-md shadow-lg z-10 w-40">
+      <span className="block py-2 hover:bg-gray-100 w-full rounded-md p-6 cursor-pointer">
+        <Link href="/services/website" legacyBehavior>
+          Siti web
+        </Link>
+      </span>
+      <span className="block py-2 hover:bg-gray-100 w-full rounded-md p-6 cursor-pointer">
+        <Link href="/services/ecommerce" legacyBehavior>
+          E-commerce
+        </Link>
+      </span>
+    </div>
+  );
+};
+
 export default function Navbar() {
   const [user] = useAuthState(auth);
 
@@ -44,13 +61,22 @@ export default function Navbar() {
             >
               <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
             </svg>
-            <span className="text-2xl ml-3 font-bold text-slate-400">TAILBLOCKS</span>
+            <span className="text-2xl ml-3 font-bold text-slate-400">
+              TAILBLOCKS
+            </span>
           </Link>
         </div>
         <div className="md:flex text-xl hidden">
           <MenuItem href="/">Home</MenuItem>
           <MenuItem href="/about">About</MenuItem>
-          <MenuItem href="/services">Servizi</MenuItem>
+          <div className="relative group">
+            <span className="relative px-7 block hover:text-[#FFAE00] text-slate-300 cursor-pointer">
+              Servizi
+            </span>
+            <div className="group-hover:block hidden">
+              <ServiziMenu />
+            </div>
+          </div>
           <MenuItem href="/contacts">Contatti</MenuItem>
           <MenuItem href={user ? "/auth/login" : "/auth/login"}>
             Area Clienti

@@ -1,11 +1,10 @@
 import DashboardLayout from "@/components/adminPanel/adminLayout";
-import ServicesPage from "@/pages/services";
-import React from "react";
+import WebsiteServicePage from "@/pages/services/website";
 
 export default function services() {
   return (
     <DashboardLayout>
-      <ServicesPage />
+      <WebsiteServicePage />
     </DashboardLayout>
   );
 }

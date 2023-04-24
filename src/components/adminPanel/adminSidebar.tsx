@@ -25,6 +25,18 @@ const menuItems = [
     icon: <FcContacts />,
     link: "/admin/page/contacts",
   },
+  {
+    id: 4,
+    label: "Manage Ecommerce",
+    icon: <FcContacts />,
+    link: "/admin/page/ecommerce",
+  },
+  {
+    id: 5,
+    label: "Manage SitiWeb",
+    icon: <FcContacts />,
+    link: "/admin/page/website",
+  },
 ];
 
 const DashboardSidebar: React.FC = () => {
@@ -163,18 +175,20 @@ const DashboardSidebar: React.FC = () => {
             })}`}
             onClick={logout}
           >
-            <Image
-              src={user?.photoURL as string}
-              alt="Profile picture"
-              width={100}
-              height={100}
-              className={
-                toggleCollapse
-                  ? "mx-1 my-1 rounded-full h-10 w-10"
-                  : "mx-1 my-1 rounded-full h-10 w-10"
-              }
-              //   className="rounded-full h-10 w-10"
-            />
+            {user?.photoURL && (
+              <Image
+                src={user.photoURL as string}
+                alt="Profile picture"
+                width={100}
+                height={100}
+                className={
+                  toggleCollapse
+                    ? "mx-1 my-1 rounded-full h-10 w-10"
+                    : "mx-1 my-1 rounded-full h-10 w-10"
+                }
+              />
+            )}
+
             {/* Image */}
             {!toggleCollapse && (
               <span

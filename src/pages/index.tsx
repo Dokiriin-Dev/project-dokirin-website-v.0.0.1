@@ -27,7 +27,7 @@ export default function HomePage() {
               idea di business può diventare realtà.
             </p>
 
-            <div className="flex w-full justify-start">
+            <div className="flex w-full md:justify-start justify-center">
               <button className="inline-flex text-slate-300 bg-indigo-500 border-0 py-2 px-6 focus:outline-none hover:bg-indigo-600 rounded text-lg w-4/12 justify-center">
                 Button
               </button>

@@ -104,6 +104,7 @@ export default function AboutPage(...props: any[]): JSX.Element {
   const defaultImageSrc = "https://dummyimage.com/720x600";
   const fileInputRef = useRef<HTMLInputElement>(null);
   const secondFileInputRef = useRef<HTMLInputElement>(null);
+
   const handleImageClick = () => {
     if (isAdminRoute) {
       if (fileInputRef.current) {
@@ -111,7 +112,13 @@ export default function AboutPage(...props: any[]): JSX.Element {
       }
     }
   };
-
+  const SecondImageClick = () => {
+    if (isAdminRoute) {
+      if (secondFileInputRef.current) {
+        secondFileInputRef.current.click();
+      }
+    }
+  };
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) {
@@ -140,7 +147,7 @@ export default function AboutPage(...props: any[]): JSX.Element {
       const dataUrl = reader.result as string;
       setRichText((prevRichText) => ({
         ...prevRichText,
-        heroImageSrc: dataUrl,
+        secondImageSrc: dataUrl,
       }));
     };
   };
@@ -297,7 +304,7 @@ export default function AboutPage(...props: any[]): JSX.Element {
                   width={500}
                   height={300}
                   src={richText.secondImageSrc || defaultImageSrc}
-                  onClick={handleImageClick}
+                  onClick={SecondImageClick}
                 />
                 <input
                   type="file"

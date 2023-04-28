@@ -92,11 +92,7 @@ const RichText: React.FC<RichTextEditorProps> = ({
           {...(metaFieldName && { ["data-meta"]: metaFieldName })}
           {...(customFieldName && { ["data-custom"]: customFieldName })}
         />
-        {!isEditable && (
-          <p>
-            Il contenuto è visualizzabile solo dagli amministratori autenticati.
-          </p>
-        )}
+        
       </Slate>
     </div>
   );

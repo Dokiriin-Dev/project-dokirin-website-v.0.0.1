@@ -1,3 +1,4 @@
+import { useRouter } from "next/router";
 import React, { useCallback, useMemo, useState } from "react";
 import { Descendant, Editor, createEditor } from "slate";
 import {
@@ -38,13 +39,17 @@ const RichText: React.FC<RichTextEditorProps> = ({
   propName,
   metaFieldName,
   customFieldName,
-  renderElement, // aggiunta
+  renderElement,
 }) => {
+  const isAuthenticated = true; // inserire codice per verificare l'autenticazione
+  const isAdminRoute =
+    typeof window !== "undefined" &&
+    window.location.pathname.startsWith("/admin"); // sostituire '/admin' con il percorso corretto
+
   const editor = useMemo(
     () => withReact(createEditor()),
     []
   ) as RichTextEditorWithReact;
-
   const [value, setValue] = useState(defaultValue);
 
   const handleChange = useCallback(
@@ -72,6 +77,8 @@ const RichText: React.FC<RichTextEditorProps> = ({
     [renderHighlight]
   );
 
+  const isEditable = isAuthenticated && isAdminRoute;
+
   return (
     <div>
       <Slate editor={editor} value={value} onChange={handleChange}>
@@ -80,10 +87,16 @@ const RichText: React.FC<RichTextEditorProps> = ({
           renderLeaf={renderCustomLeaf}
           spellCheck={false}
           autoFocus={false}
+          readOnly={!isEditable}
           {...(propName && { [propName]: true })}
           {...(metaFieldName && { ["data-meta"]: metaFieldName })}
           {...(customFieldName && { ["data-custom"]: customFieldName })}
         />
+        {!isEditable && (
+          <p>
+            Il contenuto è visualizzabile solo dagli amministratori autenticati.
+          </p>
+        )}
       </Slate>
     </div>
   );

@@ -66,6 +66,7 @@ export default function AboutPage(...props: any[]): JSX.Element {
       },
     ],
   });
+
   const defaultRichText: AboutPageProps = {
     titleHeader: getDefaultProps().titleHeader,
     titleCustomer: getDefaultProps().titleCustomer,
@@ -78,10 +79,12 @@ export default function AboutPage(...props: any[]): JSX.Element {
     heroImageSrc: "",
     secondImageSrc: "",
   };
+
   const [richText, setRichText] = useState<AboutPageProps>({
     ...defaultRichText,
     ...props,
   });
+
   const handleRichTextChange = (
     value: Descendant[],
     field:
@@ -102,23 +105,23 @@ export default function AboutPage(...props: any[]): JSX.Element {
     window.location.pathname.startsWith("/admin"); // sostituire '/admin' con il percorso corretto
 
   const defaultImageSrc = "https://dummyimage.com/720x600";
+
   const fileInputRef = useRef<HTMLInputElement>(null);
+
   const secondFileInputRef = useRef<HTMLInputElement>(null);
 
   const handleImageClick = () => {
-    if (isAdminRoute) {
-      if (fileInputRef.current) {
-        fileInputRef.current.click();
-      }
+    if (isAdminRoute && fileInputRef.current) {
+      fileInputRef.current.click();
     }
   };
+
   const SecondImageClick = () => {
-    if (isAdminRoute) {
-      if (secondFileInputRef.current) {
-        secondFileInputRef.current.click();
-      }
+    if (isAdminRoute && secondFileInputRef.current) {
+      secondFileInputRef.current.click();
     }
   };
+
   const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) {
@@ -135,6 +138,7 @@ export default function AboutPage(...props: any[]): JSX.Element {
       }));
     };
   };
+
   const onSecondImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
     const file = event.target.files?.[0];
     if (!file) {

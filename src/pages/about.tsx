@@ -3,7 +3,7 @@ import Container from "@/components/layout/Container";
 import Section from "@/components/layout/Section";
 import classNames from "classnames";
 import Image from "next/image";
-import { useRef, useState } from "react";
+import { ChangeEvent, RefObject, useRef, useState } from "react";
 import { Descendant } from "slate";
 interface AboutPageProps {
   titleHeader: Descendant[];
@@ -158,20 +158,25 @@ export default function AboutPage(...props: ImageArray[]): JSX.Element {
   //     }));
   //   };
   // };
-  const fileInputRef = useRef<HTMLInputElement>(null);
-  const secondFileInputRef = useRef<HTMLInputElement>(null);
 
+  const fileInputRefs: {
+    hero: RefObject<HTMLInputElement>;
+    second: RefObject<HTMLInputElement>;
+  } = {
+    hero: useRef<HTMLInputElement>(null),
+    second: useRef<HTMLInputElement>(null),
+  };
   const handleImageClick = (
-    ref: React.RefObject<HTMLInputElement>,
+    ref: RefObject<HTMLInputElement>,
     key: string
   ): void => {
-    if (isAdminRoute && ref.current) {
+    if (isAdminRoute && ref?.current) {
       ref.current.click();
     }
   };
 
   const handleImageChange = (
-    event: React.ChangeEvent<HTMLInputElement>,
+    event: ChangeEvent<HTMLInputElement>,
     key: string
   ): void => {
     const file = event.target.files?.[0];
@@ -269,12 +274,14 @@ export default function AboutPage(...props: ImageArray[]): JSX.Element {
                   width={500}
                   height={300}
                   src={richText.heroImageSrc || defaultImageSrc}
-                  onClick={() => handleImageClick(fileInputRef, "heroImageSrc")}
+                  onClick={() =>
+                    handleImageClick(fileInputRefs.hero, "heroImageSrc")
+                  }
                 />
                 <input
                   type="file"
                   accept="image/*"
-                  ref={fileInputRef}
+                  ref={fileInputRefs.hero}
                   className="hidden"
                   onChange={(e) => handleImageChange(e, "heroImageSrc")}
                 />
@@ -343,13 +350,13 @@ export default function AboutPage(...props: ImageArray[]): JSX.Element {
                   height={300}
                   src={richText.secondImageSrc || defaultImageSrc}
                   onClick={() =>
-                    handleImageClick(secondFileInputRef, "secondImageSrc")
+                    handleImageClick(fileInputRefs.second, "secondImageSrc")
                   }
                 />
                 <input
                   type="file"
                   accept="image/*"
-                  ref={secondFileInputRef}
+                  ref={fileInputRefs.second}
                   className="hidden"
                   onChange={(e) => handleImageChange(e, "secondImageSrc")}
                 />

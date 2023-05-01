@@ -1,10 +1,10 @@
 import { RichText } from "@/components/RichText";
+import Container from "@/components/layout/Container";
 import Section from "@/components/layout/Section";
 import classNames from "classnames";
+import Image from "next/image";
 import { useRef, useState } from "react";
 import { Descendant } from "slate";
-import Image from "next/image";
-import Container from "@/components/layout/Container";
 interface AboutPageProps {
   titleHeader: Descendant[];
   titleCustomer: Descendant[];
@@ -18,7 +18,13 @@ interface AboutPageProps {
   secondImageSrc: string;
 }
 
-export default function AboutPage(...props: any[]): JSX.Element {
+type ImageArray = [heroImageSrc: "", secondImageSrc: ""];
+
+export default function AboutPage(...props: ImageArray[]): JSX.Element {
+  const isAdminRoute =
+    typeof window !== "undefined" &&
+    window.location.pathname.startsWith("/admin");
+
   const getDefaultProps = () => ({
     titleHeader: [{ children: [{ text: "Su di Noi" }] }],
     titleCustomer: [
@@ -82,6 +88,7 @@ export default function AboutPage(...props: any[]): JSX.Element {
 
   const [richText, setRichText] = useState<AboutPageProps>({
     ...defaultRichText,
+
     ...props,
   });
 
@@ -100,29 +107,73 @@ export default function AboutPage(...props: any[]): JSX.Element {
     setRichText((prevRichText) => ({ ...prevRichText, [field]: value }));
   };
 
-  const isAdminRoute =
-    typeof window !== "undefined" &&
-    window.location.pathname.startsWith("/admin"); // sostituire '/admin' con il percorso corretto
-
   const defaultImageSrc = "https://dummyimage.com/720x600";
 
-  const fileInputRef = useRef<HTMLInputElement>(null);
+  // const fileInputRef = useRef<HTMLInputElement>(null);
 
+  // const secondFileInputRef = useRef<HTMLInputElement>(null);
+
+  // const handleImageClick = () => {
+  //   if (isAdminRoute && fileInputRef.current) {
+  //     fileInputRef.current.click();
+  //   }
+  // };
+
+  // const SecondImageClick = () => {
+  //   if (isAdminRoute && secondFileInputRef.current) {
+  //     secondFileInputRef.current.click();
+  //   }
+  // };
+
+  // const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = event.target.files?.[0];
+  //   if (!file) {
+  //     return;
+  //   }
+
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onload = () => {
+  //     const dataUrl = reader.result as string;
+  //     setRichText((prevRichText) => ({
+  //       ...prevRichText,
+  //       heroImageSrc: dataUrl,
+  //     }));
+  //   };
+  // };
+
+  // const onSecondImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  //   const file = event.target.files?.[0];
+  //   if (!file) {
+  //     return;
+  //   }
+
+  //   const reader = new FileReader();
+  //   reader.readAsDataURL(file);
+  //   reader.onload = () => {
+  //     const dataUrl = reader.result as string;
+  //     setRichText((prevRichText) => ({
+  //       ...prevRichText,
+  //       secondImageSrc: dataUrl,
+  //     }));
+  //   };
+  // };
+  const fileInputRef = useRef<HTMLInputElement>(null);
   const secondFileInputRef = useRef<HTMLInputElement>(null);
 
-  const handleImageClick = () => {
-    if (isAdminRoute && fileInputRef.current) {
-      fileInputRef.current.click();
+  const handleImageClick = (
+    ref: React.RefObject<HTMLInputElement>,
+    key: string
+  ): void => {
+    if (isAdminRoute && ref.current) {
+      ref.current.click();
     }
   };
 
-  const SecondImageClick = () => {
-    if (isAdminRoute && secondFileInputRef.current) {
-      secondFileInputRef.current.click();
-    }
-  };
-
-  const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
+  const handleImageChange = (
+    event: React.ChangeEvent<HTMLInputElement>,
+    key: string
+  ): void => {
     const file = event.target.files?.[0];
     if (!file) {
       return;
@@ -134,24 +185,7 @@ export default function AboutPage(...props: any[]): JSX.Element {
       const dataUrl = reader.result as string;
       setRichText((prevRichText) => ({
         ...prevRichText,
-        heroImageSrc: dataUrl,
-      }));
-    };
-  };
-
-  const onSecondImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-    const file = event.target.files?.[0];
-    if (!file) {
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.readAsDataURL(file);
-    reader.onload = () => {
-      const dataUrl = reader.result as string;
-      setRichText((prevRichText) => ({
-        ...prevRichText,
-        secondImageSrc: dataUrl,
+        [key]: dataUrl,
       }));
     };
   };
@@ -235,14 +269,14 @@ export default function AboutPage(...props: any[]): JSX.Element {
                   width={500}
                   height={300}
                   src={richText.heroImageSrc || defaultImageSrc}
-                  onClick={handleImageClick}
+                  onClick={() => handleImageClick(fileInputRef, "heroImageSrc")}
                 />
                 <input
                   type="file"
                   accept="image/*"
                   ref={fileInputRef}
                   className="hidden"
-                  onChange={handleImageChange}
+                  onChange={(e) => handleImageChange(e, "heroImageSrc")}
                 />
               </div>
             </div>
@@ -308,14 +342,16 @@ export default function AboutPage(...props: any[]): JSX.Element {
                   width={500}
                   height={300}
                   src={richText.secondImageSrc || defaultImageSrc}
-                  onClick={SecondImageClick}
+                  onClick={() =>
+                    handleImageClick(secondFileInputRef, "secondImageSrc")
+                  }
                 />
                 <input
                   type="file"
                   accept="image/*"
                   ref={secondFileInputRef}
                   className="hidden"
-                  onChange={onSecondImageChange}
+                  onChange={(e) => handleImageChange(e, "secondImageSrc")}
                 />
               </div>
             </div>

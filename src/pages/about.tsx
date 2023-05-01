@@ -1,3 +1,4 @@
+import ImageUploader from "@/components/ImageUploader";
 import { RichText } from "@/components/RichText";
 import Container from "@/components/layout/Container";
 import Section from "@/components/layout/Section";
@@ -18,9 +19,7 @@ interface AboutPageProps {
   secondImageSrc: string;
 }
 
-type ImageArray = [heroImageSrc: "", secondImageSrc: ""];
-
-export default function AboutPage(...props: ImageArray[]): JSX.Element {
+export default function AboutPage(...props: any[]): JSX.Element {
   const isAdminRoute =
     typeof window !== "undefined" &&
     window.location.pathname.startsWith("/admin");
@@ -107,58 +106,6 @@ export default function AboutPage(...props: ImageArray[]): JSX.Element {
     setRichText((prevRichText) => ({ ...prevRichText, [field]: value }));
   };
 
-  const defaultImageSrc = "https://dummyimage.com/720x600";
-
-  // const fileInputRef = useRef<HTMLInputElement>(null);
-
-  // const secondFileInputRef = useRef<HTMLInputElement>(null);
-
-  // const handleImageClick = () => {
-  //   if (isAdminRoute && fileInputRef.current) {
-  //     fileInputRef.current.click();
-  //   }
-  // };
-
-  // const SecondImageClick = () => {
-  //   if (isAdminRoute && secondFileInputRef.current) {
-  //     secondFileInputRef.current.click();
-  //   }
-  // };
-
-  // const handleImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = event.target.files?.[0];
-  //   if (!file) {
-  //     return;
-  //   }
-
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(file);
-  //   reader.onload = () => {
-  //     const dataUrl = reader.result as string;
-  //     setRichText((prevRichText) => ({
-  //       ...prevRichText,
-  //       heroImageSrc: dataUrl,
-  //     }));
-  //   };
-  // };
-
-  // const onSecondImageChange = (event: React.ChangeEvent<HTMLInputElement>) => {
-  //   const file = event.target.files?.[0];
-  //   if (!file) {
-  //     return;
-  //   }
-
-  //   const reader = new FileReader();
-  //   reader.readAsDataURL(file);
-  //   reader.onload = () => {
-  //     const dataUrl = reader.result as string;
-  //     setRichText((prevRichText) => ({
-  //       ...prevRichText,
-  //       secondImageSrc: dataUrl,
-  //     }));
-  //   };
-  // };
-
   const fileInputRefs: {
     hero: RefObject<HTMLInputElement>;
     second: RefObject<HTMLInputElement>;
@@ -166,11 +113,9 @@ export default function AboutPage(...props: ImageArray[]): JSX.Element {
     hero: useRef<HTMLInputElement>(null),
     second: useRef<HTMLInputElement>(null),
   };
-  const handleImageClick = (
-    ref: RefObject<HTMLInputElement>,
-    key: string
-  ): void => {
-    if (isAdminRoute && ref?.current) {
+
+  const handleImageClick = (ref: RefObject<HTMLInputElement>) => {
+    if (isAdminRoute && ref.current) {
       ref.current.click();
     }
   };
@@ -178,7 +123,7 @@ export default function AboutPage(...props: ImageArray[]): JSX.Element {
   const handleImageChange = (
     event: ChangeEvent<HTMLInputElement>,
     key: string
-  ): void => {
+  ) => {
     const file = event.target.files?.[0];
     if (!file) {
       return;
@@ -194,7 +139,6 @@ export default function AboutPage(...props: ImageArray[]): JSX.Element {
       }));
     };
   };
-
   return (
     <Section className="pt-24">
       <Container size="full">
@@ -268,22 +212,15 @@ export default function AboutPage(...props: ImageArray[]): JSX.Element {
           <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
             <div className="lg:max-w-lg lg:w-full mb-10 md:w-1/3 w-4/5 md:mt-0 md:mb-0 self-center">
               <div className="mt-4">
-                <Image
-                  className="object-cover object-center rounded cursor-pointer"
-                  alt="hero"
-                  width={500}
-                  height={300}
-                  src={richText.heroImageSrc || defaultImageSrc}
-                  onClick={() =>
-                    handleImageClick(fileInputRefs.hero, "heroImageSrc")
+                <ImageUploader
+                  imageUrl={richText.heroImageSrc}
+                  inputRef={fileInputRefs.hero}
+                  onInputChange={(data) =>
+                    handleImageChange(data, "heroImageSrc")
                   }
-                />
-                <input
-                  type="file"
-                  accept="image/*"
-                  ref={fileInputRefs.hero}
-                  className="hidden"
-                  onChange={(e) => handleImageChange(e, "heroImageSrc")}
+                  onClick={() => handleImageClick(fileInputRefs.hero)}
+                  width={500}
+                  height={500}
                 />
               </div>
             </div>
@@ -343,22 +280,15 @@ export default function AboutPage(...props: ImageArray[]): JSX.Element {
 
             <div className="lg:max-w-lg lg:w-full mb-10 md:w-1/3 w-4/5 md:mt-0 md:mb-0 self-center">
               <div className="mt-4">
-                <Image
-                  className="object-cover object-center rounded cursor-pointer"
-                  alt="second image"
-                  width={500}
-                  height={300}
-                  src={richText.secondImageSrc || defaultImageSrc}
-                  onClick={() =>
-                    handleImageClick(fileInputRefs.second, "secondImageSrc")
+                <ImageUploader
+                  imageUrl={richText.secondImageSrc}
+                  inputRef={fileInputRefs.second}
+                  onInputChange={(data) =>
+                    handleImageChange(data, "secondImageSrc")
                   }
-                />
-                <input
-                  type="file"
-                  accept="image/*"
-                  ref={fileInputRefs.second}
-                  className="hidden"
-                  onChange={(e) => handleImageChange(e, "secondImageSrc")}
+                  onClick={() => handleImageClick(fileInputRefs.second)}
+                  width={500}
+                  height={500}
                 />
               </div>
             </div>

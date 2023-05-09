@@ -1,11 +1,11 @@
-import DashboardLayout from "@/components/adminPanel/adminLayout";
+import AdminLayout from "@/components/adminPanel/adminLayout";
 import HomePage from "@/pages";
 import React from "react";
 
 export default function Home() {
   return (
-    <DashboardLayout>
+    <AdminLayout>
       <HomePage />
-    </DashboardLayout>
+    </AdminLayout>
   );
 }

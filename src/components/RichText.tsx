@@ -14,14 +14,8 @@ interface RichTextEditorProps {
   defaultValue?: Descendant[];
   onChange?: (value: Descendant[]) => void;
   renderBlock: (props: RenderElementProps) => JSX.Element;
-  propName?: string;
-  renderPlaceholder?: (props: { children: any }) => JSX.Element;
-  multiline?: boolean;
-  softLineBreak?: boolean;
-  metaFieldName?: "title" | "description" | "language";
-  customFieldName?: string;
-  renderElement?: (props: RenderElementProps) => JSX.Element;
   renderHighlight?: (props: RenderLeafProps) => JSX.Element;
+  renderElement?: (props: RenderElementProps) => JSX.Element;
 }
 
 type RichTextEditor = Editor & {
@@ -35,11 +29,8 @@ const RichText: React.FC<RichTextEditorProps> = ({
   defaultValue = [],
   onChange,
   renderBlock,
-  renderHighlight,
-  propName,
-  metaFieldName,
-  customFieldName,
   renderElement,
+  renderHighlight,
 }) => {
   const isAuthenticated = true; // inserire codice per verificare l'autenticazione
   const isAdminRoute =
@@ -83,16 +74,13 @@ const RichText: React.FC<RichTextEditorProps> = ({
     <div>
       <Slate editor={editor} value={value} onChange={handleChange}>
         <Editable
-          renderElement={renderCustomElement}
-          renderLeaf={renderCustomLeaf}
-          spellCheck={false}
           autoFocus={false}
+          spellCheck={false}
           readOnly={!isEditable}
-          {...(propName && { [propName]: true })}
-          {...(metaFieldName && { ["data-meta"]: metaFieldName })}
-          {...(customFieldName && { ["data-custom"]: customFieldName })}
+          renderLeaf={renderCustomLeaf}
+          suppressHydrationWarning={true}
+          renderElement={renderCustomElement}
         />
-        
       </Slate>
     </div>
   );

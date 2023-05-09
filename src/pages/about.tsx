@@ -2,6 +2,7 @@ import ImageUploader from "@/components/ImageUploader";
 import { RichText } from "@/components/RichText";
 import Container from "@/components/layout/Container";
 import Section from "@/components/layout/Section";
+import { getDefaultProps } from "@/context";
 import classNames from "classnames";
 import Image from "next/image";
 import { ChangeEvent, RefObject, useRef, useState } from "react";
@@ -23,54 +24,6 @@ export default function AboutPage(...props: any[]): JSX.Element {
   const isAdminRoute =
     typeof window !== "undefined" &&
     window.location.pathname.startsWith("/admin");
-
-  const getDefaultProps = () => ({
-    titleHeader: [{ children: [{ text: "Su di Noi" }] }],
-    titleCustomer: [
-      { children: [{ text: "Perché dovreste scegliere noi come partner?" }] },
-    ],
-    titleAbout: [{ children: [{ text: "Chi Siamo" }] }],
-    titleMission: [{ children: [{ text: "Missione aziendale" }] }],
-
-    // Descriptions
-    descriptionHeader: [
-      {
-        children: [
-          {
-            text: "Siamo un'azienda di sviluppo web ad alta tecnologia che si impegna a fornire prodotti eccellenti in tempo.",
-          },
-        ],
-      },
-    ],
-    descriptionCustomer: [
-      {
-        children: [
-          {
-            text: `I clienti dovrebbero scegliere la nostra azienda di sviluppo siti web perché offriamo un design accattivante e personalizzato`,
-          },
-        ],
-      },
-    ],
-    descriptionAbout: [
-      {
-        children: [
-          {
-            text: "Siamo fornitori di piattaforme omnichannel di servizi digitali, come siti web, e-commerce, SEO, gestione dei social media.",
-          },
-        ],
-      },
-    ],
-
-    descriptionMission: [
-      {
-        children: [
-          {
-            text: "Sappiamo bene quanto sia importante avere una propria identita digitale e vogliamo far si che tutti ne abbiano una.",
-          },
-        ],
-      },
-    ],
-  });
 
   const defaultRichText: AboutPageProps = {
     titleHeader: getDefaultProps().titleHeader,
@@ -139,6 +92,7 @@ export default function AboutPage(...props: any[]): JSX.Element {
       }));
     };
   };
+
   return (
     <Section className="pt-24">
       <Container size="full">

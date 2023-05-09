@@ -1,16 +1,14 @@
 "use client";
+import { auth } from "@/firebase/firebase.config";
 import classNames from "classnames";
 import { signOut } from "firebase/auth";
+import Image from "next/image";
 import Link from "next/link";
 import { useRouter } from "next/navigation";
 import { useEffect, useMemo, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
-import { FcAbout, FcHome } from "react-icons/fc";
-import { FcContacts } from "react-icons/fc";
+import { FcAbout, FcContacts, FcHome } from "react-icons/fc";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
-import Image from "next/image";
-import { auth } from "@/firebase/firebase.config";
-import { FaBold } from "react-icons/fa";
 
 const menuItems = [
   { id: 1, label: "Manage Home", icon: <FcHome />, link: "/admin/page/home" },

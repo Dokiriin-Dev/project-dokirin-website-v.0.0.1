@@ -1,10 +1,10 @@
-import DashboardLayout from "@/components/adminPanel/adminLayout";
+import AdminLayout from "@/components/adminPanel/adminLayout";
 import WebsiteServicePage from "@/pages/services/website";
 
 export default function services() {
   return (
-    <DashboardLayout>
+    <AdminLayout>
       <WebsiteServicePage />
-    </DashboardLayout>
+    </AdminLayout>
   );
 }

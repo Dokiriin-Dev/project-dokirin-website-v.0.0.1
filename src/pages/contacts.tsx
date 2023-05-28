@@ -55,8 +55,8 @@ export default function ContactPage(): JSX.Element {
   };
 
   return (
-    <Section className="pt-24">
-      <Toaster position="top-center" />
+    <Section className="pt-24 md:pt-20">
+      <Toaster position="top-center" containerClassName="text-sm"/>
 
       <section className="text-gray-400 body-font bg-cyan-400/50">
         <div className="container mx-auto flex px-5 py-8 items-center justify-center flex-col">

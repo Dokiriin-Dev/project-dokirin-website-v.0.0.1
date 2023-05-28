@@ -4,14 +4,14 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { getDatabase } from "firebase/database";
-import { ref, get, set } from "firebase/database";
+import { ref, get, set, getDatabase } from "firebase/database";
 import { getFirestore } from "firebase/firestore";
-import { getStorage } from "firebase/storage";
+import { getStorage, getDownloadURL } from "firebase/storage";
 import "firebase/auth";
 import "firebase/database";
+
 // Configura le tue credenziali Firebase
-const firebaseConfig = {
+export const firebaseConfig = {
   apiKey: process.env.NEXT_PUBLIC_FIREBASE_API_KEY,
   authDomain: process.env.NEXT_PUBLIC_FIREBASE_AUTH_DOMAIN,
   projectId: process.env.NEXT_PUBLIC_FIREBASE_PROJECT_ID,
@@ -44,12 +44,28 @@ export const checkAuth = () => {
 
 // Funzione per impostare i dati nel database
 export const setDatabaseData = (path: string, data: any) => {
-  return set(ref(db, path), data);
+  try {
+    set(ref(db, path), data);
+  } catch (error) {
+    console.error(
+      `Errore durante il salvataggio dei dati nel percorso ${path}:`,
+      error
+    );
+  }
 };
 
 // Funzione per ottenere i dati dal database
-export const getDatabaseData = (path: string) => {
-  return get(ref(db, path));
+export const getDatabaseData = async <T>(path: string): Promise<T | null> => {
+  try {
+    const dataSnapshot = await get(ref(db, path));
+    return dataSnapshot.exists() ? dataSnapshot.val() : null;
+  } catch (error) {
+    console.error(
+      `Errore durante il recupero dei dati dal percorso ${path}:`,
+      error
+    );
+    return null;
+  }
 };
 
 export { app, auth, firestore, storage, signInWithEmailAndPassword };

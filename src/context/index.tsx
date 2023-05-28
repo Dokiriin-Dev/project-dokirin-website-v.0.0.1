@@ -279,3 +279,19 @@ export const getDefaultProps = () => ({
     },
   ],
 });
+
+
+export const renderBlock = (props: any) => {
+  return <div {...props.attributes}>{props.children}</div>;
+};
+
+export const renderHighlight = (props: any) => {
+  return <span {...props.attributes}>{props.children}</span>;
+};
+
+export const renderElement = (props: any) => {
+  if (props.element.type === "heading") {
+    return <h2 {...props.attributes}>{props.children}</h2>;
+  }
+  return <p {...props.attributes}>{props.children}</p>;
+};

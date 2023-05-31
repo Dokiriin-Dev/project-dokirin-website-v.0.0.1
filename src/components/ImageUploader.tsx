@@ -1,38 +1,34 @@
+import {
+  app,
+  getStorageData,
+  isAdminRoute,
+  isAuthenticated,
+  setStorageData,
+} from "@/firebase/firebase.config";
 import Image from "next/image";
-import { useRouter } from "next/router";
-import { ChangeEvent, FC, RefObject, useState } from "react";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "firebase/storage";
-import { initializeApp } from "firebase/app";
-import { firebaseConfig } from "@/firebase/firebase.config";
+import { ChangeEvent, FC, RefObject, useEffect, useState } from "react";
 
 type ImageUploaderProps = {
-  inputRef: RefObject<HTMLInputElement> | null;
-  width: number;
-  height: number;
-  onInputChange: (event: ChangeEvent<HTMLInputElement>, key: string) => void;
-  onClick: (event: ChangeEvent<HTMLInputElement>, key: string) => void;
+  alt: string;
+  inputRef: RefObject<HTMLInputElement>;
+  imageKey?: string;
+  fallbackImage?: string;
 };
 
 const ImageUploader: FC<ImageUploaderProps> = ({
   inputRef,
-  width,
-  height,
-  onInputChange,
-  onClick,
+  alt,
+  imageKey,
+  fallbackImage,
 }) => {
-  const router = useRouter();
-  const isAdminRoute =
-    typeof window !== "undefined" && router.pathname.startsWith("/admin");
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const handleClick = () => {
-    if (isAdminRoute) {
-      if (inputRef && inputRef.current && inputRef.current.click) {
-        inputRef.current.click();
-      }
-    } else {
-      return;
+  const [isEditable, setIsEditable] = useState<boolean>(isAdminRoute);
+
+  const handleImageClick = () => {
+    if (isEditable && inputRef.current) {
+      inputRef.current.click();
     }
   };
 
@@ -42,30 +38,71 @@ const ImageUploader: FC<ImageUploaderProps> = ({
       setIsLoading(true);
 
       try {
-        const storage = getStorage(initializeApp(firebaseConfig)); // Inizializza Firebase storage
-        const storageRef = ref(storage, "images/" + file.name);
-        await uploadBytes(storageRef, file);
+        const success = await setStorageData(`images/${imageKey}`, file);
+        if (success) {
+          setImageUrl(URL.createObjectURL(file));
+          setIsEditable(true);
+        } else {
+          console.error("Errore durante il caricamento dell'immagine");
+        }
 
-        const downloadURL = await getDownloadURL(storageRef);
         setIsLoading(false);
-        setImageUrl(downloadURL);
       } catch (error) {
-        console.error("Error uploading image:", error);
+        console.error("Errore durante il caricamento dell'immagine:", error);
         setIsLoading(false);
       }
     }
   };
 
+  useEffect(() => {
+    const fetchImageUrl = async () => {
+      try {
+        const downloadURL = await getStorageData(`images/${imageKey}`);
+        setImageUrl(downloadURL);
+      } catch (error) {
+        console.error(
+          "Errore durante il recupero dell'URL dell'immagine:",
+          error
+        );
+        setImageUrl(fallbackImage || null);
+      }
+    };
+
+    fetchImageUrl();
+  }, [imageKey, fallbackImage]);
+
+  const handleImageReplace = () => {
+    if (isEditable && inputRef.current) {
+      inputRef.current.click();
+    }
+  };
+
   return (
     <div className="mt-4">
-      <div style={{ position: "relative", width, height }}>
+      <div
+        style={{ position: "relative" }}
+        className={"min-h-[25rem] min-w-full"}
+      >
         {imageUrl ? (
-          <Image
-            src={imageUrl}
-            alt="Immagine caricata"
-            layout="fill"
-            objectFit="cover"
-          />
+          <>
+            <Image src={imageUrl} alt={alt} layout="fill" objectFit="cover" />
+            {isEditable && (
+              <div
+                style={{
+                  position: "absolute",
+                  top: 0,
+                  left: 0,
+                  width: "100%",
+                  height: "100%",
+                  display: "flex",
+                  alignItems: "center",
+                  justifyContent: "center",
+                  cursor: "pointer",
+                }}
+                onClick={handleImageReplace}
+              ></div>
+            )}
+          </>
         ) : (
           <div
             style={{
@@ -77,7 +114,7 @@ const ImageUploader: FC<ImageUploaderProps> = ({
               backgroundColor: "#ddd",
               cursor: "pointer",
             }}
-            onClick={handleClick}
+            onClick={handleImageClick}
           >
             Carica un'immagine
           </div>
@@ -90,7 +127,7 @@ const ImageUploader: FC<ImageUploaderProps> = ({
         className="hidden"
         onChange={handleInputChange}
       />
-      {isLoading && <div>Caricamento...</div>}
+      {isLoading && <p>Caricamento in corso...</p>}
     </div>
   );
 };

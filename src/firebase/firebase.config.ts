@@ -4,9 +4,22 @@ import {
   onAuthStateChanged,
   signInWithEmailAndPassword,
 } from "firebase/auth";
-import { ref, get, set, getDatabase } from "firebase/database";
+import {
+  getDatabase,
+  ref as databaseRef,
+  ref,
+  get,
+  set,
+} from "firebase/database";
+
 import { getFirestore } from "firebase/firestore";
-import { getStorage, getDownloadURL } from "firebase/storage";
+import {
+  getStorage,
+  ref as storageRef,
+  getDownloadURL,
+  uploadBytes,
+} from "firebase/storage";
+
 import "firebase/auth";
 import "firebase/database";
 
@@ -27,7 +40,11 @@ const firestore = getFirestore(app);
 const auth = getAuth(app);
 const storage = getStorage(app);
 // Ottieni l'istanza del database Firebase
-export const db = getDatabase(app);
+export const database = getDatabase(app);
+export const isAuthenticated = auth.currentUser?.uid; // Inserire codice per verificare l'autenticazione
+export const isAdminRoute =
+  typeof window !== "undefined" &&
+  window.location.pathname.startsWith("/admin"); // Sostituire '/admin' con il percorso corretto
 
 // Funzione per verificare lo stato di autenticazione
 export const checkAuth = () => {
@@ -45,7 +62,7 @@ export const checkAuth = () => {
 // Funzione per impostare i dati nel database
 export const setDatabaseData = (path: string, data: any) => {
   try {
-    set(ref(db, path), data);
+    set(ref(database, path), data);
   } catch (error) {
     console.error(
       `Errore durante il salvataggio dei dati nel percorso ${path}:`,
@@ -57,11 +74,51 @@ export const setDatabaseData = (path: string, data: any) => {
 // Funzione per ottenere i dati dal database
 export const getDatabaseData = async <T>(path: string): Promise<T | null> => {
   try {
-    const dataSnapshot = await get(ref(db, path));
+    const dataSnapshot = await get(ref(database, path));
     return dataSnapshot.exists() ? dataSnapshot.val() : null;
   } catch (error) {
     console.error(
       `Errore durante il recupero dei dati dal percorso ${path}:`,
+      error
+    );
+    return null;
+  }
+};
+
+// ...
+
+// Funzione per impostare i dati nello storage
+export const setStorageData = async (path: string, data: File | null) => {
+  try {
+    if (!data) {
+      throw new Error("Devi selezionare un'immagine per salvare i dati");
+    }
+
+    const fileRef = storageRef(storage, path);
+    await uploadBytes(fileRef, data);
+    const downloadURL = await getDownloadURL(fileRef);
+
+    await set(databaseRef(database, "images"), downloadURL);
+
+    return true;
+  } catch (error) {
+    console.error(
+      "Errore durante il salvataggio dell'immagine nello storage:",
+      error
+    );
+    return false;
+  }
+};
+
+// Funzione per ottenere i dati dallo storage
+export const getStorageData = async (path: string): Promise<string | null> => {
+  try {
+    const fileRef = storageRef(storage, path);
+    const downloadURL = await getDownloadURL(fileRef);
+    return downloadURL;
+  } catch (error) {
+    console.error(
+      `Errore durante il recupero dei dati dal percorso ${path} nello storage:`,
       error
     );
     return null;

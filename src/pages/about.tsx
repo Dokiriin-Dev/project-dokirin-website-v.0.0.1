@@ -2,10 +2,15 @@ import ImageUploader from "@/components/ImageUploader";
 import RichText from "@/components/RichText";
 import Container from "@/components/layout/Container";
 import Section from "@/components/layout/Section";
-import { getDatabaseData, setDatabaseData } from "@/firebase/firebase.config";
+import {
+  getDatabaseData,
+  isAdminRoute,
+  isAuthenticated,
+  setDatabaseData,
+} from "@/firebase/firebase.config";
 import classNames from "classnames";
-import { ChangeEvent, RefObject, useEffect, useRef, useState } from "react";
-import toast from "react-hot-toast";
+import { RefObject, useEffect, useRef, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
 import { Descendant, Element, Text } from "slate";
 
 const PAGE_NAME = "pages/about";
@@ -19,8 +24,6 @@ interface PageData {
   descriptionAbout: Descendant[];
   titleMission: Descendant[];
   descriptionMission: Descendant[];
-  heroImageSrc: Descendant[];
-  secondImageSrc: Descendant[];
 }
 
 const defaultData: PageData = {
@@ -32,18 +35,21 @@ const defaultData: PageData = {
   descriptionAbout: [{ children: [{ text: "Default Title" }] }],
   titleMission: [{ children: [{ text: "Default Title" }] }],
   descriptionMission: [{ children: [{ text: "Default Title" }] }],
-  heroImageSrc: [{ children: [{ text: "Default Title" }] }],
-  secondImageSrc: [{ children: [{ text: "Default Title" }] }],
 };
 
 export default function AboutPage(): JSX.Element {
   const [data, setData] = useState<PageData>(defaultData);
   const [dataText, setDataText] = useState<string>("");
-  const isAuthenticated = true; // Inserire codice per verificare l'autenticazione
-  const isAdminRoute =
-    typeof window !== "undefined" &&
-    window.location.pathname.startsWith("/admin"); // Sostituire '/admin' con il percorso corretto
-  const isEditable = isAuthenticated && isAdminRoute;
+
+  const getTextFromDescendants = (descendants: Descendant[]): string => {
+    const firstChild = descendants[0]; // Accesso al primo elemento dell'array
+    if (Text.isText(firstChild)) {
+      return firstChild.text;
+    } else if (Element.isElement(firstChild)) {
+      return getTextFromDescendants(firstChild.children);
+    }
+    return "";
+  };
 
   useEffect(() => {
     const fetchData = async () => {
@@ -69,12 +75,6 @@ export default function AboutPage(): JSX.Element {
           const descriptionMission = getTextFromDescendants(
             fetchedData.descriptionHeading
           );
-          const heroImageSrc = getTextFromDescendants(
-            fetchedData.descriptionHeading
-          );
-          const secondImageSrc = getTextFromDescendants(
-            fetchedData.descriptionHeading
-          );
           setDataText(title);
           setDataText(description);
           setDataText(titleCustomer);
@@ -83,8 +83,6 @@ export default function AboutPage(): JSX.Element {
           setDataText(descriptionAbout);
           setDataText(titleMission);
           setDataText(descriptionMission);
-          setDataText(heroImageSrc);
-          setDataText(secondImageSrc);
         } else {
           // Se non ci sono dati nel database, utilizza i dati di default
           setData(defaultData);
@@ -100,16 +98,6 @@ export default function AboutPage(): JSX.Element {
     fetchData();
   }, []);
 
-  const getTextFromDescendants = (descendants: Descendant[]): string => {
-    const firstChild = descendants[0]; // Accesso al primo elemento dell'array
-    if (Text.isText(firstChild)) {
-      return firstChild.text;
-    } else if (Element.isElement(firstChild)) {
-      return getTextFromDescendants(firstChild.children);
-    }
-    return "";
-  };
-
   const handleDataChange = (field: keyof PageData, value: Descendant[]) => {
     setData((prevData) => ({ ...prevData, [field]: value }));
     const titleHeading = getTextFromDescendants(data.titleHeading);
@@ -122,8 +110,6 @@ export default function AboutPage(): JSX.Element {
     const descriptionAbout = getTextFromDescendants(data.descriptionAbout);
     const titleMission = getTextFromDescendants(data.titleMission);
     const descriptionMission = getTextFromDescendants(data.descriptionMission);
-    const heroImageSrc = getTextFromDescendants(data.heroImageSrc);
-    const secondImageSrc = getTextFromDescendants(data.secondImageSrc);
     setDataText(titleHeading);
     setDataText(descriptionHeading);
     setDataText(titleCustomer);
@@ -132,8 +118,6 @@ export default function AboutPage(): JSX.Element {
     setDataText(descriptionAbout);
     setDataText(titleMission);
     setDataText(descriptionMission);
-    setDataText(heroImageSrc);
-    setDataText(secondImageSrc);
 
     saveDataToDatabase(PAGE_NAME, data);
   };
@@ -150,49 +134,20 @@ export default function AboutPage(): JSX.Element {
   };
 
   const fileInputRefs: {
-    hero: RefObject<HTMLInputElement>;
+    first: RefObject<HTMLInputElement>;
     second: RefObject<HTMLInputElement>;
   } = {
-    hero: useRef<HTMLInputElement>(null),
+    first: useRef<HTMLInputElement>(null),
     second: useRef<HTMLInputElement>(null),
-  };
-  const [uploadedImages, setUploadedImages] = useState<{
-    [key: string]: string | null;
-  }>({
-    heroImageSrc: null,
-    secondImageSrc: null,
-  });
-
-  const handleImageClick = (ref: RefObject<HTMLInputElement>) => {
-    if (isAdminRoute && ref.current) {
-      ref.current.click();
-    }
-  };
-
-  const handleImgChange = (
-    event: ChangeEvent<HTMLInputElement>,
-    key: string
-  ) => {
-    const file = event.target.files?.[0];
-    if (!file) {
-      return;
-    }
-
-    const reader = new FileReader();
-    reader.onload = () => {
-      const dataUrl = reader.result as string;
-      setUploadedImages((prevImages) => ({
-        ...prevImages,
-        [key]: dataUrl,
-      }));
-    };
-    reader.readAsDataURL(file);
   };
 
   return (
-    <div>
+    <>
       {dataText ? (
-        <Section className="pt-24">
+        <Section className="pt-24 md:pt-20">
+          {isAdminRoute && (
+            <Toaster position="top-center" containerClassName="text-sm" />
+          )}
           <Container size="full">
             <section className="text-gray-400 body-font bg-cyan-400/50">
               <div className="container mx-auto flex px-5 py-8 items-center justify-center flex-col ">
@@ -225,7 +180,7 @@ export default function AboutPage(): JSX.Element {
                     }
                     placeholder="Inserisci il testo..."
                     renderBlock={(props) => (
-                      <p className="leading-relaxed text-lg md:text-xl">
+                      <p className="leading-relaxed mb-8 text-lg md:text-xl">
                         {props.children}
                       </p>
                     )}
@@ -267,23 +222,17 @@ export default function AboutPage(): JSX.Element {
               </div>
             </section>
             <section className="text-gray-400 body-font pt-10">
-              <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-                <div className="lg:max-w-lg lg:w-full mb-10 md:w-1/3 w-4/5 md:mt-0 md:mb-0 self-center">
+              <div className="container mx-auto flex flex-col items-center px-5 py-24 md:flex-row">
+                <div className="lg:max-w-lg lg:w-full md:w-1/3 w-full md:mt-0 md:mb-0 self-center">
                   <div className="mt-4">
                     <ImageUploader
-                      // imageUrl={data.heroImageSrc}
-                      inputRef={fileInputRefs.hero}
-                      onInputChange={(data) =>
-                        handleImgChange(data, "heroImageSrc")
-                      }
-                      onClick={() => handleImageClick(fileInputRefs.hero)}
-                      width={500}
-                      key={"secondImageSrc"}
-                      height={500}
+                      inputRef={fileInputRefs.first}
+                      imageKey={"first"}
+                      alt={"first"}
                     />
                   </div>
                 </div>
-                <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+                <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left items-center text-center mt-8 md:mt-0">
                   <RichText
                     value={data.titleAbout}
                     onChange={(value) => handleDataChange("titleAbout", value)}
@@ -310,8 +259,17 @@ export default function AboutPage(): JSX.Element {
               </div>
             </section>
             <section className="text-gray-400 body-font pt-10">
-              <div className="container mx-auto flex px-5 py-24 md:flex-row flex-col items-center">
-                <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 flex flex-col md:items-start md:text-left items-center text-center">
+              <div className="container mx-auto flex flex-col items-center px-5 py-2 md:py-24 md:flex-row-reverse">
+                <div className="lg:max-w-lg lg:w-full md:w-1/3 w-full md:mt-0 md:mb-0 self-center">
+                  <div className="mt-4">
+                    <ImageUploader
+                      inputRef={fileInputRefs.second}
+                      imageKey={"second"}
+                      alt={"second"}
+                    />
+                  </div>
+                </div>
+                <div className="lg:flex-grow md:w-1/2 lg:pl-24 md:pl-16 lg:pr-24 md:pr-16 flex flex-col md:items-start md:text-left items-center text-center mt-8 md:mt-0">
                   <RichText
                     value={data.titleMission}
                     onChange={(value) =>
@@ -340,22 +298,6 @@ export default function AboutPage(): JSX.Element {
                     )}
                   />
                 </div>
-
-                <div className="lg:max-w-lg lg:w-full mb-10 md:w-1/3 w-4/5 md:mt-0 md:mb-0 self-center">
-                  <div className="mt-4">
-                    {/*  */}
-                    <ImageUploader
-                      inputRef={fileInputRefs.second}
-                      onInputChange={(data) =>
-                        handleImgChange(data, "secondImageSrc")
-                      }
-                      width={500}
-                      height={500}
-                      key={"secondImageSrc"}
-                      onClick={() => handleImageClick(fileInputRefs.second)}
-                    />
-                  </div>
-                </div>
               </div>
             </section>
           </Container>
@@ -363,6 +305,6 @@ export default function AboutPage(): JSX.Element {
       ) : (
         <p>Caricamento dati in corso...</p>
       )}
-    </div>
+    </>
   );
 }

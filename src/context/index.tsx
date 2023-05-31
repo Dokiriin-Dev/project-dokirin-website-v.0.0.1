@@ -234,9 +234,7 @@ export const headerLinks = [
 
 export const getDefaultProps = () => ({
   titleHeader: [{ children: [{ text: "Su di Noi" }] }],
-  titleCustomer: [
-    { children: [{ text: "Perché dovreste scegliere noi come partner?" }] },
-  ],
+  titleCustomer: [{ children: [{ text: "Perché dovreste scegliere noi come partner?" }] }],
   titleAbout: [{ children: [{ text: "Chi Siamo" }] }],
   titleMission: [{ children: [{ text: "Missione aziendale" }] }],
 
@@ -268,7 +266,6 @@ export const getDefaultProps = () => ({
       ],
     },
   ],
-
   descriptionMission: [
     {
       children: [

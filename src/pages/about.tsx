@@ -145,7 +145,7 @@ export default function AboutPage(): JSX.Element {
   return (
     <>
       {dataText ? (
-        <Section className="pt-14 md:pt-20">
+        <Section className="pt-10 md:pt-20">
           {isAdminRoute && (
             <Toaster position="top-center" containerClassName="text-sm" />
           )}
@@ -162,7 +162,7 @@ export default function AboutPage(): JSX.Element {
                     renderBlock={(props) => (
                       <h1
                         className={classNames(
-                          "text-5xl sm:text-6xl font-bold p-2 pb-10 tracking-tight text-center mb-4 bg-clip-text bg-gradient-to-r border-b dark:border-emerald-300 border-emerald-500 pr-10 pl-10 drop-shadow-xl shadow-gray-400"
+                          "text-5xl sm:text-6xl font-bold p-2 tracking-tight text-center mb-4 bg-clip-text bg-gradient-to-r border-b dark:border-emerald-300 border-emerald-500 pr-10 pl-10 drop-shadow-xl shadow-gray-400"
                         )}
                         style={{ lineHeight: 1.125 }}
                         {...props.attributes}

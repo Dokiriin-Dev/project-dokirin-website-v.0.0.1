@@ -192,7 +192,7 @@ export default function AboutPage(): JSX.Element {
                 </div>
               </div>
             </section>
-            <section className="text-gray-400 body-font pt-10">
+            <section className="text-gray-400 body-font py-16 md:p-28">
               <div className="container mx-auto flex px-5 items-center justify-center flex-col">
                 <div className="text-center w-full">
                   <RichText
@@ -222,8 +222,8 @@ export default function AboutPage(): JSX.Element {
                 </div>
               </div>
             </section>
-            <section className="text-gray-400 body-font pt-10">
-              <div className="container mx-auto flex flex-col items-center px-5 py-24 md:flex-row">
+            <section className="text-gray-400 body-font py-16 md:py-16">
+              <div className="container mx-auto flex flex-col items-center px-5 md:flex-row">
                 <div className="lg:max-w-lg lg:w-full md:w-1/3 w-full md:mt-0 md:mb-0 self-center">
                   <div className="mt-4">
                     <ImageUploader
@@ -259,8 +259,8 @@ export default function AboutPage(): JSX.Element {
                 </div>
               </div>
             </section>
-            <section className="text-gray-400 body-font pt-10">
-              <div className="container mx-auto flex flex-col items-center px-5 py-2 md:py-24 md:flex-row-reverse">
+            <section className="text-gray-400 body-font py-16 md:py-16">
+              <div className="container mx-auto flex flex-col items-center px-5 md:flex-row-reverse">
                 <div className="lg:max-w-lg lg:w-full md:w-1/3 w-full md:mt-0 md:mb-0 self-center">
                   <div className="mt-4">
                     <ImageUploader

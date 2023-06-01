@@ -1,6 +1,7 @@
 import ImageUploader from "@/components/ImageUploader";
 import RichText from "@/components/RichText";
 import Container from "@/components/layout/Container";
+import Loading from "@/components/layout/Loading";
 import Section from "@/components/layout/Section";
 import {
   getDatabaseData,
@@ -303,7 +304,7 @@ export default function AboutPage(): JSX.Element {
           </Container>
         </Section>
       ) : (
-        <p>Caricamento dati in corso...</p>
+        <Loading />
       )}
     </>
   );

@@ -25,12 +25,12 @@ const MenuItem = ({ href, children }: MenuItemProps) => {
 const ServiziMenu = () => {
   return (
     <div className="absolute top-full left-0 mt-0 rounded-sm shadow-lg z-10 w-40 bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300">
-      <span className="block py-2 hover:bg-zinc-800/30 w-full rounded-sm p-6 cursor-pointer">
+      <span className="block py-2 hover:bg-zinc-800/30 w-full rounded-sm p-6 cursor-pointer hover:text-[#FFAE00]">
         <Link href="/services/website" legacyBehavior>
           Siti web
         </Link>
       </span>
-      <span className="block py-2 hover:bg-zinc-800/30 w-full rounded-sm p-6 cursor-pointer">
+      <span className="block py-2 hover:bg-zinc-800/30 w-full rounded-sm p-6 cursor-pointer hover:text-[#FFAE00]">
         <Link href="/services/ecommerce" legacyBehavior>
           E-commerce
         </Link>

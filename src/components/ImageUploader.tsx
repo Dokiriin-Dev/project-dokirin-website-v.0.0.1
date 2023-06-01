@@ -1,10 +1,4 @@
-import {
-  app,
-  getStorageData,
-  isAdminRoute,
-  isAuthenticated,
-  setStorageData,
-} from "@/firebase/firebase.config";
+import { app, auth, getStorageData, setStorageData } from "@/firebase/firebase.config";
 import Image from "next/image";
 import { ChangeEvent, FC, RefObject, useEffect, useState } from "react";
 
@@ -24,7 +18,12 @@ const ImageUploader: FC<ImageUploaderProps> = ({
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
 
-  const [isEditable, setIsEditable] = useState<boolean>(isAdminRoute);
+  const isAuthenticated = !!auth.currentUser;
+  const isAdminRoute = (): boolean => {
+    return typeof window !== "undefined" && window.location.pathname.startsWith("/admin");
+  };
+
+  const [isEditable, setIsEditable] = useState<boolean>(isAdminRoute() && isAuthenticated);
 
   const handleImageClick = () => {
     if (isEditable && inputRef.current) {
@@ -127,7 +126,7 @@ const ImageUploader: FC<ImageUploaderProps> = ({
         className="hidden"
         onChange={handleInputChange}
       />
-      {isLoading && <p>Caricamento in corso...</p>}
+      {isLoading && <span>Caricamento in corso...</span>}
     </div>
   );
 };

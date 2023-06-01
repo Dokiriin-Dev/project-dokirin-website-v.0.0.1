@@ -145,13 +145,13 @@ export default function AboutPage(): JSX.Element {
   return (
     <>
       {dataText ? (
-        <Section className="pt-24 md:pt-20">
+        <Section className="pt-14 md:pt-20">
           {isAdminRoute && (
             <Toaster position="top-center" containerClassName="text-sm" />
           )}
           <Container size="full">
-            <section className="text-gray-400 body-font bg-cyan-400/50">
-              <div className="container mx-auto flex px-5 py-8 items-center justify-center flex-col ">
+            <section className="text-gray-400 body-font bg-cyan-400/50 px-5 md:py-8 py-1 pt-5">
+              <div className="container mx-auto flex items-center justify-center flex-col">
                 <div className="text-center w-full">
                   <RichText
                     value={data.titleHeading}

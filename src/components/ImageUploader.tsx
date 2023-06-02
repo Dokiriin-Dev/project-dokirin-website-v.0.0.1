@@ -94,7 +94,13 @@ const ImageUploader: FC<ImageUploaderProps> = ({
       >
         {imageUrl ? (
           <>
-            <Image src={imageUrl} alt={alt} sizes="800" width={1000} height={1000}/>
+            <Image
+              src={imageUrl}
+              alt={alt}
+              sizes="800"
+              width={1000}
+              height={1000}
+            />
             {isEditable && (
               <div
                 style={{

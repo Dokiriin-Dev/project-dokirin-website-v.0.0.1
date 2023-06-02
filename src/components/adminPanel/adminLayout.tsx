@@ -1,28 +1,38 @@
-import { useState, ReactNode } from "react";
+import { useState, ReactNode, useEffect } from "react";
 import AdminModal from "./adminModal";
 import DashboardSidebar from "./adminSidebar";
+import { PageData, defaultData } from "@/pages/about";
 
 type AdminLayoutProps = {
   children: ReactNode;
 };
 
-const AdminLayout = ({ children }: AdminLayoutProps) => {
+export default function AdminLayout({ children }: AdminLayoutProps) {
+  const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModified, setIsModified] = useState(false);
+  const [modifiedData, setModifiedData] = useState<PageData>(defaultData);
+  const [isSaving, setIsSaving] = useState(false);
 
   const handleModified = () => {
     setIsModified(true);
   };
 
-  const handleSave = () => {
-    setIsModified(false);
-    console.log("Dati salvati con successo");
+  const handleSave = (data: PageData) => {
+    setIsSaving(true);
   };
 
   const handleDiscard = () => {
     setIsModified(false);
     console.log("Dati ripristinati con successo");
+    setIsModalOpen(false);
     // Effettua qui l'operazione per ripristinare le modifiche
   };
+
+  useEffect(() => {
+    if (isModified) {
+      setIsModalOpen(true);
+    }
+  }, [isModified]);
 
   return (
     <div className="min-h-screen flex flex-row justify-start pt-12 md:pt-[4.5rem]">
@@ -33,11 +43,12 @@ const AdminLayout = ({ children }: AdminLayoutProps) => {
       >
         {children}
       </div>
-      {isModified && (
-        <AdminModal onSave={handleSave} onDiscard={handleDiscard} />
+      {isModalOpen && (
+        <AdminModal
+          onSave={() => handleSave(modifiedData)}
+          isSaving={isSaving}
+        />
       )}
     </div>
   );
-};
-
-export default AdminLayout;
+}

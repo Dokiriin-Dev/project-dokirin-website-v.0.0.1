@@ -1,3 +1,4 @@
+import { auth } from "@/firebase/firebase.config";
 import { useEffect, useMemo, useRef, useState } from "react";
 import {
   Descendant,
@@ -64,10 +65,13 @@ const RichText: React.FC<RichTextEditorProps> = ({
   const editorRef = useRef<RichTextEditorWithReact | null>(null);
   const [editor] = useState(() => withReact(createEditor()));
 
-  const isAuthenticated = true; // Inserire codice per verificare l'autenticazione
-  const isAdminRoute =
-    typeof window !== "undefined" &&
-    window.location.pathname.startsWith("/admin"); // Sostituire '/admin' con il percorso corretto
+  const isAuthenticated = !!auth.currentUser;
+  const isAdminRoute = useMemo(() => {
+    return (
+      typeof window !== "undefined" &&
+      window.location.pathname.startsWith("/admin")
+    );
+  }, []);
 
   const isEditable = isAuthenticated && isAdminRoute;
 

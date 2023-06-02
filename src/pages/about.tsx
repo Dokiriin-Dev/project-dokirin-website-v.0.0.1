@@ -1,3 +1,7 @@
+import { useEffect, useRef, useState } from "react";
+import toast, { Toaster } from "react-hot-toast";
+import { Descendant, Element, Text } from "slate";
+
 import ImageUploader from "@/components/ImageUploader";
 import RichText from "@/components/RichText";
 import Container from "@/components/layout/Container";
@@ -6,17 +10,13 @@ import Section from "@/components/layout/Section";
 import {
   getDatabaseData,
   isAdminRoute,
-  isAuthenticated,
   setDatabaseData,
 } from "@/firebase/firebase.config";
 import classNames from "classnames";
-import { RefObject, useEffect, useRef, useState } from "react";
-import toast, { Toaster } from "react-hot-toast";
-import { Descendant, Element, Text } from "slate";
 
 const PAGE_NAME = "pages/about";
 
-interface PageData {
+export interface PageData {
   titleHeading: Descendant[];
   descriptionHeading: Descendant[];
   titleCustomer: Descendant[];
@@ -27,7 +27,7 @@ interface PageData {
   descriptionMission: Descendant[];
 }
 
-const defaultData: PageData = {
+export const defaultData: PageData = {
   titleHeading: [{ children: [{ text: "Default Title" }] }],
   descriptionHeading: [{ children: [{ text: "Default Description" }] }],
   titleCustomer: [{ children: [{ text: "Default Title" }] }],
@@ -38,12 +38,17 @@ const defaultData: PageData = {
   descriptionMission: [{ children: [{ text: "Default Title" }] }],
 };
 
-export default function AboutPage(): JSX.Element {
+export type AboutPageProps = {
+  onSaveData: (data: PageData) => void;
+};
+
+export default function AboutPage({ onSaveData }: AboutPageProps): JSX.Element {
   const [data, setData] = useState<PageData>(defaultData);
   const [dataText, setDataText] = useState<string>("");
+  const [saving, setSaving] = useState(false);
 
   const getTextFromDescendants = (descendants: Descendant[]): string => {
-    const firstChild = descendants[0]; // Accesso al primo elemento dell'array
+    const firstChild = descendants[0];
     if (Text.isText(firstChild)) {
       return firstChild.text;
     } else if (Element.isElement(firstChild)) {
@@ -58,41 +63,27 @@ export default function AboutPage(): JSX.Element {
         const fetchedData = await getDatabaseData<PageData>(PAGE_NAME);
         if (fetchedData) {
           setData(fetchedData);
-          const title = getTextFromDescendants(fetchedData.titleHeading);
-          const description = getTextFromDescendants(
-            fetchedData.descriptionHeading
-          );
-          const titleCustomer = getTextFromDescendants(
-            fetchedData.titleHeading
-          );
-          const descriptionCustomer = getTextFromDescendants(
-            fetchedData.descriptionHeading
-          );
-          const titleAbout = getTextFromDescendants(fetchedData.titleHeading);
-          const descriptionAbout = getTextFromDescendants(
-            fetchedData.descriptionHeading
-          );
-          const titleMission = getTextFromDescendants(fetchedData.titleHeading);
-          const descriptionMission = getTextFromDescendants(
-            fetchedData.descriptionHeading
-          );
-          setDataText(title);
-          setDataText(description);
-          setDataText(titleCustomer);
-          setDataText(descriptionCustomer);
-          setDataText(titleAbout);
-          setDataText(descriptionAbout);
-          setDataText(titleMission);
-          setDataText(descriptionMission);
+          const fieldNames: (keyof PageData)[] = [
+            "titleHeading",
+            "descriptionHeading",
+            "titleCustomer",
+            "descriptionCustomer",
+            "titleAbout",
+            "descriptionAbout",
+            "titleMission",
+            "descriptionMission",
+          ];
+          const newTextValues = fieldNames.map((fieldName) => {
+            const value = fetchedData[fieldName];
+            return getTextFromDescendants(value);
+          });
+
+          setDataText(newTextValues.join(""));
         } else {
-          // Se non ci sono dati nel database, utilizza i dati di default
           setData(defaultData);
         }
       } catch (error) {
-        console.error(
-          "Errore durante il recupero dei dati dal database:",
-          error
-        );
+        console.error("Error retrieving data from the database:", error);
       }
     };
 
@@ -101,42 +92,27 @@ export default function AboutPage(): JSX.Element {
 
   const handleDataChange = (field: keyof PageData, value: Descendant[]) => {
     setData((prevData) => ({ ...prevData, [field]: value }));
-    const titleHeading = getTextFromDescendants(data.titleHeading);
-    const descriptionHeading = getTextFromDescendants(data.descriptionHeading);
-    const titleCustomer = getTextFromDescendants(data.titleCustomer);
-    const descriptionCustomer = getTextFromDescendants(
-      data.descriptionCustomer
-    );
-    const titleAbout = getTextFromDescendants(data.titleAbout);
-    const descriptionAbout = getTextFromDescendants(data.descriptionAbout);
-    const titleMission = getTextFromDescendants(data.titleMission);
-    const descriptionMission = getTextFromDescendants(data.descriptionMission);
-    setDataText(titleHeading);
-    setDataText(descriptionHeading);
-    setDataText(titleCustomer);
-    setDataText(descriptionCustomer);
-    setDataText(titleAbout);
-    setDataText(descriptionAbout);
-    setDataText(titleMission);
-    setDataText(descriptionMission);
-
-    saveDataToDatabase(PAGE_NAME, data);
+    const text = getTextFromDescendants(value);
+    setDataText(text);
   };
 
-  const saveDataToDatabase = async (fieldName: string, value: PageData) => {
+  // Funzione per il salvataggio dei dati nel database
+  const handleSaveClick = (data: PageData) => {
+    setSaving(true);
     try {
-      await setDatabaseData(fieldName, value);
-      toast.success(`Dati del campo ${fieldName} salvati nel database`);
+      setDatabaseData(PAGE_NAME, data);
+      toast.success(`Dati salvati nel database`);
+      onSaveData(data); // Chiamiamo la funzione di callback con i dati da salvare
     } catch (error) {
-      toast.error(
-        `Errore durante il salvataggio dei dati del campo ${fieldName} nel database`
-      );
+      toast.error(`Errore durante il salvataggio dei dati nel database`);
+    } finally {
+      setSaving(false);
     }
   };
 
   const fileInputRefs: {
-    first: RefObject<HTMLInputElement>;
-    second: RefObject<HTMLInputElement>;
+    first: React.RefObject<HTMLInputElement>;
+    second: React.RefObject<HTMLInputElement>;
   } = {
     first: useRef<HTMLInputElement>(null),
     second: useRef<HTMLInputElement>(null),

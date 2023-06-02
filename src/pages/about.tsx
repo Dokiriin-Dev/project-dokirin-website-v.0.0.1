@@ -38,11 +38,7 @@ export const defaultData: PageData = {
   descriptionMission: [{ children: [{ text: "Default Title" }] }],
 };
 
-export type AboutPageProps = {
-  onSaveData: (data: PageData) => void;
-};
-
-export default function AboutPage({ onSaveData }: AboutPageProps): JSX.Element {
+export default function AboutPage(): JSX.Element {
   const [data, setData] = useState<PageData>(defaultData);
   const [dataText, setDataText] = useState<string>("");
   const [saving, setSaving] = useState(false);
@@ -102,7 +98,6 @@ export default function AboutPage({ onSaveData }: AboutPageProps): JSX.Element {
     try {
       setDatabaseData(PAGE_NAME, data);
       toast.success(`Dati salvati nel database`);
-      onSaveData(data); // Chiamiamo la funzione di callback con i dati da salvare
     } catch (error) {
       toast.error(`Errore durante il salvataggio dei dati nel database`);
     } finally {

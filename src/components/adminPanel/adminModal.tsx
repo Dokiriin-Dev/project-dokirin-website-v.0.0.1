@@ -1,4 +1,5 @@
-import React from "react";
+import { auth } from "@/firebase/firebase.config";
+import React, { useMemo } from "react";
 
 type AdminModalProps = {
   onSave: (data: any) => void;
@@ -6,38 +7,51 @@ type AdminModalProps = {
 };
 
 export default function AdminModal({ onSave, isSaving }: AdminModalProps) {
-  return (
-    <section className="fixed bottom-0 z-50 w-full align-custom-center p-2">
-      <div className="block flex-col items-start w-1/2 space-y-2 bg-gray-700 text-white md:flex-row md:space-y-0 md:items-stretch p-2 rounded-md">
-        <div className="flex w-full justify-between">
-          <div className="text-white focus:outline-none focus:ring-4 font-normal rounded-md py-2.5 text-center p-2">
-            <span className="pr-2 text-yellow-500 font-semibold">
-              Attenzione!
-            </span>
-            Ci sono delle modifiche non salvate!
-          </div>
-          <hr className="border-transparent" />
+  const isAuthenticated = !!auth.currentUser;
+  const isAdminRoute = useMemo(() => {
+    return (
+      typeof window !== "undefined" &&
+      window.location.pathname.startsWith("/admin")
+    );
+  }, []);
 
-          <div className="flex">
-            <button
-              className="text-white focus:outline-none focus:ring-4 font-medium rounded-md text-sm y-2.5 text-center mr-2 hover:underline p-2"
-              // onClick={onDiscard}
-            >
-              Ripristina
-            </button>
-            <hr className="border-transparent" />
-            <button
-              className={`text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm py-2.5 text-center p-2 ${
-                isSaving ? "opacity-50 cursor-not-allowed" : ""
-              }`}
-              onClick={onSave} // Aggiunto il gestore onClick
-              disabled={isSaving}
-            >
-              {isSaving ? "Salvataggio in corso..." : "Salva modifiche"}
-            </button>
+  const isEditable = isAuthenticated && isAdminRoute;
+  return (
+    <>
+      {isEditable && (
+        <section className="fixed bottom-0 z-50 w-full align-custom-center p-2">
+          <div className="block flex-col items-start w-1/2 space-y-2 bg-gray-700 text-white md:flex-row md:space-y-0 md:items-stretch p-2 rounded-md">
+            <div className="flex w-full justify-between">
+              <div className="text-white focus:outline-none focus:ring-4 font-normal rounded-md py-2.5 text-center p-2">
+                <span className="pr-2 text-yellow-500 font-semibold">
+                  Attenzione!
+                </span>
+                Ci sono delle modifiche non salvate!
+              </div>
+              <hr className="border-transparent" />
+
+              <div className="flex">
+                <button
+                  className="text-white focus:outline-none focus:ring-4 font-medium rounded-md text-sm y-2.5 text-center mr-2 hover:underline p-2"
+                  // onClick={onDiscard}
+                >
+                  Ripristina
+                </button>
+                <hr className="border-transparent" />
+                <button
+                  className={`text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm py-2.5 text-center p-2 ${
+                    isSaving ? "opacity-50 cursor-not-allowed" : ""
+                  }`}
+                  onClick={onSave} // Aggiunto il gestore onClick
+                  disabled={isSaving}
+                >
+                  {isSaving ? "Salvataggio in corso..." : "Salva modifiche"}
+                </button>
+              </div>
+            </div>
           </div>
-        </div>
-      </div>
-    </section>
+        </section>
+      )}
+    </>
   );
 }

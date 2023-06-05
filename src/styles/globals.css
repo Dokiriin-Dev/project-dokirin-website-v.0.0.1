@@ -78,6 +78,7 @@
 }
 
 * {
+  user-select: none;
   box-sizing: border-box;
   scroll-behavior: smooth;
   padding: 0;

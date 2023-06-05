@@ -1,11 +1,11 @@
-import { auth } from "@/firebase/firebase.config";
-import { useEffect, useMemo, useRef, useState } from "react";
+import { getIsEditable } from "@/firebase/firebase.config";
+import { useEffect, useRef, useState } from "react";
 import {
   Descendant,
   Editor,
-  createEditor,
-  Transforms,
   Element as SlateElement,
+  Transforms,
+  createEditor,
 } from "slate";
 import {
   Editable,
@@ -65,15 +65,7 @@ const RichText: React.FC<RichTextEditorProps> = ({
   const editorRef = useRef<RichTextEditorWithReact | null>(null);
   const [editor] = useState(() => withReact(createEditor()));
 
-  const isAuthenticated = !!auth.currentUser;
-  const isAdminRoute = useMemo(() => {
-    return (
-      typeof window !== "undefined" &&
-      window.location.pathname.startsWith("/admin")
-    );
-  }, []);
-
-  const isEditable = isAuthenticated && isAdminRoute;
+  const isEditable = getIsEditable(); // Ottieni il valore di isEditable
 
   const getInitialValue = (): Descendant[] => {
     if (typeof value === "function") {

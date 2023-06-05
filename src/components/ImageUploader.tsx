@@ -1,11 +1,10 @@
-import {
-  app,
-  auth,
-  getStorageData,
-  setStorageData,
-} from "@/firebase/firebase.config";
+import { FC, ChangeEvent, RefObject, useEffect, useState } from "react";
 import Image from "next/image";
-import { ChangeEvent, FC, RefObject, useEffect, useState } from "react";
+import {
+  setStorageData,
+  getStorageData,
+  getIsEditable,
+} from "@/firebase/firebase.config";
 
 type ImageUploaderProps = {
   alt: string;
@@ -22,18 +21,7 @@ const ImageUploader: FC<ImageUploaderProps> = ({
 }) => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-
-  const isAuthenticated = !!auth.currentUser;
-  const isAdminRoute = (): boolean => {
-    return (
-      typeof window !== "undefined" &&
-      window.location.pathname.startsWith("/admin")
-    );
-  };
-
-  const [isEditable, setIsEditable] = useState<boolean>(
-    isAdminRoute() && isAuthenticated
-  );
+  const isEditable = getIsEditable();
 
   const handleImageClick = () => {
     if (isEditable && inputRef.current) {
@@ -50,7 +38,6 @@ const ImageUploader: FC<ImageUploaderProps> = ({
         const success = await setStorageData(`images/${imageKey}`, file);
         if (success) {
           setImageUrl(URL.createObjectURL(file));
-          setIsEditable(true);
         } else {
           console.error("Errore durante il caricamento dell'immagine");
         }

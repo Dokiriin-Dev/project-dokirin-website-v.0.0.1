@@ -22,6 +22,7 @@ import {
 
 import "firebase/auth";
 import "firebase/database";
+import React, { useEffect, useMemo, useState } from "react";
 
 // Configura le tue credenziali Firebase
 export const firebaseConfig = {
@@ -41,15 +42,38 @@ const auth = getAuth(app);
 const storage = getStorage(app);
 // Ottieni l'istanza del database Firebase
 export const database = getDatabase(app);
-export const isAuthenticated = auth.currentUser?.uid; // Inserire codice per verificare l'autenticazione
-export const isAdminRoute =
-  typeof window !== "undefined" &&
-  window.location.pathname.startsWith("/admin"); // Sostituire '/admin' con il percorso corretto
+
+/** ---------- BEGIN CHECKING AUTHENTICATION ---------- */
+export const getIsEditable = () => {
+  const [isEditable, setIsEditable] = useState<boolean>(false);
+
+  useEffect(() => {
+    const isAdminRoute =
+      typeof window !== "undefined" &&
+      window.location.pathname.startsWith("/admin");
+
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      if (user) {
+        setIsEditable(isAdminRoute);
+      } else {
+        setIsEditable(false);
+      }
+    });
+
+    return () => {
+      unsubscribe();
+    };
+  }, []);
+
+  return isEditable;
+};
+/** END CHECKING AUTHENTICATION */
 
 // Funzione per verificare lo stato di autenticazione
 export const checkAuth = () => {
   return new Promise((resolve, reject) => {
-    onAuthStateChanged(auth, (user) => {
+    const unsubscribe = onAuthStateChanged(auth, (user) => {
+      unsubscribe(); // Ferma l'ascolto degli eventi dopo la prima chiamata
       if (user) {
         resolve(user);
       } else {
@@ -58,6 +82,8 @@ export const checkAuth = () => {
     });
   });
 };
+
+// ...
 
 // Funzione per impostare i dati nel database
 export const setDatabaseData = (path: string, data: any) => {

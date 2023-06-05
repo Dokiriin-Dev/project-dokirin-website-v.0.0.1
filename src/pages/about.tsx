@@ -9,7 +9,7 @@ import Loading from "@/components/layout/Loading";
 import Section from "@/components/layout/Section";
 import {
   getDatabaseData,
-  isAdminRoute,
+  getIsEditable,
   setDatabaseData,
 } from "@/firebase/firebase.config";
 import classNames from "classnames";
@@ -42,6 +42,7 @@ export default function AboutPage(): JSX.Element {
   const [data, setData] = useState<PageData>(defaultData);
   const [dataText, setDataText] = useState<string>("");
   const [saving, setSaving] = useState(false);
+  const isEditable = getIsEditable(); // Ottieni il valore di isEditable
 
   const getTextFromDescendants = (descendants: Descendant[]): string => {
     const firstChild = descendants[0];
@@ -117,7 +118,7 @@ export default function AboutPage(): JSX.Element {
     <>
       {dataText ? (
         <Section className="pt-10 md:pt-20">
-          {isAdminRoute && (
+          {isEditable && (
             <Toaster position="top-center" containerClassName="text-sm" />
           )}
           <Container size="full">

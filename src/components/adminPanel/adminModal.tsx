@@ -1,5 +1,4 @@
-import { auth } from "@/firebase/firebase.config";
-import React, { useMemo } from "react";
+import { getIsEditable } from "@/firebase/firebase.config";
 
 type AdminModalProps = {
   onSave: (data: any) => void;
@@ -7,15 +6,8 @@ type AdminModalProps = {
 };
 
 export default function AdminModal({ onSave, isSaving }: AdminModalProps) {
-  const isAuthenticated = !!auth.currentUser;
-  const isAdminRoute = useMemo(() => {
-    return (
-      typeof window !== "undefined" &&
-      window.location.pathname.startsWith("/admin")
-    );
-  }, []);
+  const isEditable = getIsEditable(); // Ottieni il valore di isEditable
 
-  const isEditable = isAuthenticated && isAdminRoute;
   return (
     <>
       {isEditable && (
@@ -23,7 +15,7 @@ export default function AdminModal({ onSave, isSaving }: AdminModalProps) {
           <div className="block flex-col items-start w-1/2 space-y-2 bg-gray-700 text-white md:flex-row md:space-y-0 md:items-stretch p-2 rounded-md">
             <div className="flex w-full justify-between">
               <div className="text-white focus:outline-none focus:ring-4 font-normal rounded-md py-2.5 text-center p-2">
-                <span className="pr-2 text-yellow-500 font-semibold">
+                <span className="pr-2 text-yellow-500 font-semibold text-md">
                   Attenzione!
                 </span>
                 Ci sono delle modifiche non salvate!
@@ -31,12 +23,12 @@ export default function AdminModal({ onSave, isSaving }: AdminModalProps) {
               <hr className="border-transparent" />
 
               <div className="flex">
-                <button
+                {/* <button
                   className="text-white focus:outline-none focus:ring-4 font-medium rounded-md text-sm y-2.5 text-center mr-2 hover:underline p-2"
                   // onClick={onDiscard}
                 >
                   Ripristina
-                </button>
+                </button> */}
                 <hr className="border-transparent" />
                 <button
                   className={`text-white bg-green-700 hover:bg-green-800 focus:outline-none focus:ring-4 focus:ring-blue-300 font-medium rounded-md text-sm py-2.5 text-center p-2 ${

@@ -13,19 +13,10 @@ import {
   setDatabaseData,
 } from "@/firebase/firebase.config";
 import classNames from "classnames";
+import AdminModal from "@/components/adminPanel/adminModal";
+import { PageData } from "@/components/adminPanel/adminLayout";
 
 const PAGE_NAME = "pages/about";
-
-export interface PageData {
-  titleHeading: Descendant[];
-  descriptionHeading: Descendant[];
-  titleCustomer: Descendant[];
-  descriptionCustomer: Descendant[];
-  titleAbout: Descendant[];
-  descriptionAbout: Descendant[];
-  titleMission: Descendant[];
-  descriptionMission: Descendant[];
-}
 
 export const defaultData: PageData = {
   titleHeading: [{ children: [{ text: "Default Title" }] }],
@@ -41,8 +32,9 @@ export const defaultData: PageData = {
 export default function AboutPage(): JSX.Element {
   const [data, setData] = useState<PageData>(defaultData);
   const [dataText, setDataText] = useState<string>("");
-  const [saving, setSaving] = useState(false);
   const isEditable = getIsEditable(); // Ottieni il valore di isEditable
+  const [isSaving, setIsSaving] = useState(false);
+  const [isDataModified, setIsDataModified] = useState(false); // Stato per indicare se i dati sono stati modificati
 
   const getTextFromDescendants = (descendants: Descendant[]): string => {
     const firstChild = descendants[0];
@@ -91,18 +83,20 @@ export default function AboutPage(): JSX.Element {
     setData((prevData) => ({ ...prevData, [field]: value }));
     const text = getTextFromDescendants(value);
     setDataText(text);
+    setIsDataModified(true); // Imposta lo stato di modifica dei dati a true quando i dati vengono modificati
   };
 
   // Funzione per il salvataggio dei dati nel database
-  const handleSaveClick = (data: PageData) => {
-    setSaving(true);
+  const handleDataSave = (data: PageData) => {
+    setIsSaving(true);
     try {
       setDatabaseData(PAGE_NAME, data);
       toast.success(`Dati salvati nel database`);
+      setIsDataModified(false); // Imposta lo stato di modifica dei dati a false dopo il salvataggio
     } catch (error) {
       toast.error(`Errore durante il salvataggio dei dati nel database`);
     } finally {
-      setSaving(false);
+      setIsSaving(false);
     }
   };
 
@@ -277,6 +271,9 @@ export default function AboutPage(): JSX.Element {
         </Section>
       ) : (
         <Loading />
+      )}
+      {isDataModified && (
+        <AdminModal onSave={() => handleDataSave(data)} isSaving={isSaving} />
       )}
     </>
   );

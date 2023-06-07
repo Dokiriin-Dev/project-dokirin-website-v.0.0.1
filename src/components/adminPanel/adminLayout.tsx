@@ -1,31 +1,22 @@
 import { useState, ReactNode, useEffect } from "react";
 import AdminModal from "./adminModal";
 import DashboardSidebar from "./adminSidebar";
-import { PageData, defaultData } from "@/pages/about";
+import { defaultData } from "@/pages/about";
+import { Descendant } from "slate";
 
 type AdminLayoutProps = {
   children: ReactNode;
 };
+export interface PageData {
+  [key: string]: Descendant[]; // Proprietà dinamica con index signature
+}
 
 export default function AdminLayout({ children }: AdminLayoutProps) {
   const [isModalOpen, setIsModalOpen] = useState(false);
   const [isModified, setIsModified] = useState(false);
-  const [modifiedData, setModifiedData] = useState<PageData>(defaultData);
-  const [isSaving, setIsSaving] = useState(false);
 
   const handleModified = () => {
     setIsModified(true);
-  };
-
-  const handleSave = (data: PageData) => {
-    setIsSaving(true);
-  };
-
-  const handleDiscard = () => {
-    setIsModified(false);
-    console.log("Dati ripristinati con successo");
-    setIsModalOpen(false);
-    // Effettua qui l'operazione per ripristinare le modifiche
   };
 
   useEffect(() => {
@@ -43,12 +34,6 @@ export default function AdminLayout({ children }: AdminLayoutProps) {
       >
         {children}
       </div>
-      {isModalOpen && (
-        <AdminModal
-          onSave={() => handleSave(modifiedData)}
-          isSaving={isSaving}
-        />
-      )}
     </div>
   );
 }

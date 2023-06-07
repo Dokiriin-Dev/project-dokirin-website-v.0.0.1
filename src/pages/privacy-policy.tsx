@@ -1,9 +1,9 @@
 import Section from "@/components/layout/Section";
 import React from "react";
 
-export default function ServicesPage() {
+export default function PrivacyPolicyPage() {
   return (
-    <Section className="pt-24">
+    <Section className="pt-10 md:pt-20">
       <section className="text-gray-600 body-font">
         <div className="container px-5 py-24 mx-auto">
           <div className="text-center mb-20">

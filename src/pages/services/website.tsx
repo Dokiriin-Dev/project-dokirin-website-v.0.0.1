@@ -3,7 +3,7 @@ import React from "react";
 
 export default function WebsiteServicePage() {
   return (
-    <Section className="pt-24">
+    <Section className="pt-10 md:pt-20">
       <section className="text-gray-400 body-font bg-cyan-400/50">
         <div className="container mx-auto flex px-5 py-8 items-center justify-center flex-col">
           <div className="text-center w-full">

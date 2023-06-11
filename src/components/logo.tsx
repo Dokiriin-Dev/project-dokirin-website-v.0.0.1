@@ -1,9 +1,13 @@
 import Link from "next/link";
 import React from "react";
 
-export default function Logo() {
+type LogoProps = {
+  className?: string;
+};
+
+export default function Logo({ className }: LogoProps) {
   return (
-    <div className="flex items-center flex-shrink-0 text-slate-300">
+    <div className={`flex items-center flex-shrink-0 ${className}`}>
       <Link
         className="flex title-font font-medium items-center text-gray-900 md:mb-0"
         href="/"

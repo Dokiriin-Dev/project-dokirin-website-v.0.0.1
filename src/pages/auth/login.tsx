@@ -6,7 +6,6 @@
 import Head from "next/head";
 import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
-import { useSignInWithGoogle } from "react-firebase-hooks/auth";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { FcGoogle, FcUnlock } from "react-icons/fc";
 import {
@@ -20,8 +19,7 @@ type LoginProps = {};
 const Login: React.FC<LoginProps> = () => {
   const [user] = useAuthState(auth);
   const router = useRouter();
-  const [signInWithGoogle, userCred, loading, error] =
-    useSignInWithGoogle(auth);
+
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
 
@@ -89,15 +87,6 @@ const Login: React.FC<LoginProps> = () => {
                 <span>Login with Email</span>
               </button>
             </div>
-          </div>
-          <div className="mt-6">
-            <button
-              className="w-full px-4 py-2 tracking-wide text-slate-300 transition-colors duration-200 transform border-sky-500 border rounded-md flex items-center justify-center hover:bg-slate-100"
-              onClick={() => signInWithGoogle()}
-            >
-              <FcGoogle className="mr-4" size={25} />
-              Sign with Google
-            </button>
           </div>
         </div>
       </div>

@@ -62,7 +62,7 @@ export default function HomePage() {
           </div>
           <div className="flex flex-wrap -m-4">
             <div className="p-4 md:w-1/3">
-              <div className="flex rounded-lg h-full bg-slate-400 p-8 flex-col">
+              <div className="flex rounded-lg h-full bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-8 flex-col">
                 <div className="flex items-center mb-3">
                   <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-slate-300 flex-shrink-0">
                     <svg
@@ -107,7 +107,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="p-4 md:w-1/3">
-              <div className="flex rounded-lg h-full bg-slate-400 p-8 flex-col">
+              <div className="flex rounded-lg h-full bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-8 flex-col">
                 <div className="flex items-center mb-3">
                   <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-slate-300 flex-shrink-0">
                     <svg
@@ -153,7 +153,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="p-4 md:w-1/3">
-              <div className="flex rounded-lg h-full bg-slate-400 p-8 flex-col">
+              <div className="flex rounded-lg h-full bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-8 flex-col">
                 <div className="flex items-center mb-3">
                   <div className="w-8 h-8 mr-3 inline-flex items-center justify-center rounded-full bg-indigo-500 text-slate-300 flex-shrink-0">
                     <svg
@@ -365,7 +365,7 @@ export default function HomePage() {
 
           <div className="flex flex-wrap -m-4">
             <div className="xl:w-1/3 md:w-1/2 p-4">
-              <div className="border border-cyan-400 p-6 rounded-lg">
+              <div className=" bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-6 rounded-lg">
                 <div className="flex justify-between items-center mb-4 w-3/4">
                   <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500">
                     <svg
@@ -409,7 +409,7 @@ export default function HomePage() {
             </div>
 
             <div className="xl:w-1/3 md:w-1/2 p-4">
-              <div className="border border-cyan-400 p-6 rounded-lg">
+              <div className=" bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-6 rounded-lg">
                 <div className="flex justify-between items-center mb-4 w-3/4">
                   <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500">
                     <svg
@@ -453,7 +453,7 @@ export default function HomePage() {
             </div>
 
             <div className="xl:w-1/3 md:w-1/2 p-4">
-              <div className="border border-cyan-400 p-6 rounded-lg">
+              <div className=" bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-6 rounded-lg">
                 <div className="flex justify-between items-center mb-4 w-3/4">
                   <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500">
                     <svg
@@ -497,7 +497,7 @@ export default function HomePage() {
             </div>
 
             <div className="xl:w-1/3 md:w-1/2 p-4">
-              <div className="border border-cyan-400 p-6 rounded-lg">
+              <div className=" bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-6 rounded-lg">
                 <div className="flex justify-between items-center mb-4 w-3/4">
                   <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500">
                     <svg
@@ -541,7 +541,7 @@ export default function HomePage() {
             </div>
 
             <div className="xl:w-1/3 md:w-1/2 p-4">
-              <div className="border border-cyan-400 p-6 rounded-lg">
+              <div className=" bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-6 rounded-lg">
                 <div className="flex justify-between items-center mb-4 w-3/4">
                   <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500">
                     <svg
@@ -585,7 +585,7 @@ export default function HomePage() {
             </div>
 
             <div className="xl:w-1/3 md:w-1/2 p-4">
-              <div className="border border-cyan-400 p-6 rounded-lg">
+              <div className=" bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-6 rounded-lg">
                 <div className="flex justify-between items-center mb-4 w-3/4">
                   <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500">
                     <svg
@@ -645,7 +645,7 @@ export default function HomePage() {
           </div>
           <div className="flex flex-wrap -m-2">
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
+              <div className="h-full flex items-center bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-4 rounded-lg">
                 <Image
                   alt="team"
                   width={100}
@@ -663,7 +663,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
+              <div className="h-full flex items-center bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-4 rounded-lg">
                 <Image
                   width={100}
                   height={100}
@@ -681,7 +681,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
+              <div className="h-full flex items-center bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-4 rounded-lg">
                 <Image
                   width={100}
                   height={100}
@@ -699,7 +699,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
+              <div className="h-full flex items-center bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-4 rounded-lg">
                 <Image
                   width={100}
                   height={100}
@@ -717,7 +717,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
+              <div className="h-full flex items-center bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-4 rounded-lg">
                 <Image
                   width={100}
                   height={100}
@@ -735,7 +735,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
+              <div className="h-full flex items-center bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-4 rounded-lg">
                 <Image
                   width={100}
                   height={100}
@@ -753,7 +753,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
+              <div className="h-full flex items-center bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-4 rounded-lg">
                 <Image
                   width={100}
                   height={100}
@@ -771,7 +771,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
+              <div className="h-full flex items-center bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-4 rounded-lg">
                 <Image
                   width={100}
                   height={100}
@@ -789,7 +789,7 @@ export default function HomePage() {
               </div>
             </div>
             <div className="p-2 lg:w-1/3 md:w-1/2 w-full">
-              <div className="h-full flex items-center border-cyan-400 border p-4 rounded-lg">
+              <div className="h-full flex items-center bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-4 rounded-lg">
                 <Image
                   width={100}
                   height={100}
@@ -812,7 +812,7 @@ export default function HomePage() {
       <Section className="text-gray-700 body-font overflow-hidden border-t border-cyan-400 text-base">
         <div className="container px-5 py-24 mx-auto flex flex-wrap">
           <div className="lg:w-1/4 mt-48 hidden lg:block">
-            <div className="mt-px border-t border-cyan-400 border-b border-l rounded-tl-lg rounded-bl-lg overflow-hidden">
+            <div className="mt-px border-t  bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300-b border-l rounded-tl-lg rounded-bl-lg overflow-hidden">
               <p className="bg-gray-100 text-amber-500 h-12 text-center px-4 flex items-center justify-start -mt-px">
                 Fingerstache disrupt
               </p>
@@ -842,7 +842,7 @@ export default function HomePage() {
               </p>
             </div>
           </div>
-          <div className="flex lg:w-3/4 w-full flex-wrap lg:border border-cyan-400 rounded-lg">
+          <div className="flex lg:w-3/4 w-full flex-wrap lg: bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 rounded-lg">
             <div className="lg:w-1/3 lg:mt-px w-full mb-10 lg:mb-0 border-2 border-cyan-400 lg:border-none rounded-lg lg:rounded-none">
               <div className="px-2 text-center h-48 flex flex-col items-center justify-center">
                 <h3 className="tracking-widest">START</h3>

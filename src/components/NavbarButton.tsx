@@ -13,7 +13,7 @@ export default function NavbarButton({ onClick, isOpen }: NavbarButtonProps) {
   return (
     <button
       onClick={handleButtonClick}
-      className={`flex md:hidden items-center space-x-2 focus:outline-none text-slate-300`}
+      className={`flex md:hidden items-center space-x-2 focus:outline-none text-slate-300 mr-4`}
     >
       <div className="w-6 flex items-center justify-center relative">
         <span

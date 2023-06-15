@@ -1,4 +1,4 @@
-import { getIsEditable } from "@/firebase/firebase.config";
+import { useIsEditable } from "@/firebase/firebase.config";
 import { useEffect, useRef, useState } from "react";
 import {
   Descendant,
@@ -65,7 +65,7 @@ const RichText: React.FC<RichTextEditorProps> = ({
   const editorRef = useRef<RichTextEditorWithReact | null>(null);
   const [editor] = useState(() => withReact(createEditor()));
 
-  const isEditable = getIsEditable(); // Ottieni il valore di isEditable
+  const isEditable = useIsEditable(); // Ottieni il valore di isEditable
 
   const getInitialValue = (): Descendant[] => {
     if (typeof value === "function") {
@@ -115,7 +115,7 @@ const RichText: React.FC<RichTextEditorProps> = ({
   return (
     <div className={className}>
       {renderToolbar && renderToolbar()}
-      <Slate editor={editor} value={editorValue} onChange={handleChange}>
+      <Slate editor={editor} initialValue={editorValue} onChange={handleChange}>
         <Editable
           spellCheck={false}
           readOnly={!isEditable}

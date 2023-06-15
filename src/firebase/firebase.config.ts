@@ -44,8 +44,8 @@ const storage = getStorage(app);
 export const database = getDatabase(app);
 
 /** ---------- BEGIN CHECKING AUTHENTICATION ---------- */
-export const getIsEditable = () => {
-  const [isEditable, setIsEditable] = useState<boolean>(false);
+export const useIsEditable = () => {
+ const [isEditable, setIsEditable] = useState<boolean>(false);
 
   useEffect(() => {
     const isAdminRoute =

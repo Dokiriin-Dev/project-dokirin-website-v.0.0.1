@@ -8,11 +8,8 @@ import { useRouter } from "next/navigation";
 import React, { useEffect, useState } from "react";
 import { useAuthState } from "react-firebase-hooks/auth";
 import { FcGoogle, FcUnlock } from "react-icons/fc";
-import {
-  auth,
-  signInWithEmailAndPassword,
-} from "../../firebase/firebase.config";
 import Section from "@/components/layout/Section";
+import { auth, signInWithEmailAndPassword } from "@/firebase/firebase.config";
 
 type LoginProps = {};
 

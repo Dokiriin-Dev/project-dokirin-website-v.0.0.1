@@ -343,7 +343,7 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <img
+            <Image
               className="lg:w-3/6 md:w-1/2 object-cover object-center rounded-lg md:mt-0 mt-12"
               src="https://dummyimage.com/1200x500"
               alt="step"
@@ -640,7 +640,7 @@ export default function HomePage() {
             <p className="lg:w-2/3 mx-auto leading-relaxed text-base">
               Whatever cardigan tote bag tumblr hexagon brooklyn asymmetrical
               gentrify, subway tile poke farm-to-table. Franzen you probably
-              haven't heard of them.
+              haven&#39;t heard of them.
             </p>
           </div>
           <div className="flex flex-wrap -m-2">
@@ -970,7 +970,7 @@ export default function HomePage() {
                   </svg>
                 </button>
                 <p className="text-xs text-gray-500 mt-3">
-                  Literally you probably haven't heard of them jean shorts.
+                  Literally you probably haven&#39;t heard of them jean shorts.
                 </p>
               </div>
             </div>
@@ -1109,7 +1109,7 @@ export default function HomePage() {
                   </svg>
                 </button>
                 <p className="text-xs text-gray-500 mt-3">
-                  Literally you probably haven't heard of them jean shorts.
+                  Literally you probably haven&#39;t heard of them jean shorts.
                 </p>
               </div>
             </div>
@@ -1243,7 +1243,7 @@ export default function HomePage() {
                   </svg>
                 </button>
                 <p className="text-xs text-gray-500 mt-3">
-                  Literally you probably haven't heard of them jean shorts.
+                  Literally you probably haven&#39;t heard of them jean shorts.
                 </p>
               </div>
             </div>
@@ -1263,12 +1263,12 @@ export default function HomePage() {
             </svg>
             <p className="leading-relaxed text-lg">
               Edison bulb retro cloud bread echo park, helvetica stumptown
-              taiyaki taxidermy 90's cronut +1 kinfolk. Single-origin coffee
+              taiyaki taxidermy 90&#39;s cronut +1 kinfolk. Single-origin coffee
               ennui shaman taiyaki vape DIY tote bag drinking vinegar cronut
               adaptogen squid fanny pack vaporware. Man bun next level coloring
               book skateboard four loko knausgaard. Kitsch keffiyeh master
               cleanse direct trade indigo juice before they sold out gentrify
-              plaid gastropub normcore XOXO 90's pickled cindigo jean shorts.
+              plaid gastropub normcore XOXO 90&#39;s pickled cindigo jean shorts.
               Slow-carb next level shoindigoitch ethical authentic, yr scenester
               sriracha forage franzen organic drinking vinegar.
             </p>

@@ -1,11 +1,11 @@
+import ContactPage from "@/app/contacts/page";
 import AdminLayout from "@/components/adminPanel/adminLayout";
-import HomePage from "@/pages";
 import React from "react";
 
-export default function Home() {
+export default function contacts() {
   return (
     <AdminLayout>
-      <HomePage />
+      <ContactPage />
     </AdminLayout>
   );
 }

@@ -1,4 +1,4 @@
-import { getIsEditable } from "@/firebase/firebase.config";
+import { useIsEditable } from "@/firebase/firebase.config";
 
 type AdminModalProps = {
   onSave: (data: any) => void;
@@ -6,7 +6,7 @@ type AdminModalProps = {
 };
 
 export default function AdminModal({ onSave, isSaving }: AdminModalProps) {
-  const isEditable = getIsEditable(); // Ottieni il valore di isEditable
+  const isEditable = useIsEditable(); // Ottieni il valore di isEditable
 
   return (
     <>

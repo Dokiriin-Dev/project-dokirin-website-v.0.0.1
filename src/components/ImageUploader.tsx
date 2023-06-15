@@ -3,7 +3,7 @@ import Image from "next/image";
 import {
   setStorageData,
   getStorageData,
-  getIsEditable,
+  useIsEditable,
 } from "@/firebase/firebase.config";
 
 type ImageUploaderProps = {
@@ -21,7 +21,7 @@ const ImageUploader: FC<ImageUploaderProps> = ({
 }) => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
   const [isLoading, setIsLoading] = useState<boolean>(false);
-  const isEditable = getIsEditable();
+  const isEditable = useIsEditable();
 
   const handleImageClick = () => {
     if (isEditable && inputRef.current) {
@@ -118,7 +118,7 @@ const ImageUploader: FC<ImageUploaderProps> = ({
             }}
             onClick={handleImageClick}
           >
-            Carica un'immagine
+            Carica un&#39;immagine
           </div>
         )}
       </div>

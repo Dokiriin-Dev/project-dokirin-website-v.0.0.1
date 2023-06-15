@@ -1,6 +1,7 @@
+"use client";
 import Link from "next/link";
-import React from "react";
-import { HiMenu } from "react-icons/hi";
+import React, { useState } from "react";
+import { HiOutlineMenuAlt4 } from "react-icons/hi";
 import Logo from "./logo";
 
 type MenuItemProps = {
@@ -39,14 +40,21 @@ const ServiceMenu = () => {
 };
 
 export default function Navbar() {
+  const [nav, setNav] = useState(false);
+  const handleMenuClick = () => {
+    setNav(!nav);
+    console.log("Menu aperto");
+  };
+
   return (
     <header className="z-50 fixed left-0 top-0 flex w-full text-gray-700 body-font border-b border-gray-200 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:bg-gray-200 lg:dark:bg-zinc-800/30">
       <div className="container justify-between mx-auto flex flex-wrap md:p-5 p-2.5 flex-col md:flex-row items-center">
         <div className="flex items-center justify-between w-full sm:w-0">
           <Logo className="ml-5 sm:ml-0" />
-          <HiMenu
-            className="md:hidden hover:text-[#FFAE00] text-slate-300 mr-5 sm:mr-0"
-            size={25}
+          <HiOutlineMenuAlt4
+            type="button"
+            onClick={handleMenuClick}
+            className="text-slate-500 w-8 h-8 flex items-center justify-center hover:text-slate-600 dark:text-slate-400 dark:hover:text-slate-300"
           />
         </div>
 

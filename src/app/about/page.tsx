@@ -1,4 +1,5 @@
-import { useEffect, useRef, useState } from "react";
+"use client";
+import { useCallback, useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Descendant, Element, Text } from "slate";
 
@@ -9,7 +10,7 @@ import Loading from "@/components/layout/Loading";
 import Section from "@/components/layout/Section";
 import {
   getDatabaseData,
-  getIsEditable,
+  useIsEditable,
   setDatabaseData,
 } from "@/firebase/firebase.config";
 import classNames from "classnames";
@@ -18,33 +19,36 @@ import { PageData } from "@/components/adminPanel/adminLayout";
 
 const PAGE_NAME = "pages/about";
 
-export const defaultData: PageData = {
+const defaultData: PageData = {
   titleHeading: [{ children: [{ text: "Default Title" }] }],
   descriptionHeading: [{ children: [{ text: "Default Description" }] }],
   titleCustomer: [{ children: [{ text: "Default Title" }] }],
-  descriptionCustomer: [{ children: [{ text: "Default Title" }] }],
+  descriptionCustomer: [{ children: [{ text: "Default Description" }] }],
   titleAbout: [{ children: [{ text: "Default Title" }] }],
-  descriptionAbout: [{ children: [{ text: "Default Title" }] }],
+  descriptionAbout: [{ children: [{ text: "Default Description" }] }],
   titleMission: [{ children: [{ text: "Default Title" }] }],
-  descriptionMission: [{ children: [{ text: "Default Title" }] }],
+  descriptionMission: [{ children: [{ text: "Default Description" }] }],
 };
 
 export default function AboutPage(): JSX.Element {
   const [data, setData] = useState<PageData>(defaultData);
   const [dataText, setDataText] = useState<string>("");
-  const isEditable = getIsEditable(); // Ottieni il valore di isEditable
+  const isEditable = useIsEditable(); // Ottieni il valore di isEditable
   const [isSaving, setIsSaving] = useState(false);
   const [isDataModified, setIsDataModified] = useState(false); // Stato per indicare se i dati sono stati modificati
 
-  const getTextFromDescendants = (descendants: Descendant[]): string => {
-    const firstChild = descendants[0];
-    if (Text.isText(firstChild)) {
-      return firstChild.text;
-    } else if (Element.isElement(firstChild)) {
-      return getTextFromDescendants(firstChild.children);
-    }
-    return "";
-  };
+  const getTextFromDescendants = useCallback(
+    (descendants: Descendant[]): string => {
+      const firstChild = descendants[0];
+      if (Text.isText(firstChild)) {
+        return firstChild.text;
+      } else if (Element.isElement(firstChild)) {
+        return getTextFromDescendants(firstChild.children);
+      }
+      return "";
+    },
+    []
+  );
 
   useEffect(() => {
     const fetchData = async () => {
@@ -77,7 +81,7 @@ export default function AboutPage(): JSX.Element {
     };
 
     fetchData();
-  }, []);
+  }, [getTextFromDescendants]);
 
   const handleDataChange = (field: keyof PageData, value: Descendant[]) => {
     setData((prevData) => ({ ...prevData, [field]: value }));

@@ -41,7 +41,6 @@ const transporter: Transporter = nodemailer.createTransport({
 export default async (request: NextApiRequest, response: NextApiResponse) => {
   try {
     const formData: ContactFormData = request.body;
-
     // Validate input
     const errors = validationResult(request);
     if (!errors.isEmpty()) {
@@ -60,6 +59,14 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
        <p><strong>Terms: </strong> ${formData.floating_checkbox}</p><br>
        <p><strong>Message: </strong> ${formData.floating_message}</p><br>
        `,
+      // Embedded image links to content ID
+      // attachments: [
+      //   {
+      //     filename: "image.png",
+      //     path: "./img1.jpg",
+      //     cid: "unique@gmail.com", // Sets content ID
+      //   },
+      // ],
     });
 
     // Log email data
@@ -75,12 +82,11 @@ export default async (request: NextApiRequest, response: NextApiResponse) => {
     });
 
     // Send success response
-    return response.status(200).json({ message: "Email sent successfully" });
+    return response.status(200).send({ message: "Email sent successfully" });
   } catch (error) {
     // Log error
-    console.error(error);
-
+    console.log(error);
     // Send error response
-    return response.status(500).json({ error: "Failed to send email" });
+    return response?.status(500).send({ error: "Failed to send email" });
   }
 };

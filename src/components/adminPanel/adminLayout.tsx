@@ -1,8 +1,7 @@
-import { useState, ReactNode, useEffect } from "react";
-import AdminModal from "./adminModal";
-import DashboardSidebar from "./adminSidebar";
-import { defaultData } from "@/pages/about";
+"use client"
+import { ReactNode, useEffect, useState } from "react";
 import { Descendant } from "slate";
+import DashboardSidebar from "./adminSidebar";
 
 type AdminLayoutProps = {
   children: ReactNode;

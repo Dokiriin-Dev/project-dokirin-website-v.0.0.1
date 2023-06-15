@@ -11,30 +11,30 @@ import { FcAbout, FcContacts, FcHome } from "react-icons/fc";
 import { MdKeyboardDoubleArrowLeft } from "react-icons/md";
 
 const menuItems = [
-  { id: 1, label: "Manage Home", icon: <FcHome />, link: "/admin/page/home" },
+  { id: 1, label: "Manage Home", icon: <FcHome />, link: "/admin/index" },
   {
     id: 2,
     label: "Manage About",
     icon: <FcAbout />,
-    link: "/admin/page/about",
+    link: "/admin/about",
   },
   {
     id: 3,
     label: "Manage Contact",
     icon: <FcContacts />,
-    link: "/admin/page/contacts",
+    link: "/admin/contacts",
   },
   {
     id: 4,
     label: "Manage Ecommerce",
     icon: <FcContacts />,
-    link: "/admin/page/ecommerce",
+    link: "/admin/ecommerce",
   },
   {
     id: 5,
     label: "Manage SitiWeb",
     icon: <FcContacts />,
-    link: "/admin/page/website",
+    link: "/admin/website",
   },
 ];
 
@@ -63,13 +63,18 @@ const DashboardSidebar: React.FC = () => {
     await signOut(auth);
     router.push("/");
   };
+  const activeMenuPath = useMemo(() => {
+    if (typeof window !== "undefined") {
+      return window.location.pathname;
+    }
+    return null;
+  }, []);
+  
   const activeMenu = useMemo(
-    () =>
-      typeof window !== "undefined"
-        ? menuItems.find((menu) => menu.link === window.location.pathname)
-        : null,
-    [typeof window !== "undefined" && window.location.pathname]
+    () => menuItems.find((menu) => menu.link === activeMenuPath),
+    [activeMenuPath]
   );
+  
 
   const [toggleCollapse, setToggleCollapse] = useState(false);
   const [isCollapsible, setIsCollapsible] = useState(false);

@@ -11,7 +11,7 @@ export default function EcommerceServicePage() {
               Sviluppo Siti E-commerce
             </h1>
             <p className="leading-relaxed mb-8 text-lg md:text-xl">
-              Siamo un'azienda di sviluppo web ad alta tecnologia che si impegna
+              Siamo un&#39;azienda di sviluppo web ad alta tecnologia che si impegna
               a fornire prodotti eccellenti in tempo.
               <br />
               Ci piace capire le esigenze dei nostri clienti e superare le

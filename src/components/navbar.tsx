@@ -75,7 +75,10 @@ export default function Navbar() {
             isMenuOpen ? "block" : "hidden"
           } md:w-auto w-full md:h-auto h-screen`}
         >
-          <MenuItem href="/" children={"Home"} onClick={handleMenuItemClick} />
+          <MenuItem href="/" onClick={handleMenuItemClick}>
+            Home
+          </MenuItem>
+
           <div className="relative group pt-10 md:pt-0">
             <span className="relative px-7 block hover:text-[#FFAE00] text-slate-300 cursor-pointer">
               Servizi
@@ -85,21 +88,15 @@ export default function Navbar() {
               <ServiceMenu />
             </div>
           </div>
-          <MenuItem
-            href="/about"
-            children={"About"}
-            onClick={handleMenuItemClick}
-          />
-          <MenuItem
-            href="/contacts"
-            children={"Contatti"}
-            onClick={handleMenuItemClick}
-          />
-          <MenuItem
-            href="/auth/login"
-            children={"Area Clienti"}
-            onClick={handleMenuItemClick}
-          />
+          <MenuItem href="/about" onClick={handleMenuItemClick}>
+            About
+          </MenuItem>
+          <MenuItem href="/contacts" onClick={handleMenuItemClick}>
+            Contatti
+          </MenuItem>
+          <MenuItem href="/auth/login" onClick={handleMenuItemClick}>
+            Area Clienti
+          </MenuItem>
         </div>
       </div>
     </header>

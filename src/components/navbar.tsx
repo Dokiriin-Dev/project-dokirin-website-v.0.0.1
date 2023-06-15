@@ -16,6 +16,7 @@ const MenuItem = ({ href, children, onClick }: MenuItemProps) => {
       onClick();
     }
   };
+
   return (
     <nav className={`relative px-7 pt-10 md:pt-0`} onClick={handleClick}>
       <span className="block hover:text-[#FFAE00] text-slate-300">
@@ -28,9 +29,19 @@ const MenuItem = ({ href, children, onClick }: MenuItemProps) => {
   );
 };
 
-const ServiceMenu = () => {
+type ServiceMenuProps = {
+  onClick?: () => void; // Aggiungi la prop onClick
+};
+
+const ServiceMenu = ({ onClick }: ServiceMenuProps) => {
   const [flyer, setFlyer] = useState(false);
   const [flyerTwo, setFlyerTwo] = useState(false);
+
+  const handleClick = () => {
+    if (onClick) {
+      onClick();
+    }
+  };
 
   const handleHover = () => {
     setFlyer(!flyer);
@@ -46,7 +57,7 @@ const ServiceMenu = () => {
       <button
         type="button"
         className="group rounded-md text-gray-500 inline-flex items-center font-medium hover:text-gray-900 focus:outline-none"
-        onClick={() => (setFlyer(!flyer), setFlyerTwo(false))}
+        onClick={() => (setFlyer(!flyer), setFlyerTwo(false), handleClick)}
       >
         <span className="relative px-7 block hover:text-[#FFAE00] text-slate-300 cursor-pointer">
           Servizi
@@ -79,10 +90,16 @@ const ServiceMenu = () => {
         }`}
       >
         <div className="absolute top-0 right-0 md:mt-0 md:top-full mr-14 md:mr-0 md:left-0 left-6 rounded-sm md:shadow-lg z-10 w-[11rem] md:bg-gradient-to-b md:from-zinc-800/60 md:backdrop-blur-2xl text-slate-300">
-          <span className="block py-2 w-full rounded-sm p-6 cursor-pointer hover:text-[#FFAE00]">
+          <span
+            className="block py-2 w-full rounded-sm p-6 cursor-pointer hover:text-[#FFAE00]"
+            onClick={handleClick}
+          >
             <Link href="/services/website">Siti web</Link>
           </span>
-          <span className="block py-2 w-full rounded-sm p-6 cursor-pointer hover:text-[#FFAE00]">
+          <span
+            className="block py-2 w-full rounded-sm p-6 cursor-pointer hover:text-[#FFAE00]"
+            onClick={handleClick}
+          >
             <Link href="/services/ecommerce">E-commerce</Link>
           </span>
         </div>
@@ -130,7 +147,7 @@ export default function Navbar() {
             Home
           </MenuItem>
 
-          <ServiceMenu />
+          <ServiceMenu onClick={handleMenuItemClick} />
 
           <MenuItem href="/about" onClick={handleMenuItemClick}>
             About

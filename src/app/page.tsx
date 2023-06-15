@@ -343,7 +343,7 @@ export default function HomePage() {
                 </div>
               </div>
             </div>
-            <Image
+            <img
               className="lg:w-3/6 md:w-1/2 object-cover object-center rounded-lg md:mt-0 mt-12"
               src="https://dummyimage.com/1200x500"
               alt="step"

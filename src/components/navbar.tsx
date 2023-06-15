@@ -1,7 +1,7 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
-import NavbarButton from "./layout/NavbarButton";
+import NavbarButton from "./NavbarButton";
 import Logo from "./logo";
 
 type MenuItemProps = {
@@ -47,27 +47,33 @@ const ServiceMenu = () => {
 
 export default function Navbar() {
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
+  const [isButtonOpen, setButtonOpen] = useState<boolean>(false);
 
   const handleMenuToggle = () => {
     setMenuOpen(!isMenuOpen);
+    setButtonOpen(!isButtonOpen); // Aggiungi questa riga
+  
     if (!isMenuOpen) {
       document.body.style.overflow = "hidden";
     } else {
       document.body.style.overflow = "auto";
     }
   };
+  
 
   const handleMenuItemClick = () => {
     if (isMenuOpen) {
       setMenuOpen(false);
+      setButtonOpen(false); // Aggiungi questa riga
     }
   };
+  
   return (
     <header className="z-50 fixed left-0 top-0 flex w-full text-gray-700 body-font border-b border-gray-200 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:bg-gray-200 lg:dark:bg-zinc-800/30">
       <div className="container justify-between mx-auto flex flex-wrap md:p-5 p-2.5 flex-col md:flex-row items-center">
         <div className="flex items-center justify-between w-full sm:w-0">
           <Logo className="ml-5 sm:ml-0" />
-          <NavbarButton onClick={handleMenuToggle} />
+          <NavbarButton onClick={handleMenuToggle} isOpen={isButtonOpen} />
         </div>
 
         <div

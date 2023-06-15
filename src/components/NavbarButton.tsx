@@ -1,14 +1,10 @@
-import { useState } from "react";
-
 interface NavbarButtonProps {
   onClick?: () => void;
+  isOpen: boolean;
 }
 
-export default function NavbarButton({ onClick }: NavbarButtonProps) {
-  const [isOpen, setIsOpen] = useState(false);
-
+export default function NavbarButton({ onClick, isOpen }: NavbarButtonProps) {
   const handleButtonClick = () => {
-    setIsOpen(!isOpen);
     if (onClick) {
       onClick();
     }

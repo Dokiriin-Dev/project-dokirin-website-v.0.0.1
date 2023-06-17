@@ -2,6 +2,14 @@
 import Link from "next/link";
 import React, { useState } from "react";
 
+/**
+ *
+ *
+ * @description LOGO STRUCTURE
+ * BEGINE LOGO
+ *
+ *
+ */
 type LogoProps = {
   className?: string;
 };
@@ -32,7 +40,14 @@ const Logo = ({ className }: LogoProps) => {
     </div>
   );
 };
-
+/**
+ *
+ *
+ *@description MOBILE BUTTON STRUCTURE
+ * BEGINE MOBILE BUTTON
+ *
+ *
+ */
 interface NavbarButtonProps {
   onClick?: () => void;
   isOpen: boolean;
@@ -73,13 +88,21 @@ const NavbarButton = ({ onClick, isOpen }: NavbarButtonProps) => {
   );
 };
 
-type MenuItemProps = {
+/**
+ *
+ *
+ * @description MENU ITEMS STRUCTURE
+ * BEGINE MENU ITEMS
+ *
+ *
+ */
+type MenuItemsProps = {
   href: string;
   children: React.ReactNode;
   onClick?: () => void; // Aggiungi la prop onClick
 };
 
-const MenuItem = ({ href, children, onClick }: MenuItemProps) => {
+const MenuItems = ({ href, children, onClick }: MenuItemsProps) => {
   const handleClick = () => {
     if (onClick) {
       onClick();
@@ -98,11 +121,19 @@ const MenuItem = ({ href, children, onClick }: MenuItemProps) => {
   );
 };
 
-type ServiceMenuProps = {
+/**
+ *
+ *
+ * @description SERVICE ITEMS STRUCTURE
+ * BEGINE SERVICE ITEMS
+ *
+ *
+ */
+type ServiceItemsMenuProps = {
   onClick?: () => void; // Aggiungi la prop onClick
 };
 
-const ServiceMenu = ({ onClick }: ServiceMenuProps) => {
+const ServiceMenu = ({ onClick }: ServiceItemsMenuProps) => {
   const [flyer, setFlyer] = useState(false);
   const [flyerTwo, setFlyerTwo] = useState(false);
 
@@ -177,6 +208,14 @@ const ServiceMenu = ({ onClick }: ServiceMenuProps) => {
   );
 };
 
+/**
+ *
+ *
+ * @description NAVBAR STRUCTURE
+ * BEGINE NAVBAR
+ *
+ *
+ */
 export default function Navbar() {
   const [isMenuOpen, setMenuOpen] = useState<boolean>(false);
   const [isButtonOpen, setButtonOpen] = useState<boolean>(false);
@@ -212,21 +251,21 @@ export default function Navbar() {
             isMenuOpen ? "block" : "hidden"
           } md:w-auto w-full md:h-auto h-screen`}
         >
-          <MenuItem href="/" onClick={handleMenuItemClick}>
+          <MenuItems href="/" onClick={handleMenuItemClick}>
             Home
-          </MenuItem>
+          </MenuItems>
 
           <ServiceMenu onClick={handleMenuItemClick} />
 
-          <MenuItem href="/about" onClick={handleMenuItemClick}>
+          <MenuItems href="/about" onClick={handleMenuItemClick}>
             About
-          </MenuItem>
-          <MenuItem href="/contacts" onClick={handleMenuItemClick}>
+          </MenuItems>
+          <MenuItems href="/contacts" onClick={handleMenuItemClick}>
             Contatti
-          </MenuItem>
-          <MenuItem href="/auth/login" onClick={handleMenuItemClick}>
+          </MenuItems>
+          <MenuItems href="/auth/login" onClick={handleMenuItemClick}>
             Area Clienti
-          </MenuItem>
+          </MenuItems>
         </div>
       </div>
     </header>

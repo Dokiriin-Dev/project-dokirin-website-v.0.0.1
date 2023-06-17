@@ -1,8 +1,77 @@
 "use client";
 import Link from "next/link";
 import React, { useState } from "react";
-import NavbarButton from "./NavbarButton";
-import Logo from "./logo";
+
+type LogoProps = {
+  className?: string;
+};
+
+const Logo = ({ className }: LogoProps) => {
+  return (
+    <div className={`flex items-center flex-shrink-0 ${className}`}>
+      <Link
+        className="flex title-font font-medium items-center text-gray-900 md:mb-0"
+        href="/"
+      >
+        <svg
+          xmlns="http://www.w3.org/2000/svg"
+          fill="none"
+          stroke="currentColor"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          strokeWidth="2"
+          className="w-10 h-10 text-slate-300 p-2 bg-indigo-500 rounded-full"
+          viewBox="0 0 24 24"
+        >
+          <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
+        </svg>
+        <span className="text-2xl ml-3 font-bold text-slate-400">
+          TAILBLOCKS
+        </span>
+      </Link>
+    </div>
+  );
+};
+
+interface NavbarButtonProps {
+  onClick?: () => void;
+  isOpen: boolean;
+}
+
+const NavbarButton = ({ onClick, isOpen }: NavbarButtonProps) => {
+  const handleButtonClick = () => {
+    if (onClick) {
+      onClick();
+    }
+  };
+
+  return (
+    <button
+      onClick={handleButtonClick}
+      className={`flex sm:hidden md:hidden items-center space-x-2 focus:outline-none text-slate-300 mr-4`}
+    >
+      <div className="w-6 flex items-center justify-center relative">
+        <span
+          className={`transform transition w-full h-px bg-current absolute ${
+            isOpen ? "translate-y-0 rotate-45" : "-translate-y-2"
+          }`}
+        ></span>
+
+        <span
+          className={`transform transition w-full h-px bg-current absolute ${
+            isOpen ? "opacity-0 translate-x-3" : "opacity-100"
+          }`}
+        ></span>
+
+        <span
+          className={`transform transition w-full h-px bg-current absolute ${
+            isOpen ? "translate-y-0 -rotate-45" : "translate-y-2"
+          }`}
+        ></span>
+      </div>
+    </button>
+  );
+};
 
 type MenuItemProps = {
   href: string;
@@ -66,8 +135,8 @@ const ServiceMenu = ({ onClick }: ServiceMenuProps) => {
           className={`
           ${
             flyer === true
-              ? "transform rotate-0 ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500 transition ease-out duration-200"
-              : "transform -rotate-90 transition ease-out duration-200 ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500"
+              ? "transform rotate-180 ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500 transition ease-out duration-200"
+              : "transform rotate-0 transition ease-out duration-200 ml-2 h-5 w-5 text-gray-400 group-hover:text-gray-500"
           }, flex md:hidden
           `}
           xmlns="http://www.w3.org/2000/svg"
@@ -83,7 +152,7 @@ const ServiceMenu = ({ onClick }: ServiceMenuProps) => {
         </svg>
       </button>
       <div
-        className={`group-hover:block ${
+        className={`group-hover:block md:hidden ${
           flyer === true
             ? "md:pb-0 pb-16 relative opacity-100 translate-y-0 transition ease-out duration-200 z-10 md:mt-0 mt-3 transform px-2 md:w-0 w-screen max-w-md sm:px-0 lg:ml-0 md:right-6 lg:-translate-x-1/2"
             : "opacity-0 translate-y-1 absolute z-10 -ml-4 mt-3 transform px-2 w-screen max-w-md sm:px-0 lg:ml-0 lg:left-1/2 lg:-translate-x-1/2"

@@ -3,8 +3,8 @@ import { useCallback, useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
 import { Descendant, Element, Text } from "slate";
 
-import ImageUploader from "@/components/ImageUploader";
-import RichText from "@/components/RichText";
+import ImageUploader from "@/components/layout/ImageUploader";
+import RichText from "@/components/layout/RichText";
 import Container from "@/components/layout/Container";
 import Loading from "@/components/layout/Loading";
 import Section from "@/components/layout/Section";

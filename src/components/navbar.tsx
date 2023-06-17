@@ -14,7 +14,7 @@ type LogoProps = {
   className?: string;
 };
 
-const Logo = ({ className }: LogoProps) => {
+export const Logo = ({ className }: LogoProps) => {
   return (
     <div className={`flex items-center flex-shrink-0 ${className}`}>
       <Link

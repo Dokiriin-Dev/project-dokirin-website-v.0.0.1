@@ -1,5 +1,5 @@
 "use client";
-import RichText from "@/components/RichText";
+import RichText from "@/components/layout/RichText";
 import { PageData } from "@/components/adminPanel/adminLayout";
 import AdminModal from "@/components/adminPanel/adminModal";
 import Container from "@/components/layout/Container";

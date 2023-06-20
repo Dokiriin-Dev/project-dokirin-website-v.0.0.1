@@ -33,8 +33,8 @@ export const Logo = ({ className }: LogoProps) => {
         >
           <path d="M12 2L2 7l10 5 10-5-10-5zM2 17l10 5 10-5M2 12l10 5 10-5"></path>
         </svg>
-        <span className="text-2xl ml-3 font-bold text-slate-400">
-          TAILBLOCKS
+        <span className="-tracking-[-0.2em] text-2xl ml-3 font-bold text-slate-400">
+          Dokirin
         </span>
       </Link>
     </div>
@@ -63,7 +63,7 @@ const NavbarButton = ({ onClick, isOpen }: NavbarButtonProps) => {
   return (
     <button
       onClick={handleButtonClick}
-      className={`flex sm:hidden md:hidden items-center space-x-2 focus:outline-none text-slate-300 mr-4`}
+      className={`flex lg:hidden items-center space-x-2 focus:outline-none text-slate-300 mr-4`}
     >
       <div className="w-6 flex items-center justify-center relative">
         <span
@@ -163,7 +163,9 @@ const ServiceMenu = ({ onClick }: ServiceItemsMenuProps) => {
         className={`group rounded-md inline-flex items-center font-medium text-slate-300 group-hover:text-[#FFAE00] focus:outline-none`}
         onClick={() => (setMenuOpen(!isMenuOpen), handleClick)}
       >
-        <span className={`relative px-7 block cursor-pointer`}>Servizi</span>
+        <span className={`relative px-7 cursor-pointer md:hidden`}>
+          Servizi
+        </span>
         <svg
           className={`
             ${
@@ -184,6 +186,11 @@ const ServiceMenu = ({ onClick }: ServiceItemsMenuProps) => {
           />
         </svg>
       </button>
+      <span
+        className={`relative px-7 hidden cursor-pointer group rounded-md md:inline-flex items-center font-medium text-slate-300 group-hover:text-[#FFAE00] focus:outline-none`}
+      >
+        Servizi
+      </span>
       <div
         className={`${menuClasses.base} ${isMenuOpen ? menuClasses.open : ""}`}
       >
@@ -234,13 +241,13 @@ export default function Navbar() {
   return (
     <header className="z-50 fixed left-0 top-0 flex w-full text-gray-700 body-font border-b border-gray-200 bg-gradient-to-b from-zinc-200 backdrop-blur-2xl dark:border-neutral-800 dark:bg-zinc-800/30 dark:from-inherit lg:bg-gray-200 lg:dark:bg-zinc-800/30">
       <div className="container justify-between mx-auto flex flex-wrap md:p-5 p-2.5 flex-col md:flex-row items-center">
-        <div className="flex items-center justify-between w-full sm:w-0">
-          <Logo className="ml-4 sm:ml-0" />
+        <div className="flex items-center justify-between w-full sm:w-auto md:w-0 flex-grow">
+          <Logo className="ml-4 sm:ml-0 max-w-1/2" />
           <NavbarButton onClick={handleMenuToggle} isOpen={isMenuOpen} />
         </div>
 
         <div
-          className={`md:flex text-xl ${
+          className={`lg:flex text-xl ${
             isMenuOpen ? "block" : "hidden"
           } md:w-auto w-full md:h-auto h-screen`}
         >

@@ -6,17 +6,24 @@ import {
   useIsEditable,
 } from "@/firebase/firebase.config";
 
+type SafeNumber = number | `${number}`;
 type ImageUploaderProps = {
   alt: string;
   inputRef: RefObject<HTMLInputElement>;
   imageKey?: string;
   fallbackImage?: string;
+  className?: string;
+  width?: SafeNumber | undefined;
+  height?: SafeNumber | undefined;
 };
 
 const ImageUploader: FC<ImageUploaderProps> = ({
   inputRef,
   alt,
   imageKey,
+  className,
+  width,
+  height,
   fallbackImage,
 }) => {
   const [imageUrl, setImageUrl] = useState<string | null>(null);
@@ -77,16 +84,17 @@ const ImageUploader: FC<ImageUploaderProps> = ({
     <div className="mt-4">
       <div
         style={{ position: "relative" }}
-        className={"min-h-[25rem] min-w-full"}
+        // className={"min-h-[25rem] min-w-full"}
       >
         {imageUrl ? (
           <>
-            <Image
+            <img
+              className={className}
               src={imageUrl}
               alt={alt}
               sizes="800"
-              width={1000}
-              height={1000}
+              width={width}
+              height={height}
             />
             {isEditable && (
               <div

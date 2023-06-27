@@ -139,6 +139,10 @@ export default function ContactPage(): JSX.Element {
     }
   };
 
+  const phone = "351-594-5734";
+  const email = "info@dokirin.com";
+  const officeAddress = "Antonio Rosmini Serbati, 58";
+
   return (
     <>
       <Section className="pt-10 md:pt-20">
@@ -414,12 +418,25 @@ export default function ContactPage(): JSX.Element {
                   )}
                 </div>
                 <div className="p-2 w-full pt-8 mt-8 border-t border-gray-800 text-center">
-                  <a className="text-green-400">info@dokirin.com</a>
-                  <p className="leading-normal my-5">
-                    49 Smith St.
-                    <br />
-                    Saint Cloud, MN 56301
-                  </p>
+                  <div className="relative flex flex-wrap py-6 rounded shadow-md">
+                    <div className="lg:w-1/2 px-6">
+                      <h2 className="title-font font-semibold text-white tracking-widest text-xs">
+                        ADDRESS
+                      </h2>
+                      <p className="mt-1 text-yellow-400">{officeAddress}</p>
+                    </div>
+                    <div className="lg:w-1/2 px-6 mt-4 lg:mt-0">
+                      <h2 className="title-font font-semibold text-white tracking-widest text-xs">
+                        EMAIL
+                      </h2>
+                      <p className="text-yellow-400 leading-relaxed">{email}</p>
+                      <h2 className="title-font font-semibold text-white tracking-widest text-xs mt-4">
+                        PHONE
+                      </h2>
+                      <p className="leading-relaxed text-yellow-400">{phone}</p>
+                    </div>
+                  </div>
+                  {/* social media icon */}
                   <span className="inline-flex">
                     <a className="text-gray-500">
                       <svg

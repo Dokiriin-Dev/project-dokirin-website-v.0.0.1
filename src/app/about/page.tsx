@@ -200,6 +200,8 @@ export default function AboutPage(): JSX.Element {
                       inputRef={fileInputRefs.first}
                       imageKey={"first"}
                       alt={"first"}
+                      width={1000}
+                      height={1000}
                     />
                   </div>
                 </div>
@@ -237,6 +239,8 @@ export default function AboutPage(): JSX.Element {
                       inputRef={fileInputRefs.second}
                       imageKey={"second"}
                       alt={"second"}
+                      width={1000}
+                      height={1000}
                     />
                   </div>
                 </div>
@@ -274,7 +278,7 @@ export default function AboutPage(): JSX.Element {
           </Container>
         </Section>
       ) : (
-        <Loading />
+        <div className="h-screen"></div>
       )}
       {isDataModified && (
         <AdminModal onSave={() => handleDataSave(data)} isSaving={isSaving} />

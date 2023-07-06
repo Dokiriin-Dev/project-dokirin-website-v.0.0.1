@@ -200,7 +200,7 @@ export default function HomePage() {
                 <p className="uppercase tracking-loose w-full text-sm text-teal-400">
                   Qual è il tuo business?
                 </p>
-                <h1 className="boujee-text title-font sm:text-8xl mb-4 my-4 text-6xl font-bold leading-tight">
+                <h1 className="boujee-text title-font sm:text-8xl mb-4 my-4 text-5xl font-bold leading-tight">
                   Il sito web dei tuoi sogni
                 </h1>
                 <RichText

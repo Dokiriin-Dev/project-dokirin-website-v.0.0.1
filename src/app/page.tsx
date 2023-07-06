@@ -461,7 +461,7 @@ export default function HomePage() {
               </div>
             </div>
           </Section>
-          <Section className="text-gray-400 body-font text-base">
+          <Section className="text-gray-400 body-font text-base border-t border-cyan-400">
             <div className="container px-5 py-24 mx-auto flex flex-wrap">
               <div className="flex flex-wrap w-full">
                 <div className="lg:w-3/6 md:w-1/2 md:pr-10 md:py-6 text-base">
@@ -1100,7 +1100,7 @@ export default function HomePage() {
             </div>
           </Section>
 
-          <Section className="text-gray-400 body-font">
+          <Section className="text-gray-400 body-font border-t border-cyan-400">
             <div className="container px-5 py-24 mx-auto">
               <div className="flex flex-wrap w-full mb-20">
                 <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
@@ -1642,7 +1642,7 @@ export default function HomePage() {
             </div>
           </Section>
 
-          <Section className="text-gray-400 body-font">
+          <Section className="text-gray-400 body-font border-t border-cyan-400">
             <div className="container px-5 py-24 mx-auto">
               <h1 className="text-3xl font-medium title-font text-white mb-12 text-center">
                 Testimonials
@@ -1765,7 +1765,7 @@ export default function HomePage() {
             </div>
           </Section>
 
-          <Section className="text-gray-400 body-font relative">
+          <Section className="text-gray-400 body-font relative border-t border-b border-cyan-400 ">
             <div className="absolute inset-0 bg-gray-900">
               <iframe
                 width={width}

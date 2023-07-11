@@ -194,23 +194,44 @@ const ServiceMenu = ({ onClick }: ServiceItemsMenuProps) => {
       <div
         className={`${menuClasses.base} ${isMenuOpen ? menuClasses.open : ""}`}
       >
-        <div className="absolute top-0 right-0 md:mt-0 md:top-full mr-14 md:mr-0 md:left-0 left-6 rounded-sm md:shadow-lg z-10 w-[11rem] md:bg-gradient-to-b md:from-zinc-800/60 md:backdrop-blur-2xl text-slate-300">
-          <span
+        <div className="absolute top-0 right-0 md:mt-0 md:top-full mr-14 md:mr-0 md:left-0 left-6 rounded-sm md:shadow-lg z-10 min-w-[16.5rem] md:bg-gradient-to-b md:from-zinc-800/60 md:backdrop-blur-2xl text-slate-300">
+          <Link
+            href={"/services/web-site-service"}
             className={`block py-2 w-full rounded-sm p-6 cursor-pointer hover:text-[#FFAE00] ${
               !isMenuOpen ? menuClasses.hidden : ""
             }`}
             onClick={handleClick}
           >
-            <Link href="/services/website">Siti web</Link>
-          </span>
-          <span
+            Siti web
+          </Link>
+          <Link
+            href={"/services/ecommerce-service"}
             className={`block py-2 w-full rounded-sm p-6 cursor-pointer hover:text-[#FFAE00] ${
               !isMenuOpen ? menuClasses.hidden : ""
             }`}
             onClick={handleClick}
           >
-            <Link href="/services/ecommerce">E-commerce</Link>
-          </span>
+            E-commerce
+          </Link>
+          <Link
+            href={"/services/web-app-service"}
+            className={`block py-2 w-full rounded-sm p-6 cursor-pointer hover:text-[#FFAE00] ${
+              !isMenuOpen ? menuClasses.hidden : ""
+            }`}
+            onClick={handleClick}
+          >
+            Applicazioni web
+          </Link>
+
+          <Link
+            href={"/services/social-media-manager-service"}
+            className={`block py-2 w-full rounded-sm p-6 cursor-pointer hover:text-[#FFAE00] ${
+              !isMenuOpen ? menuClasses.hidden : ""
+            }`}
+            onClick={handleClick}
+          >
+            Social Media Manager
+          </Link>
         </div>
       </div>
     </div>

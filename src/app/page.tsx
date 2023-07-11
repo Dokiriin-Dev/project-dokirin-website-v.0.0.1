@@ -11,6 +11,7 @@ import {
   setDatabaseData,
   useIsEditable,
 } from "@/firebase/firebase.config";
+import App from "next/app";
 import Link from "next/link";
 import { useCallback, useEffect, useRef, useState } from "react";
 import toast, { Toaster } from "react-hot-toast";
@@ -240,6 +241,7 @@ export default function HomePage() {
               </div>
             </div>
           </Section>
+
           <Section className="text-gray-700 body-font border-t border-cyan-400 relative text-base">
             <div className="container px-5 py-24 mx-auto">
               <div className="flex flex-col text-center w-full mb-20">
@@ -461,6 +463,7 @@ export default function HomePage() {
               </div>
             </div>
           </Section>
+          
           <Section className="text-gray-400 body-font text-base border-t border-cyan-400">
             <div className="container px-5 py-24 mx-auto flex flex-wrap">
               <div className="flex flex-wrap w-full">
@@ -699,6 +702,7 @@ export default function HomePage() {
               </div>
             </div>
           </Section>
+
           <Section className="text-gray-700 body-font border-t border-cyan-400 text-base">
             <div className="container px-5 py-24 mx-auto">
               <div className="flex flex-wrap w-full mb-20 flex-col items-center text-center">
@@ -774,7 +778,7 @@ export default function HomePage() {
 
                     <Link
                       className="text-indigo-600 hover:text-indigo-400 mt-3 text-base flex justify-end items-center w-full"
-                      href={""}
+                      href={"services/web-site-service"}
                     >
                       Learn More
                       <svg
@@ -835,7 +839,7 @@ export default function HomePage() {
                     />
                     <Link
                       className="text-indigo-600 hover:text-indigo-400 mt-3 text-base flex justify-end items-center w-full"
-                      href={""}
+                      href={"services/ecommerce-service"}
                     >
                       Learn More
                       <svg
@@ -896,7 +900,7 @@ export default function HomePage() {
                     />
                     <Link
                       className="text-indigo-600 hover:text-indigo-400 mt-3 text-base flex justify-end items-center w-full"
-                      href={""}
+                      href={"services/web-app-service"}
                     >
                       Learn More
                       <svg
@@ -957,7 +961,7 @@ export default function HomePage() {
                     />
                     <Link
                       className="text-indigo-600 hover:text-indigo-400 mt-3 text-base flex justify-end items-center w-full"
-                      href={""}
+                      href={"services/web-consulting-and-strategy"}
                     >
                       Learn More
                       <svg
@@ -1018,7 +1022,7 @@ export default function HomePage() {
                     />
                     <Link
                       className="text-indigo-600 hover:text-indigo-400 mt-3 text-base flex justify-end items-center w-full"
-                      href={""}
+                      href={"services/seo-service"}
                     >
                       Learn More
                       <svg
@@ -1079,7 +1083,7 @@ export default function HomePage() {
                     />
                     <Link
                       className="text-indigo-600 hover:text-indigo-400 mt-3 text-base flex justify-end items-center w-full"
-                      href={""}
+                      href={"services/social-media-manager-service"}
                     >
                       Learn More
                       <svg

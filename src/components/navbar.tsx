@@ -194,7 +194,7 @@ const ServiceMenu = ({ onClick }: ServiceItemsMenuProps) => {
       <div
         className={`${menuClasses.base} ${isMenuOpen ? menuClasses.open : ""}`}
       >
-        <div className="absolute top-0 right-0 md:mt-0 md:top-full mr-14 md:mr-0 md:left-0 left-6 rounded-sm md:shadow-lg z-10 min-w-[16.5rem] md:bg-gradient-to-b md:from-zinc-800/60 md:backdrop-blur-2xl text-slate-300">
+        <div className="absolute top-0 right-0 md:mt-0 md:top-full mr-14 md:mr-0 md:left-0 left-6 rounded-sm md:shadow-lg z-10 min-w-[16.5rem] md:bg-gradient-to-b md:from-slate-950/100 md:backdrop-blur-3xl text-slate-300">
           <Link
             href={"/services/web-site-service"}
             className={`block py-2 w-full rounded-sm p-6 cursor-pointer hover:text-[#FFAE00] ${

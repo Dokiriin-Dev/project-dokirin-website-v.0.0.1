@@ -242,7 +242,7 @@ export default function HomePage() {
             </div>
           </Section>
 
-          <Section className="text-gray-700 body-font border-t border-cyan-400 relative text-base">
+          <Section className="text-gray-700 body-font relative text-base">
             <div className="container px-5 py-24 mx-auto">
               <div className="flex flex-col text-center w-full mb-20">
                 <RichText
@@ -311,23 +311,6 @@ export default function HomePage() {
                           </p>
                         )}
                       />
-                      <Link
-                        className="text-indigo-600 hover:text-indigo-400 mt-3 text-base flex justify-end items-center w-full"
-                        href={""}
-                      >
-                        Learn More
-                        <svg
-                          fill="none"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          className="w-4 h-4 ml-2"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M5 12h14M12 5l7 7-7 7"></path>
-                        </svg>
-                      </Link>
                     </div>
                   </div>
                 </div>
@@ -375,23 +358,6 @@ export default function HomePage() {
                           </p>
                         )}
                       />
-                      <Link
-                        className="text-indigo-600 hover:text-indigo-400 mt-3 text-base flex justify-end items-center w-full"
-                        href={""}
-                      >
-                        Learn More
-                        <svg
-                          fill="none"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          className="w-4 h-4 ml-2"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M5 12h14M12 5l7 7-7 7"></path>
-                        </svg>
-                      </Link>
                     </div>
                   </div>
                 </div>
@@ -439,32 +405,14 @@ export default function HomePage() {
                           </p>
                         )}
                       />
-
-                      <Link
-                        className="text-indigo-600 hover:text-indigo-400 mt-3 text-base flex justify-end items-center w-full"
-                        href={""}
-                      >
-                        Learn More
-                        <svg
-                          fill="none"
-                          stroke="currentColor"
-                          strokeLinecap="round"
-                          strokeLinejoin="round"
-                          strokeWidth="2"
-                          className="w-4 h-4 ml-2"
-                          viewBox="0 0 24 24"
-                        >
-                          <path d="M5 12h14M12 5l7 7-7 7"></path>
-                        </svg>
-                      </Link>
                     </div>
                   </div>
                 </div>
               </div>
             </div>
           </Section>
-          
-          <Section className="text-gray-400 body-font text-base border-t border-cyan-400">
+
+          <Section className="text-gray-400 body-font text-base">
             <div className="container px-5 py-24 mx-auto flex flex-wrap">
               <div className="flex flex-wrap w-full">
                 <div className="lg:w-3/6 md:w-1/2 md:pr-10 md:py-6 text-base">
@@ -703,7 +651,7 @@ export default function HomePage() {
             </div>
           </Section>
 
-          <Section className="text-gray-700 body-font border-t border-cyan-400 text-base">
+          <Section className="text-gray-700 body-font text-base">
             <div className="container px-5 py-24 mx-auto">
               <div className="flex flex-wrap w-full mb-20 flex-col items-center text-center">
                 <RichText
@@ -736,7 +684,7 @@ export default function HomePage() {
                 <div className="xl:w-1/3 md:w-1/2 p-4">
                   <div className=" bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-6 rounded-lg">
                     <div className="flex items-center mb-4 w-full">
-                      <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500">
+                      <div className="w-10 h-10 flex-shrink-0 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500">
                         <svg
                           fill="none"
                           stroke="currentColor"
@@ -799,7 +747,7 @@ export default function HomePage() {
                 <div className="xl:w-1/3 md:w-1/2 p-4">
                   <div className="bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-6 rounded-lg">
                     <div className="flex items-center mb-4 w-full">
-                      <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500">
+                      <div className="w-10 h-10 flex-shrink-0 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500">
                         <svg
                           fill="none"
                           stroke="currentColor"
@@ -860,7 +808,7 @@ export default function HomePage() {
                 <div className="xl:w-1/3 md:w-1/2 p-4">
                   <div className=" bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-6 rounded-lg">
                     <div className="flex items-center mb-4 w-full">
-                      <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500">
+                      <div className="w-10 h-10 flex-shrink-0 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500">
                         <svg
                           fill="none"
                           stroke="currentColor"
@@ -921,7 +869,7 @@ export default function HomePage() {
                 <div className="xl:w-1/3 md:w-1/2 p-4">
                   <div className=" bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-6 rounded-lg">
                     <div className="flex items-center mb-4 w-full">
-                      <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500">
+                      <div className="w-10 h-10 flex-shrink-0 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500">
                         <svg
                           fill="none"
                           stroke="currentColor"
@@ -982,7 +930,7 @@ export default function HomePage() {
                 <div className="xl:w-1/3 md:w-1/2 p-4">
                   <div className=" bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-6 rounded-lg">
                     <div className="flex items-center mb-4 w-full">
-                      <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500">
+                      <div className="w-10 h-10 flex-shrink-0 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500">
                         <svg
                           fill="none"
                           stroke="currentColor"
@@ -1043,7 +991,7 @@ export default function HomePage() {
                 <div className="xl:w-1/3 md:w-1/2 p-4">
                   <div className="bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300 p-6 rounded-lg">
                     <div className="flex items-center mb-4 w-full">
-                      <div className="w-10 h-10 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500">
+                      <div className="w-10 h-10 flex-shrink-0 inline-flex items-center justify-center rounded-full bg-indigo-100 text-indigo-500">
                         <svg
                           fill="none"
                           stroke="currentColor"
@@ -1104,7 +1052,7 @@ export default function HomePage() {
             </div>
           </Section>
 
-          <Section className="text-gray-400 body-font border-t border-cyan-400">
+          <Section className="text-gray-400 body-font">
             <div className="container px-5 py-24 mx-auto">
               <div className="flex flex-wrap w-full mb-20">
                 <div className="lg:w-1/2 w-full mb-6 lg:mb-0">
@@ -1201,7 +1149,7 @@ export default function HomePage() {
             </div>
           </Section>
 
-          <Section className="text-gray-700 body-font overflow-hidden border-t border-cyan-400 text-base">
+          <Section className="text-gray-700 body-font overflow-hidden text-base">
             <div className="container px-5 py-24 mx-auto flex flex-wrap">
               <div className="lg:w-1/4 mt-48 hidden lg:block">
                 <div className="mt-px border-t  bg-gradient-to-b from-zinc-800/60 backdrop-blur-2xl text-slate-300-b border-l rounded-tl-lg rounded-bl-lg overflow-hidden">
@@ -1243,7 +1191,7 @@ export default function HomePage() {
                     </h2>
                     <span className="text-sm text-gray-600">Next 3 months</span>
                   </div>
-                  <p className="bg-gray-100 text-gray-600 h-12 text-center px-2 flex items-center -mt-px justify-center border-t border-cyan-400">
+                  <p className="bg-gray-100 text-gray-600 h-12 text-center px-2 flex items-center -mt-px justify-center">
                     Schlitz single-origin
                   </p>
                   <p className="text-gray-600 text-center h-12 flex items-center justify-center">
@@ -1381,7 +1329,7 @@ export default function HomePage() {
                       Charging $456 per year
                     </span>
                   </div>
-                  <p className="bg-gray-100 text-gray-600 h-12 text-center px-2 flex items-center -mt-px justify-center border-t border-cyan-400">
+                  <p className="bg-gray-100 text-gray-600 h-12 text-center px-2 flex items-center -mt-px justify-center">
                     Schlitz single-origin
                   </p>
                   <p className="text-gray-600 text-center h-12 flex items-center justify-center">
@@ -1486,7 +1434,7 @@ export default function HomePage() {
                       <path d="M18 6L6 18M6 6l12 12"></path>
                     </svg>
                   </p>
-                  <div className="p-6 text-center border-t border-cyan-400">
+                  <div className="p-6 text-center">
                     <button className="flex items-center mt-auto text-slate-300 bg-indigo-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-indigo-600 rounded">
                       Button
                       <svg
@@ -1518,7 +1466,7 @@ export default function HomePage() {
                       Charging $648 per year
                     </span>
                   </div>
-                  <p className="bg-gray-100 text-gray-600 h-12 text-center px-2 flex items-center -mt-px justify-center border-t border-cyan-400">
+                  <p className="bg-gray-100 text-gray-600 h-12 text-center px-2 flex items-center -mt-px justify-center">
                     Schlitz single-origin
                   </p>
                   <p className="text-gray-600 text-center h-12 flex items-center justify-center">
@@ -1621,7 +1569,7 @@ export default function HomePage() {
                       <path d="M18 6L6 18M6 6l12 12"></path>
                     </svg>
                   </p>
-                  <div className="p-6 text-center border-t border-cyan-400">
+                  <div className="p-6 text-center">
                     <button className="flex items-center mt-auto text-slate-300 bg-indigo-500 border-0 py-2 px-4 w-full focus:outline-none hover:bg-indigo-600 rounded">
                       Button
                       <svg
@@ -1646,7 +1594,7 @@ export default function HomePage() {
             </div>
           </Section>
 
-          <Section className="text-gray-400 body-font border-t border-cyan-400">
+          <Section className="text-gray-400 body-font">
             <div className="container px-5 py-24 mx-auto">
               <h1 className="text-3xl font-medium title-font text-white mb-12 text-center">
                 Testimonials

@@ -135,7 +135,7 @@ interface MenuClassNames {
 
 const menuClasses: MenuClassNames = {
   base: "group-hover:block md:hidden",
-  open: "pb-16 md:pb-0 relative opacity-100 translate-y-0 transition ease-out duration-200 z-10 md:mt-0 mt-3 transform px-2 md:w-0 w-screen max-w-md sm:px-0 lg:ml-0 md:right-6 lg:-translate-x-1/2",
+  open: "pb-40 md:pb-0 relative opacity-100 translate-y-0 transition ease-out duration-200 z-10 md:mt-0 mt-3 transform px-2 md:w-0 w-screen max-w-md sm:px-0 lg:ml-0 md:right-6 lg:-translate-x-1/2",
   hidden: "hidden",
 };
 
@@ -222,7 +222,6 @@ const ServiceMenu = ({ onClick }: ServiceItemsMenuProps) => {
           >
             Applicazioni web
           </Link>
-
           <Link
             href={"/services/social-media-manager-service"}
             className={`block py-2 w-full rounded-sm p-6 cursor-pointer hover:text-[#FFAE00] ${
